@@ -2,7 +2,7 @@
 /*exported CookieBanner */
 /**
  * @file _cookieBanner.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Displays a cookie banner message
  */

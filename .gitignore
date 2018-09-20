@@ -34,7 +34,7 @@ deploy.cmd
 
 Site/bin/NativeBinaries/*
 
-packages/*
+Site/packages/*
 !Site/packages/repositories.config
 
 Site/App_Data/*
@@ -54,3 +54,5 @@ Site/App_Plugins/UmbracoForms/[Ii]nstalled
 node_modules/
 bower_components/
 docs/
+package-lock.json
+static/

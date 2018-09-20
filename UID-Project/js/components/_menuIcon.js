@@ -1,7 +1,7 @@
 /*exported MenuIcon */
 /**
  * @file _menuIcon.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Hamburger menu functionality
  */

@@ -1,7 +1,7 @@
 /*exported CookieManager */
 /**
  * @file _cookieManager.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Manage cookies
  */

@@ -1,7 +1,7 @@
 /*exported ExtendForms */
 /**
  * @file _extendForms.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Handle additional form styling
  */

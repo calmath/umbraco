@@ -1,7 +1,7 @@
 /*exported Typewriter */
 /**
  * @file _typewriter.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Creates typewriter effects of text
  */

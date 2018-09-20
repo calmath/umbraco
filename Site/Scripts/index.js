@@ -17,7 +17,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
  * @file _eventHandler.js
 
- * @author Netcel
+ * @author OtherCo
 
  *
 
@@ -104,7 +104,7 @@ var EventHandler = function () {
 /*exported MenuIcon */
 /**
  * @file _menuIcon.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Hamburger menu functionality
  */
@@ -196,7 +196,7 @@ var MenuIcon = function () {
 /*exported CookieBanner */
 /**
  * @file _cookieBanner.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Displays a cookie banner message
  */
@@ -278,7 +278,7 @@ var CookieBanner = function (_EventHandler) {
 /*exported CookieManager */
 /**
  * @file _cookieManager.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Manage cookies
  */
@@ -365,7 +365,7 @@ var CookieManager = function () {
 /*exported ExtendForms */
 /**
  * @file _extendForms.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Handle additional form styling
  */
@@ -458,7 +458,7 @@ var ExtendForms = function () {
 /*exported Typewriter */
 /**
  * @file _typewriter.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Creates typewriter effects of text
  */
@@ -714,7 +714,7 @@ var Typewriter = function () {
 
 /**
  * @file _accordion.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Extending css controlled accordions
  */
@@ -955,7 +955,7 @@ var Accordion = function () {
 
 /**
  * @file _linkToAccordion.js
- * @author Netcel
+ * @author OtherCo
  *
  * @classdesc Extends default accordion functionality to allow
  * hash links to open a corresponding accordion

@@ -11,7 +11,7 @@
 		"lint:html": "htmllint --rc ./node_modules/uid-framework/.htmllintrc UID-project/templates/**/*.{nunjucks,html} || echo \u001b[0;31mCommit failed due to lint rules failing. Run 'gulp docs:js' and read documentation for information on htmlhint rules\u001b[0;39m",
 		"lint": "npm run lint:sass && npm run lint:js && npm run lint:html"
 	},
-	"author": "Netcel",
+	"author": "OtherCo",
 	"license": "ISC",
 	"devDependencies": {
 		"babel-core": "^6.26.3",
