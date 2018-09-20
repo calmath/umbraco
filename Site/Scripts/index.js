@@ -468,7 +468,7 @@ var Typewriter = function () {
 	/**
   * Sets up text areas for type writer effect text. If no typewriter
   * effect text is found and h1 child elements of heroblock class
-  * will be checked for "able futures" text
+  * will be checked for "????" text
   * @constructs
   * @param {string} tags - String of tags to pass to query selector
   */

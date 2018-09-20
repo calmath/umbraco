@@ -1,5 +1,5 @@
 # Introduction 
-Front end React application for Access 2 Work website. Works with headless CMS.
+Front end React application for Umbraco website. Works with headless CMS.
 
 # Getting Started
 Here's a list of dependncies
