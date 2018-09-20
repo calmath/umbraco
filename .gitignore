@@ -57,6 +57,8 @@ Site/App_Plugins/UmbracoForms/[Ii]nstalled
 /Site/data/Revision/mediaproperties/*
 /Site/data/Revision/properties/*
 
+/Site/uSync/data/uSyncActions.config
+
 node_modules/*
 !node_modules/uid-framework/
 bower_components/
