@@ -1,0 +1,49 @@
+{% set pageTitle = "_able futures" %}
+{% set pageDesc = "500 error" %}
+
+{% extends "layout.nunjucks" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+{% endblock %}
+
+{% block header %}
+<header class="theme-default">
+	<div class="bgLight no-wrap row left">
+		<div class="siteLabel">
+			<svg>
+				<use xlink:href="#svg-able-futures"></use>
+			</svg>
+		</div>
+	</div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="edge noGap">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<h1>Internal error thrown</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+{% endblock %}
+
+{% block footer %}
+<footer>
+	<div class="theme-brand2">
+		<p>{{ data.en.text.footer.copyright }}</p>
+	</div>
+</footer>
+<div class="hide">
+	{% include "components/svg.svg" %}
+</div>
+{% endblock %}

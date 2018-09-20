@@ -1,0 +1,38 @@
+﻿@using AutoMapper.Internal
+@model Umbraco.Web.PublishedContentModels.Promo
+
+@{
+    var theme = Model.Theme.ToNullSafeString();
+
+    var link = string.Empty;
+    var linkTitle = string.Empty; 
+    if (Model.Link != null)
+    {
+        link = Model.Link.Url;
+        linkTitle = Model.Link.Name; 
+    }
+}
+
+<div class="col-md-4 column">
+    <div class="theme-brand1">
+
+        <a href="@link" title="@linkTitle">
+            <div class="bgImageBlock">
+                <div class="bgImageBlock_img bgLight">
+                    @if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.Url))
+                    {
+                        <img src="@Model.Image.Url" alt="@Model.Image.Name" />
+                    }
+                </div>
+                <div class="bgImageBlock_title">
+                    <h3 class="bottomBorder">@Model.Heading</h3>
+                    <div class="borderBottomAnimate"></div>
+                </div>
+                <div class="bgImageBlock_text">
+                    @Model.Text
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+

@@ -1,0 +1,255 @@
+/// Map of colours based on chosen theme. Contains colours for text,
+/// textLight, fill, bg, bgHover, outline, breakLine and bgLight. Colours
+/// go from Yellow through oranges to dark reds.
+/// @group themes
+/// @access public
+/// @type map
+/// @prop {key} colours.default - Default colours when no theme has been set
+/// @prop {key} colours.brand1 - Used on class .theme-brand1
+/// @prop {key} colours.brand2 - Used on class .theme-brand2
+/// @prop {key} colours.brand3 - Used on class .theme-brand3
+/// @prop {key} colours.brand4 - Used on class .theme-brand4
+/// @prop {key} colours.brand5 - Used on class .theme-brand5
+/// @prop {key} colours.brand6 - Used on class .theme-brand6
+$colours : (
+	default : (
+		text : #3b1512,
+		textLight : #fff,
+		fill : #3b1512,
+		fillHover : #772f1a,
+		bg : #f5f3f3,
+		bgHover : #ebe7e7,
+		outline : #772f1a,
+		outlineHover : #3b1512,
+		breakLine : #3b1512,
+		bgLight : #fff
+	),
+	brand1 : (
+		text : #3b1512,
+		textLight : #fff,
+		fill : #3b1512,
+		fillHover : #fcd306,
+		bg : #fcd306,
+		bgHover : #ffffff,
+		outline : #fcd306,
+		outlineHover : #3b1512,
+		breakLine : #3b1512,
+		bgLight : #fff2bf
+	),
+	brand2 : (
+		text : #3b1512,
+		textLight : #fff,
+		fill : #3b1512,
+		fillHover : #f9b13c,
+		bg : #f9b13c,
+		bgHover : #ffffff,
+		outline : #f9b13c,
+		outlineHover : #3b1512,
+		breakLine : #3b1512,
+		bgLight : #ffce7e
+	),
+	brand3 : (
+		text : #3b1512,
+		textLight : #fff,
+		fill : #3b1512,
+		fillHover : #f07d35,
+		bg : #f07d35,
+		bgHover : #ffffff,
+		outline : #f07d35,
+		outlineHover : #3b1512,
+		breakLine : #3b1512,
+		bgLight : #f39c66
+	),
+	brand4 : (
+		text : #fff,
+		textLight : #fff,
+		fill : #fff,
+		fillHover : #E84A1D,
+		bg : #E84A1D,
+		bgHover : #ffffff,
+		outline : #E84A1D,
+		outlineHover : #3b1512,
+		breakLine : #fff,
+		bgLight : #EE8060
+	),
+	brand5 : (
+		text : #fff,
+		textLight : #fff,
+		fill : #fff,
+		fillHover : #CF1325,
+		bg : #CF1325,
+		bgHover : #ffffff,
+		outline : #CF1325,
+		outlineHover : #3b1512,
+		breakLine : #fff,
+		bgLight : #DD5966
+	),
+	brand6 : (
+		text : #fff,
+		textLight : #fff,
+		fill : #fff,
+		fillHover : #AD183F,
+		bg : #AD183F,
+		bgHover : #ffffff,
+		outline : #AD183F,
+		outlineHover : #3b1512,
+		breakLine : #fff,
+		bgLight : #C55D78
+	)
+);
+/// Gets a value from the $colours map based on the theme
+///
+/// @group Themes
+/// @param {String} $param - Key of ui element to style, can be text, textLight,
+/// fill, bg, bgHover, outline, breakLine or bgLight
+/// @param {String} $contrast [default] - The theme to use, can be brand(1-6).
+/// If no value passed the default theme will be used
+/// @param {String} $isHover [false] - Will return the hover state of the colour
+@function getUiColour($param, $contrast : default, $isHover : false) {
+	$theme : map-get($colours, $contrast);
+	$colour : map-get($theme, $param);
+	@if $isHover == true {
+		$param : $param + "Hover";
+		$colour : map-get($theme, $param);
+	}
+	@return $colour;
+}
+
+.bottomBorder {
+	transition: ease-out $animShort border-color;
+}
+
+.accordionControl:checked {
+	@each $theme, $key in $colours {
+		& + .accordionHeader {
+			&.theme-#{$theme} {
+				background-color: getUiColour(bg, $theme);
+			}
+		}
+	}
+}
+
+@each $theme, $key in $colours {
+
+	.theme-#{$theme} {
+
+		background-color: getUiColour(bg, $theme);
+
+		h1, h2, h3, h4, p, a, li, button {
+			color : getUiColour(text, $theme);
+		}
+
+		.bgLight {
+			background-color: getUiColour(bgLight, $theme);
+		}
+
+		.bottomBorder {
+			border-bottom: pxToRem(3px) solid getUiColour(breakLine, $theme);
+		}
+
+		.innerWrap {
+			background-color: getUiColour(bg, $theme);
+			border-color: getUiColour(outline, $theme);
+		}
+
+		&.accordionHeader {
+			background-color: getUiColour(bg, $theme);
+
+			.accordionTitle {
+				color: getUiColour(text, $theme);
+			}
+
+			.accordionIcon {
+				.icon {
+					use {
+						fill: getUiColour(fill, $theme);
+					}
+				}
+			}
+		}
+
+		.bgImageBlock_text {
+			@if($theme != "brand1" and $theme != "brand2" and $theme != "brand3") {
+				color: getUiColour(textLight, $theme);
+			}
+		}
+
+		.borderBottomAnimate {
+			@if($theme != "brand1" and $theme != "brand2" and $theme != "brand3") {
+				background-color: getUiColour(textLight, $theme);
+			}@else {
+				background-color: getUiColour(text, $theme);
+			}
+		}
+
+		.typeWriterCursor {
+			@if($theme != "brand1" and $theme != "brand2" and $theme != "brand3") {
+				color: #3b1512;
+			}@else {
+				color: #fff;
+			}
+
+		}
+
+		svg {
+			use {
+				fill : getUiColour(fill, $theme);
+			}
+		}
+
+		.button {
+			&.prime {
+				background-color: getUiColour(bg, $theme);
+
+				&:hover {
+					background-color: getUiColour(bg, $theme, true);
+				}
+			}
+		}
+
+		.pdfIcon {
+			span {
+				color: getUiColour(text, $theme);
+			}
+		}
+
+		a:hover, a:focus, .button:hover, .button:focus {
+
+			.innerWrap {
+				background-color: getUiColour(bg, $theme, true);
+			}
+			@if($theme != "brand1" and $theme != "brand2") {
+
+				.cta_icon {
+
+					svg {
+
+						use {
+							fill : getUiColour(fill, $theme, true);
+						}
+					}
+				}
+			}
+		}
+
+		&[style*="background-image"] {
+
+			h1, h2, h3, h4, p, a, li, button {
+				color : getUiColour(textLight, $theme);
+			}
+		}
+
+		@if($theme != "default") {
+
+			&.light {
+				background-color: getUiColour(bgHover, $theme);
+
+				h1, h2, h3, h4, p, a, li, button {
+					color : getUiColour(bg, $theme);
+				}
+
+			}
+
+		}
+	}
+}

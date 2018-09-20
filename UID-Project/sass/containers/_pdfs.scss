@@ -1,0 +1,55 @@
+.pdfIcon {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: auto;
+	height: auto;
+	margin: 0 0 getPadding();
+	padding: 0;
+	box-sizing: border-box;
+	display: block;
+	text-align: center;
+
+	svg {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: pxToRem(60px);
+		height: pxToRem(60px);
+		display: block;
+		margin: 0 auto pxToRem(8px);
+	}
+
+	span {
+		@include font(subHeader);
+		position: relative;
+		width: pxToRem(120px);
+		height: auto;
+		padding: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: block;
+
+		@media (min-width: $bp-desktop) {
+			padding: pxToRem(8px);
+		}
+	}
+}
+
+a:hover, a:focus {
+
+	.pdfIcon {
+
+		span {
+			text-decoration: underline;
+		}
+	}
+}
+
+.row {
+
+	&.pdfs {
+		padding: getPadding() 0 0;
+	}
+}

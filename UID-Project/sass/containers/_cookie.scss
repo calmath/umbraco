@@ -1,0 +1,117 @@
+.cookieBanner {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	display: none;
+	background-color: #FDE982;
+	text-align: center;
+	z-index: 10000;
+
+	button {
+
+		&.icon {
+			position: absolute;
+			top: pxToRem(15px);
+			right: pxToRem(15px);
+
+			@media(min-width: $bp-desktop) {
+				top: 50%;
+				margin-top: pxToRem(-20px);
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			svg {
+				width: pxToRem(25px);
+				height: pxToRem(25px);
+				left: pxToRem(($tapSize - 25px) / 2);
+				top: pxToRem(($tapSize - 25px) / 2);
+
+				@media(min-width: $bp-desktop) {
+					width: pxToRem(30px);
+					height: pxToRem(30px);
+					left: pxToRem(($tapSize - 30px) / 2);
+					top: pxToRem(($tapSize - 30px) / 2);
+				}
+			}
+		}
+	}
+}
+
+.cookieWrapper {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: pxToRem(15px) getPadding();
+	margin: auto;
+	box-sizing: border-box;
+	display: block;
+	text-align: center;
+	background-color: transparent;
+
+	@media(min-width: $bp-desktop) {
+		padding: getPadding() pxToRem(90px) getPadding() getPadding();
+		width: auto;
+		display: flex;
+		background-color: transparent;
+		vertical-align: middle;
+		max-width: pxToRem($page-width - 50px);
+		justify-content: space-between;
+	}
+
+	a {
+		font-weight: $fontBold;
+	}
+
+	p {
+		@include font(footerCopy);
+		margin: 0 0 pxToRem(15px);
+		padding: 0 pxToRem(50px) 0 0;
+		text-align: left;
+
+		@media(min-width: $bp-desktop) {
+			width: 100%;
+			display: inline-block;
+			vertical-align: middle;
+			margin: auto;
+			padding: 0 getPadding() 0 0;
+		}
+	}
+
+	&.theme-default {
+
+		button.prime {
+			@include font(footerCopy);
+			width: 100%;
+			text-align: center;
+			background-color: getUiColour(bg, default);
+			transition: $animShort ease-out background-color;
+			max-width: pxToRem(155px);
+			margin: auto;
+
+			&:hover {
+				background-color: getUiColour(bg, default, true);
+			}
+
+			&:focus {
+				background-color: getUiColour(bg, default, true);
+			}
+
+			@media(min-width: $bp-desktop) {
+				width: 250px;
+				top: 0;
+				max-width: none;
+				position: relative;
+			}
+		}
+	}
+}
+
+.cookie-no-set {
+	.cookieBanner {
+		display: block;
+	}
+}

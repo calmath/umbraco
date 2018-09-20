@@ -1,0 +1,65 @@
+<div id="deploy" class="umb-deploy" ng-controller="UmbracoDeploy.DashboardController as vm">
+
+    <ud-starter-kit-selector show="vm.showStarterKitSelector"
+                             on-select-starter-kit="vm.selectStarterKit">
+    </ud-starter-kit-selector>
+
+    <umb-editor-sub-header>
+
+        <umb-editor-sub-header-content-left>
+            <div ng-if="vm.config.IsTrial">
+                <div style="display: inline-block; font-size: 18px; padding-right: 5px">
+                    <p ng-if="vm.config.TrialExpireInDays > 1">Trial expires in <b>{{ vm.config.TrialExpireInDays | number:0 }} days</b></p>
+                    <p ng-if="vm.config.TrialExpireInDays > 0 && vm.config.TrialExpireInDays < 1">Trial expires <b>today!</b></p>
+                    <p ng-if="vm.config.TrialExpireInDays < 0" style="color:#F02E28"><b>Trial expired</b></p>
+                </div>
+
+                <div style="display: inline-block;">
+                    <umb-button type="button"
+                                button-style="success"
+                                label="Upgrade now"
+                                action="vm.openPayment()">
+                    </umb-button>
+                </div>
+            </div>
+        </umb-editor-sub-header-content-left>
+
+        <umb-editor-sub-header-content-right>
+            <umb-button type="button"
+                        button-style="link"
+                        label="Open {{ vm.config.ProjectName }} on Umbraco.io"
+                        icon="icon-umb-deploy"
+                        action="vm.openProject()">
+            </umb-button>
+
+            <div class="btn-group umb-button-group dropdown">
+
+                <umb-button type="button"
+                            button-style="link"
+                            label="Help and documentation"
+                            icon="icon-help-alt"
+                            action="vm.openDocumentation()">
+                </umb-button>
+
+                <a href=""
+                   class="btn btn-link dropdown-toggle umb-button-group__toggle"
+                   data-toggle="dropdown">
+                    <span class="caret"></span>
+                </a>
+
+                <ul aria-labelledby="dLabel" class="dropdown-menu bottom-up umb-button-group__sub-buttons -align-right" role="menu" ng-class="{'-align-right': float === 'right'}">
+                    <li><a target="_blank" href="https://our.umbraco.org/Documentation/Umbraco-Cloud/Getting-Started/">Getting Started</a></li>
+                    <li><a target="_blank" href="https://our.umbraco.org/Documentation/Umbraco-Cloud/Set-Up/">Set up a Project</a></li>
+                    <li><a target="_blank" href="https://our.umbraco.org/Documentation/Umbraco-Cloud/Deployment/">Deployment</a></li>
+                    <li><a target="_blank" href="https://our.umbraco.org/Documentation/Umbraco-Cloud/Troubleshooting/">Troubleshooting</a></li>
+                </ul>
+
+            </div>
+
+        </umb-editor-sub-header-content-right>
+
+    </umb-editor-sub-header>
+
+    <ud-content-flow></ud-content-flow>
+
+</div>

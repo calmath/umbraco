@@ -1,0 +1,326 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing login page" %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% set allBrands = ["brand1", "brand2", "brand3", "brand4", "brand5", "brand6"] %}
+{% set heroText = data[language].text.typewriter %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<div class="wysiwyg">
+								<ul>
+									<li><a href="#heroTypewriter">Hero typewriter</a></li>
+									<li><a href="#heroIcon">Hero with icon</a></li>
+									<li><a href="#wysiwyg">Wysiwyg</a></li>
+									<li><a href="#accordions">Accordions</a></li>
+									<li><a href="#promoBoxs">Promo boxs</a></li>
+									<li><a href="#ctas">Call to actions</a></li>
+									<li><a href="#imageTitle">Image and title</a></li>
+									<li><a href="#embedVideo">Embed video</a></li>
+									<li><a href="#pdf">PDF documents</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% for brand in allBrands %}
+			{% set heroId = "" %}
+			{% if loop.first %}
+				{% set heroId = "heroTypewriter" %}
+			{% endif %}
+			<div class="theme-{{brand}} edge noMargin typewriter" id="{{ heroId }}">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			{% set heroId = "" %}
+			{% endfor %}
+			{% set heroIcon = "/images/arrowIconHero.png" %}
+			{% set heroText = data[language].text.hero.text + data[language].text.hero.bold %}
+			{% for brand in allBrands %}
+			{% set heroIconId = "" %}
+			{% if loop.first %}
+				{% set heroIconId = "heroIcon" %}
+			{% endif %}
+			<div class="theme-{{brand}} edge noMargin" id="{{ heroIconId }}">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			{% set heroIconId = "" %}
+			{% endfor %}
+			{% set heroIcon = "" %}
+			<div class="theme-brand6 edge noMargin" style="background-image:url('/images/heroIndividuals.jpg')">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div class="theme-brand5 edge noMargin" style="background-image:url('/images/heroEmployers.jpg')">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div class="theme-brand4 edge" style="background-image:url('/images/heroApprentershipProviders.jpg')">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div id="wysiwyg">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% for brand in allBrands %}
+			{% set shouldMargin = 'noMargin'%}
+			{% if loop.index > 3 %}
+			{% set shouldMargin = '' %}
+			{% endif %}
+			<div class="theme-{{brand}} edge noGap {{ shouldMargin }}">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% if loop.index > 3 %}
+			<div class="theme-{{brand}} light noGap">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endfor %}
+			{% set accordionIcon = '<svg class="icon"><use xlink:href="#svg-plus" class="closed"></use><use xlink:href="#svg-minus" class="opened"></use></svg>' %}
+			<div id="accordions">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<div class="accordions">
+								{% set accordions = data[language].text.accordions %}
+								{% for accordion in accordions %}
+									{% include "components/accordionItem.nunjucks" %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div>
+							{% set accordions = data[language].text.accordionColours %}
+							<div class="accordions">
+								{% for accordion in accordions %}
+								{% include "components/accordionItem.nunjucks" %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="noGap edge" id="promoBoxs">
+				<div class="row clearfix">
+					{% set blockInd = 2 %}
+					{% set blockNames = ["individuals", "employers", "apprentershipProviders"] %}
+					{% for brand in allBrands %}
+					<div class="col-md-4 column">
+						<div class="theme-{{brand}}">
+							{% set blockTitle = blockNames[blockInd] %}
+							{% if loop.index > 3 %}
+							{% set showImage = true %}
+							{% endif %}
+							{% include "components/imageBgBlock.nunjucks" %}
+						</div>
+					</div>
+					{% set blockInd = blockInd - 1 %}
+					{% if blockInd == -1 %}
+					{% set blockInd = 2 %}
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div id="ctas">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="theme-brand1">
+							{% set blockTitle = "individuals" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand2">
+							{% set blockTitle = "employers" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand3">
+							{% set blockTitle = "apprentershipProviders" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="theme-brand4">
+							{% set blockTitle = "individuals" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand5">
+							{% set blockTitle = "employers" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand6">
+							{% set blockTitle = "apprentershipProviders" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="theme-brand4 edge light" id="imageTitle">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						{% set imageSrc = "/images/brand4-lock.jpg" %}
+						{% set imageTitle = "Confidential" %}
+						{% include "components/imageTitle.nunjucks" %}
+					</div>
+					<div class="col-md-4 column">
+						{% set imageSrc = "/images/brand4-group.jpg" %}
+						{% set imageTitle = "0800 321 3137" %}
+						{% include "components/imageTitle.nunjucks" %}
+					</div>
+					<div class="col-md-4 column">
+						{% set imageSrc = "/images/brand4-phone.jpg" %}
+						{% set imageTitle = "Free" %}
+						{% include "components/imageTitle.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div id="embedVideo">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+					<div class="col-md-4 column">
+						<div class="wysiwyg">
+							<div>
+								<h2>Video title</h2>
+								<p>A video description "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+					<div class="col-md-6 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+					<div class="col-md-4 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+					<div class="col-md-4 column">
+						{% include "components/embedVideo.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div id="pdf">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/pdfs.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			{% for brand in allBrands %}
+			<div class="theme-{{brand}}">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/pdfs.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						<p>{{ data[language].text.footer.funded }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="flex-auto-width">
+				<div class="row clearfix">
+					<div class="col-md-2 column">
+						<img src="/images/logo-dwp.jpg" alt="Department for work and pensions" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

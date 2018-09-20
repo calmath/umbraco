@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<language xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<area alias="sections" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='sections')">
+		<key alias="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='uCommerce')">uCommerce</key>
+	</area>
+	<area alias="actions" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='actions')">
+		<key alias="Sort products" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort products')">Sortera produkter</key>
+		<key alias="Sort catalogs" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort catalogs')">Sortera kataloger</key>
+		<key alias="Sort categories" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort categories')">Sortera kategorier</key>
+		<key alias="Sort Campaigns" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Campaigns')">Prioritera kampanjer</key>
+		<key alias="Sort Campaign Items" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Campaign Items')">Prioritera aktiviteter</key>
+		<key alias="Sort Parent Definitions" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Parent Definitions')">Sortera moder definitioner</key>
+	</area>
+</language>

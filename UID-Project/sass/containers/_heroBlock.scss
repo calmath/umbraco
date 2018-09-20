@@ -1,0 +1,50 @@
+.heroBlock {
+	@include lastElement();
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	//height: auto !important;
+	min-height: calc(50vh - #{pxToRem(80px)});
+	padding: getPadding();
+	margin: 0;
+	display: block;
+	box-sizing: border-box;
+
+	@media (min-width: $bp-desktop) {
+		padding: getPadding(desktop) 0;
+		min-height: calc(70vh - #{pxToRem(132px)});
+	}
+
+	h1 {
+		margin: 0 auto pxToRem(80px + map-get($padding, default));
+
+		@media (min-width: $bp-desktop) {
+			margin: 0 auto pxToRem(170px + map-get($padding, default));
+		}
+	}
+}
+
+.heroIcon {
+	position: absolute;
+	left: getPadding();
+	bottom: getPadding();
+	height: pxToRem(80px);
+	width: auto;
+	display: block;
+
+	@media (min-width: $bp-desktop) {
+		height: pxToRem(170px);
+	}
+}
+
+div[style*="background-image:"] {
+	.heroBlock {
+		h1 {
+			position: absolute;
+			top: 50%;
+			transform: translate3d(0, -50%, 0);
+			display: block;
+		}
+	}
+}

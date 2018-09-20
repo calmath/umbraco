@@ -1,0 +1,111 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+@using Umbraco.Web.Models
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<div class="umb-grid">
+    <div class="grid-section">
+        @Html.Partial("~/Views/Partials/Components/Hero.cshtml")
+        @if (Model.Content.MainBody != null && !string.IsNullOrWhiteSpace(Model.Content.MainBody.ToHtmlString()))
+        {
+            <div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <div class="wysiwyg">
+                            <div>
+                                @Model.Content.MainBody
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @{
+            if (Model.Content.Promos.Any())
+            {
+                <div class="noGap edge">
+                    <div class="row clearfix">
+
+                        @foreach (var content in Model.Content.Promos)
+                        {
+                            var promo = content as ContentModels.Promo;
+                            if (promo != null)
+                            {
+                                @Html.Partial("~/Views/Partials/Components/Promo.cshtml", promo)
+                            }
+                        }
+
+                    </div>
+                </div>
+            }
+        }
+
+        @if (Model.Content.SecondaryBody != null && !string.IsNullOrWhiteSpace(Model.Content.SecondaryBody.ToHtmlString()))
+        {
+            <div>
+                <div class="row clearfix">
+                    <div class="col-md-8 column">
+                        <div class="wysiwyg">
+                            <div>
+                                @Model.Content.SecondaryBody
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+
+        <div class="flex-auto-width">
+            <div class="row clearfix">
+                @{
+                    if (Model.Content.HasValue("logos"))
+                    {
+                        var logoList = Model.Content.Logos;
+                        if (logoList != null)
+                        {
+                            foreach (var logo in logoList)
+                            {
+
+                                var logoContent = logo as ContentModels.LogoWithUrl;
+                                if (logoContent != null)
+                                {
+                                    if (logoContent.Logo != null)
+                                    {
+
+                                        if (logoContent.Link != null && logoContent.Link.FirstOrDefault() != null)
+                                        {
+                                            var linkItem = logoContent.Link.FirstOrDefault();
+                                            var linkTarget = (linkItem.NewWindow) ? "_blank" : null;
+                                            <a href="@linkItem.Link" title="@linkItem.Caption" target="@linkTarget">
+                                                <div class="col-md-2 column">
+                                                    <img src="@logoContent.Logo.Url" alt="@linkItem.Caption" />
+                                                </div>
+                                            </a>
+
+
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-2 column">
+                                                <img src="@logoContent.Logo.Url" alt="@logoContent.Logo.Name" />
+                                            </div>
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

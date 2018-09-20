@@ -1,0 +1,2794 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/Umbraco/assets/fonts/opensans/OpenSans-Regular-webfont.eot');
+    src: local('Open Sans'), local('OpenSans'), url('/Umbraco/assets/fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('/Umbraco/assets/fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'), url('/Umbraco/assets/fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/Umbraco/assets/fonts/opensans/OpenSans-Semibold-webfont.eot');
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('/Umbraco/assets/fonts/opensans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('/Umbraco/assets/fonts/opensans/OpenSans-Semibold-webfont.ttf') format('truetype'), url('/Umbraco/assets/fonts/opensans/OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
+}
+
+body {
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    background-color: #fff;
+    margin: 0px;
+}
+
+fieldset {
+    border: 1px solid #CCC;
+}
+
+body * {
+    outline: none;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#section-__Page_Pricing > div.scrollable > div.propertyPane.pricing > div {
+    clear: both;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px !important;
+    border-bottom: 1px solid #f8f8f8;
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+    padding-top: 8px;
+    padding-bottom: 20px;
+}
+
+.modalTabView div div div.scrollable div.propertyPane div.propertyItem div.propertyItemContent {
+    margin-left: 140px;
+}
+
+.modalTabView div div div.scrollable div.propertyPane div.propertyItem div.propertyItemHeader {
+    max-width: 140px;
+}
+
+#editor div.boxbody div div.imagePickerContainer.propertyPane div div.imagePickerContainerTreeContainer.propertyItemContent {
+    margin-left: 0;
+}
+
+.imagePicker span {
+    display: block;
+}
+
+.imagePicker .imagePickerContainer .imagePickerContainerBody div {
+    vertical-align: top;
+}
+
+.imagePicker .imagePickerContainer {
+    height: 100%;
+}
+
+.imagePicker span p {
+    cursor: pointer;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-right: 10px;
+    display: inline;
+    text-decoration: underline;
+}
+
+    .imagePicker span p.choosePicture {
+        color: black;
+    }
+
+    .imagePicker span p.removePicture {
+        color: red;
+    }
+
+.imagePreview {
+    width: 100%;
+    max-height: 350px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imagePicker .imagePickerContainer .imagePickerContainerBody {
+    height: 100%;
+    border-bottom: none;
+    display: inline-block;
+    width: 62%;
+}
+
+.imagePicker.content .imagePickerContainer .imagePickerContainerBody {
+    width: 45%;
+}
+
+.imagePicker .imagePickerContainer .preselectedValues {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 13px;
+    margin-left: 15px;
+    width: 35%;
+}
+
+.imagePicker.content .imagePickerContainer .preselectedValues {
+    width: 50%;
+}
+
+.imagePicker .imagePickerContainer .preselectedValues.multiPicker .node {
+    padding-top: 2px;
+}
+
+.imagePicker .imagePickerContainer .preselectedValues .node > span {
+    padding: 0;
+}
+
+.imagePicker .imagePickerContainer .preselectedValues span.nodeName {
+    padding-left: 25px;
+}
+
+.imagePicker .imagePickerContainer .imagePickerContainerBody .imagePickerContainerTreeContainer {
+    overflow: auto;
+    display: inline-block;
+    min-width: 50%;
+    max-width: 50%;
+    height: 100%;
+}
+
+.imagePicker .imagePickerContainer .imagePickerContainerBody .imagePickerContainerPreview {
+    display: inline-block;
+    width: 49%;
+    height: 100%;
+    margin-left: 6px;
+}
+
+.imagePicker .imagePickerContainer.propertyPane {
+    margin-top: -92px;
+    padding-top: 92px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+}
+
+.imagePicker img#selectedImage {
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.panel .imagePicker {
+    height: 100%;
+}
+
+.umb-tree-icon {
+    text-decoration: none;
+    margin: 1px 13px 1px 0;
+    font-size: 15px;
+    color: #414141;
+    vertical-align: middle;
+}
+
+    .umb-tree-icon > div > span:first-child {
+        margin-top: -3px;
+    }
+
+.icon-node-spinner {
+    width: 16px;
+    background: url("/umbraco/ucommerce/Images/ui/ajax-loader.gif") 0 0 no-repeat;
+    padding-left: 15px;
+}
+
+/*CREATE DIALOG */
+.dialog-head {
+    background: url("../images/panel_boxhead_bg.gif") no-repeat scroll left top transparent;
+    height: 19px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.createDescription {
+    padding: 25px 0 0 0;
+    height: 170px;
+}
+
+    .createDescription img {
+        height: 128px;
+        float: left;
+        margin: 0 10px 10px 0;
+    }
+
+table.dataTable thead tr th {
+    padding-right: 20px;
+}
+
+.bigInput.fontSize {
+    font-size: 14px !important;
+}
+
+input[type="text"].bigInput {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 9px;
+    padding-right: 6px;
+    height: 30px;
+    width: 350px;
+}
+
+select.bigInput {
+    width: 336px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.bigInput {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: content-box;
+    clear: both;
+    height: 20px;
+    font-size: 1.8em;
+}
+
+    .bigInput label {
+        font-size: 1.8em;
+    }
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    border: none;
+}
+
+div .sorterContainer #sectionGroup {
+    overflow-y: auto;
+}
+
+.feedbackCreate {
+    margin: 5px;
+    padding: 5px 5px 3px 36px;
+    background: url(../images/okLayerBackground.gif);
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: White;
+}
+
+.feedbackDelete {
+    margin: 5px;
+    padding: 5px 5px 3px 36px;
+    background: url(../images/errorLayerBackground.gif);
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: White;
+}
+
+.loginHeader {
+    width: 242px;
+    height: 24px;
+    background-image: url(../images/loginHeader.gif);
+    font-size: medium;
+    font-weight: bold;
+    color: #666;
+}
+
+.nolink {
+    text-decoration: none;
+    color: Black;
+}
+
+.clickImg {
+    border: none;
+}
+
+h3 {
+    padding: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+/* deprecated down */
+.propertyuicontrols .Pane, .propertyPane {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+tr.propertyHeader td, td.propertyHeader {
+    font-weight: bold;
+    vertical-align: top;
+    padding: 7px;
+    /* border-bottom: 1px solid #DBDBDF; */
+}
+
+tr.propertyContent td, td.propertyContent {
+    vertical-align: top;
+    padding: 7px;
+    /*	border-bottom: 1px solid #DBDBDF; */
+}
+/* deprecated up */
+
+.sorterContainer .propertyPane {
+    margin-top: 20px;
+}
+
+div.propertyDiv {
+    border: 1px solid #BABABA;
+    background-image: url(../images/PropertyPane/propertyBackground.gif);
+    display: block;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+
+
+.guiDialogHeader {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.guiDialogMedium {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td, .guiDialogNormal {
+    font-size: 14px;
+    font-weight: none;
+}
+
+th {
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+}
+
+.guiDialogDisabled {
+    font-size: 12px;
+    font-weight: none;
+    color: #CCCCCC;
+}
+
+.guiDialogForm {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.guiDialogTiny {
+    font-size: 10px !Important;
+    color: #A8A8A3;
+    margin: 0px;
+}
+
+.guiDialogTinyMark {
+    font-size: 10px !Important;
+    color: #606057;
+}
+
+.guiDialogTinyTop {
+    font-size: 10px;
+    font-weight: bold;
+    color: #378080;
+}
+
+.guiInputCode, .codepress {
+    font-family: Consolas, courier;
+    line-height: 1.6em;
+    font-size: 1em;
+    background: #F6F6F9;
+    border: 1px solid #CCCCCC;
+    margin: 0px !Important;
+}
+
+.umbEditorTextField {
+    width: 400px;
+    font-size: 12px;
+}
+
+.umbEditorTextFieldMultiple {
+    width: 400px;
+    height: 150px;
+    font-size: 12px;
+}
+
+.guiDialogBox {
+    background-color: #e0eced;
+    border: 1px dotted #3399CC;
+}
+
+.guiInputText {
+    font-size: 12px;
+    color: #333333;
+    padding: 2px 2px 2px 2px;
+}
+
+.guiInputTextStandard {
+    font-size: 12px;
+    width: 70%;
+    color: #333333;
+    padding: 2px 2px 2px 2px;
+}
+
+.guiInputMediumSize {
+    width: 70%;
+}
+
+.guiInputLargeSize {
+    width: 90%;
+}
+
+.guiInputStandardSize {
+    width: 250px;
+}
+
+
+.guiInputDisabled {
+    font-size: 12px;
+    color: #999999;
+    border: 0px solid;
+    padding: 4px 4px 4px 4px;
+}
+
+.guiInputTextTiny, input, select {
+    font-size: 11px;
+    color: #333333;
+}
+
+
+.guiInputButton {
+    font-size: 10px;
+    color: #333333;
+    font-weight: bolder;
+}
+
+.umbracoEditorBagground {
+    background-color: white;
+}
+
+.editorArrowOver {
+    cursor: hand;
+    background-color: #DEDFFD;
+}
+
+
+.editorIconDisabled {
+    Filter: Alpha(Opacity=30);
+}
+
+.menubar .save-button-wrapper, .menubar .secondary-button-wrapper {
+    display: inline;
+}
+
+.menubar label.save-button-label, .menubar label.secondary-button-label {
+    display: none;
+}
+
+.editorDropDown {
+    font-family: verdana, arial;
+    font-size: 10px;
+    width: 80px;
+    color: #666699;
+}
+
+.tinymceMenuBar {
+}
+
+.mceToolbarExternal {
+    position: absolute;
+    z-index: 100;
+    top: -2px;
+    left: 90px;
+}
+
+.guiTab {
+    padding: 3px 0px 0px 0px;
+    font-size: 10px;
+}
+
+.guiLine {
+    background-color: #A2A2A0;
+}
+
+.guiLineSelected {
+    background-color: #F5F5F5;
+}
+
+guiEditor {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.datePicker {
+    border: 1px solid WindowText;
+    background: Window;
+    width: 170px;
+    padding: 0px;
+    cursor: default;
+    -moz-user-focus: normal;
+}
+
+
+    .datePicker td {
+        font: small-caption;
+        text-align: center;
+        color: WindowText;
+        cursor: default;
+        font-weight: normal !important;
+        -moz-user-select: none;
+        padding: 0;
+    }
+
+        .datePicker td.red {
+            color: red;
+        }
+
+    .datePicker .header {
+        background: ActiveCaption;
+        padding: 3px;
+        border-bottom: 1px solid WindowText;
+    }
+
+    .datePicker .headerTable {
+        width: 100%;
+    }
+
+    .datePicker .footer {
+        padding: 3px;
+    }
+
+    .datePicker .footerTable {
+        width: 100%;
+    }
+
+    .datePicker .grid {
+        padding: 3px;
+    }
+
+    .datePicker .gridTable {
+        width: 100%;
+    }
+
+        .datePicker .gridTable td {
+            width: 14.3%;
+        }
+
+        .datePicker .gridTable .daysRow td {
+            font-weight: bold !important;
+            border-bottom: 1px solid ThreeDDarkShadow;
+        }
+
+    .datePicker .grid .gridTable .upperLine {
+        width: 100%;
+        height: 2px;
+        overflow: hidden;
+        background: transparent;
+    }
+
+    .datePicker td.today {
+        font-weight: bold !important;
+    }
+
+    .datePicker td.selected {
+        background: Highlight;
+        color: HighlightText !important;
+    }
+
+    .datePicker td.labelContainer {
+        width: 100%;
+    }
+
+    .datePicker td .topLabel {
+        color: CaptionText;
+        display: block;
+        font-weight: bold !important;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .datePicker td.filler {
+        width: 100%;
+    }
+
+    .datePicker button {
+        border-width: 1px;
+        font: Caption;
+        font-weight: normal !important;
+        display: block;
+    }
+
+    .datePicker .previousButton {
+        background: buttonface url("../../images/arrow.left.png") no-repeat center center;
+    }
+
+    .datePicker .nextButton {
+        background: buttonface url("../../images/arrow.right.png") no-repeat center center;
+    }
+
+    .datePicker .previousButton,
+    .datePicker .nextButton {
+        width: 14px;
+        height: 14px;
+    }
+
+    .datePicker .todayButton,
+    .datePicker .noneButton {
+        width: 50px;
+    }
+
+
+    .datePicker .labelPopup {
+        position: absolute;
+        min-width: 130px;
+        background: Window;
+        border: 1px solid WindowText;
+        padding: 1px;
+    }
+
+        .datePicker .labelPopup a {
+            width: 100%;
+            display: block;
+            color: WindowText;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            .datePicker .labelPopup a:hover {
+                background: Highlight;
+                color: HighlightText;
+            }
+
+            .datePicker .labelPopup a.selected {
+                font-weight: bold;
+            }
+
+.umbMacroHolder {
+    margin: 5px;
+    padding: 5px;
+    border: 2px dotted orange;
+    display: inline;
+}
+
+.umbTagElement {
+    float: left;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.umbTagDelete {
+    color: Red;
+}
+
+.umbTagContainer {
+    width: 300px;
+    margin: 5px 0;
+    display: block;
+}
+
+.umbIconDropdownList option.spriteBackground {
+    background-repeat: no-repeat;
+    padding: 1px;
+    padding-left: 25px;
+    margin-left: 2px;
+    display: block !important;
+}
+
+.umbIconDropdownList option.deprecatedImage {
+    background-repeat: no-repeat;
+    background-position: 4px 1px;
+    padding: 1px;
+    padding-left: 25px;
+}
+
+#auditTrailList span {
+    margin-left: 22px;
+}
+
+.umbNitroList {
+}
+
+    .umbNitroList input {
+        float: left;
+        display: block;
+    }
+
+    .umbNitroList tr td {
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .umbNitroList div {
+        float: left;
+        padding-left: 15px;
+        display: block;
+        width: 550px;
+    }
+
+        .umbNitroList div h3 {
+            margin: 0px;
+        }
+
+/* Generel error / success / notice classes, as seen in the umbraco installer. */
+.error, .notice, .success {
+    padding: .8em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    margin-bottom: .5em;
+    border: 2px solid #ddd;
+}
+
+.error {
+    background: #FBE3E4;
+    color: #8a1f11;
+    border-color: #FBC2C4;
+}
+
+.notice {
+    background: #FFF6BF;
+    color: #514721;
+    border-color: #FFD324;
+}
+
+.success {
+    background: #E6EFC2;
+    color: #264409;
+    border-color: #C6D880;
+}
+
+.error a {
+    color: #8a1f11;
+}
+
+.notice a {
+    color: #514721;
+}
+
+.success a {
+    color: #264409;
+}
+
+
+.sprTree {
+    /*background-color: #fff;*/
+    background-image: url(../images/sprites.png);
+    display: inline;
+    padding-bottom: 2px;
+}
+
+    .sprTree img {
+        width: 16px;
+        height: 18px;
+        padding-right: 7px;
+    }
+
+.treeContainer {
+    padding: 5px;
+    background-color: White;
+}
+
+/* DASHBOARD */
+
+.dashboardWrapper {
+    padding: 5px 5px 5px 5px;
+    overflow: hidden;
+    color: #333;
+}
+
+    .dashboardWrapper p {
+        font-size: 1.1em;
+        margin-top: 0;
+    }
+
+    .dashboardWrapper h2 {
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        padding-left: 37px;
+        line-height: 32px;
+    }
+
+    .dashboardWrapper h3 {
+        margin-bottom: 10px;
+    }
+
+    .dashboardWrapper h4 {
+    }
+
+.dashboardIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.dashboardColWrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+    .dashboardColWrapper h3 {
+        margin-bottom: 0;
+    }
+
+    .dashboardColWrapper ul {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+        padding: 0;
+        list-style-image: url(/umbraco/images/listitemorange.gif);
+    }
+
+    .dashboardColWrapper li {
+        line-height: 1.2em;
+        font-size: 1.1em;
+        padding-bottom: .5em;
+    }
+
+
+.dashboardCol {
+    position: relative;
+    padding: 10px 1%;
+    background: url(../images/PropertyPane/propertyBackground.gif) repeat-x scroll center top #FFFFFF;
+}
+
+
+
+.third {
+    width: 30.33%;
+    float: left;
+    margin-right: 1%;
+}
+
+.dashboardCols .last {
+    margin-right: 0;
+}
+
+.dashboardCols h3 {
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+.dashboardHideLink {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    text-decoration: none;
+    color: #666;
+    border: none;
+    font-size: .9em;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #ddd;
+    background: -moz-linear-gradient(100% 100% 90deg, #ddd, #fefefe);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fefefe), to(#ddd));
+}
+
+    .dashboardHideLink:hover {
+        text-decoration: none;
+        background-color: #fefefe;
+        background: -moz-linear-gradient(100% 100% 90deg, #fefefe, #ddd);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#fefefe));
+        cursor: pointer;
+    }
+
+
+.tinymceMenuBar table {
+    margin: 1px 0 0 6px;
+    _margin-top: 2px;
+}
+
+.editorIcon {
+    height: 19px;
+    margin: 0px;
+    padding: 3px !important;
+    width: 18px;
+}
+
+.editorIconOver {
+    background-image: url("../../images/MenuIcon/buttonbg.gif");
+    border: 1px solid #CAC9C9 !Important;
+    cursor: hand;
+    height: 19px;
+    margin: 0px;
+    padding: 2px !important;
+    width: 18px;
+}
+
+.editorIconDown {
+    background-image: url("../../images/MenuIcon/buttonbg.gif");
+    border: 1px solid #CAC9C9 !Important;
+    cursor: hand;
+    height: 19px;
+    margin: 0px;
+    padding: 2px;
+    width: 18px;
+}
+
+.editorIconDisabled {
+    /*
+	IE ONLY !!!
+	*/
+    Filter: Alpha(Opacity=30);
+}
+
+select.mediumWidth {
+}
+
+input[type=text].mediumWidth {
+}
+
+.TreeViewWrapper {
+    background-color: White;
+}
+
+.imagePicker .sectionGroupHeader {
+    border-bottom: 1px solid;
+    border-bottom-color: #CAC9C9;
+    border-left: none;
+    padding-bottom: 20px;
+}
+
+.sectionGroupHeader {
+    height: 71px;
+    background: #f8f8f8;
+    padding-left: 20px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: #D9D9D9;
+}
+
+.sorterContainer .sectionGroupHeader {
+    display: none;
+}
+
+/* ui widget overrides */
+.ui-widget input[type="text"].hasDatepicker {
+    min-width: 66.6%;
+}
+
+td a, .ui-widget, .ui-widget input, .ui-widget input[type="text"], .ui-widget select, .ui-widget textarea, .ui-widget button, .ui-state-default, .ui.state-default {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+    .ui-widget, .ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="datetime"], .ui-widget input[type="datetime-local"], .ui-widget input[type="date"], .ui-widget input[type="month"], .ui-widget input[type="time"], .ui-widget input[type="week"], .ui-widget input[type="number"], .ui-widget input[type="email"], .ui-widget input[type="url"], .ui-widget input[type="search"], .ui-widget input[type="tel"], .ui-widget input[type="color"], .ui-widget textarea {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-top: 0px;
+        -webkit-transition: border linear .2s,box-shadow linear .2s;
+        -moz-transition: border linear .2s,box-shadow linear .2s;
+        -o-transition: border linear .2s,box-shadow linear .2s;
+        transition: border linear .2s,box-shadow linear .2s;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+textarea,
+select {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 4px 0px 0px 0px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    vertical-align: middle;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    min-width: 66.6%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+textarea {
+    padding-top: 4px;
+    padding-left: 9px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+}
+
+input[type="submit"],
+input[type="button"] {
+    height: 30px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 2px;
+    min-width: 78px;
+    padding: 0 12px;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+    input[type="submit"].editCampaignItemButton {
+        min-width: 0px;
+        padding: 0 8px;
+    }
+
+.ui-widget select.editCampaignItemDropDown {
+    max-width: 80%;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #ccc;
+}
+
+select {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 30px;
+    padding: 0 0 0 0;
+    line-height: 30px;
+    color: #555;
+    padding: 4px 6px;
+}
+
+textarea {
+    height: 210px;
+}
+
+.ui-datepicker-trigger {
+    margin-left: -34px;
+    vertical-align: top;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    min-width: 16px;
+    padding: 4px 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+#ui-datepicker-div {
+    height: auto;
+    width: auto;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    border-radius: 4px;
+}
+
+    #ui-datepicker-div .ui-widget-header {
+        border: none;
+        background: none;
+        color: #222222;
+        font-weight: bold;
+    }
+
+.ui-datepicker th, .ui-datepicker td a {
+    padding: 4px 5px 4px 5px;
+    text-align: center;
+    border: 0;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ui-datepicker td a {
+    padding: none;
+    font-size: 14px;
+    color: rgb(52, 52, 52);
+    text-align: center;
+}
+
+    .ui-datepicker td a.ui-state-hover {
+        background: #eee !important;
+    }
+
+    .ui-datepicker td a.ui-state-active {
+        background-color: rgb(28, 80, 113) !important;
+        color: #ffffff !important;
+    }
+
+#ui-datepicker-div .ui-state-default.ui-state-default.ui-state-default {
+    border: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #222222;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    background: none;
+}
+
+.TreeViewWrapper.overFlowScroll {
+    overflow: auto;
+}
+
+.TreeViewWrapper a {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+.TreeViewWrapper.large a div.treeNodeName {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.TreeViewWrapper a:hover {
+    text-decoration: none;
+}
+
+.TreeViewWrapper.large tr td:last-child span {
+    margin-left: 13px;
+}
+
+.TreeViewWrapper.large table {
+    height: 31px;
+}
+
+.TreeViewWrapper.row-hover table:hover {
+    background: #f8f8f8;
+}
+
+.TreeViewWrapper .notSelectable {
+    color: gray;
+}
+
+.shippingPane {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.dataList.customDataList tbody tr:first-child {
+    height: 40px;
+}
+
+    .dataList.customDataList tbody tr:first-child th {
+        vertical-align: middle;
+        padding-left: 8px;
+        text-transform: uppercase;
+        font-size: 11px;
+        border-bottom: 1px solid #CCC;
+        background: #F5F5F5;
+    }
+
+.dataList.customDataList tbody td {
+    vertical-align: middle;
+}
+
+.dataList.customDataList tbody tr:nth-child(even) td {
+    background: white;
+}
+
+.dataList.customDataList tbody tr:nth-child(odd) td {
+    background: #F5F5F5;
+}
+
+
+.orderPriceGroup .cmsIndividualMargin {
+    margin-left: 40%;
+}
+
+.dataList.clickable.ordersTable tr {
+    border: none;
+}
+
+    .dataList.clickable.ordersTable tr td {
+        border: none;
+    }
+
+    .dataList.clickable.ordersTable tr.orderLineRow {
+        border: 1px solid #d9d9d9;
+    }
+
+        .dataList.clickable.ordersTable tr.orderLineRow td {
+            vertical-align: middle;
+        }
+
+            .dataList.clickable.ordersTable tr.orderLineRow td input {
+                margin-bottom: 0px;
+            }
+
+.dataList.clickable.ordersTable {
+    border: none;
+    border-top: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+}
+
+    .dataList.clickable.ordersTable tr.headerRow {
+        border: 1px solid #d9d9d9;
+    }
+
+    .dataList.clickable.ordersTable tr td.border-bottom {
+        border-bottom: 1px solid #d9d9d9;
+    }
+
+    .dataList.clickable.ordersTable tr td.border-left {
+        border-left: 1px solid #d9d9d9;
+    }
+
+.dataList.clickable.ordersTable {
+    border: 1px solid #d9d9d9;
+}
+
+table.radioList {
+    width: 100%;
+}
+
+    table.radioList tr {
+        margin-top: 15px;
+        height: 40px;
+    }
+
+        table.radioList tr td label {
+            margin-left: 10px;
+        }
+
+        table.radioList tr td * {
+            display: inline;
+            vertical-align: text-top;
+        }
+
+.max-height {
+    height: 100% !important;
+}
+
+.no-border {
+    border: none !important;
+}
+
+
+.generateVoucherTable {
+    width: 100%;
+}
+
+    .generateVoucherTable tr td:first-child {
+        width: 50%;
+    }
+
+table.dataList.voucherCode thead tr th {
+    padding-right: 0px;
+}
+
+.no-wrapping {
+    white-space: nowrap;
+}
+
+.small {
+    color: rgb(179, 179, 179);
+    display: block;
+    font-size: 11px;
+    line-height: 13px;
+    padding-top: 5px;
+    text-align: left;
+    width: 160px;
+}
+
+.CatalogItemsListBox, .SelectedCatalogItemListBox {
+    width: 250px;
+    min-height: 230px;
+    height: 100%;
+    max-height: 500px;
+}
+
+table.CatalogItemSelectorTable {
+    width: 100%;
+    height: 100%;
+}
+
+td.CatalogItemsTd {
+    height: 100%;
+}
+
+.CatalogItemSelectorTreeView {
+    max-height: 500px;
+    max-width: 250px;
+    overflow-y: auto;
+}
+
+.priceGroupGridView {
+    width: 100%;
+}
+
+    .priceGroupGridView tr {
+        height: 50px;
+    }
+
+.contentTree ul {
+    padding: 0px;
+    padding-left: 20px;
+    margin: 0px;
+}
+
+    .contentTree ul li {
+    }
+
+.contentTree .treeItemExpandContainer {
+    display: inline-block;
+    position: relative;
+    left: -16px;
+    top: 0px;
+    height: 0px;
+}
+
+    .contentTree .treeItemExpandContainer a {
+        text-decoration: none;
+    }
+
+        .contentTree .treeItemExpandContainer a:hover {
+            cursor: pointer;
+        }
+
+        .contentTree .treeItemExpandContainer a span {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+        }
+
+        .contentTree .treeItemExpandContainer a.treeItemOpen span {
+            background-image: url("/umbraco/ucommerce/css/images/collapse.gif");
+        }
+
+        .contentTree .treeItemExpandContainer a.treeItemClosed span {
+            background-image: url("/umbraco/ucommerce/css/images/expand.gif");
+        }
+
+.contentTree .treeNodeIcon {
+    padding-top: 4px;
+    width: auto;
+    cursor: pointer;
+    height: 31px;
+    background-repeat: no-repeat;
+    background-position-y: 0px;
+    display: inline-flex;
+    display: -ms-flexbox;
+}
+
+    .contentTree .treeNodeIcon input[type=checkbox] {
+        margin: 0;
+        margin-left: 10px;
+    }
+
+    .contentTree .treeNodeIcon:hover {
+        background-color: #f8f8f8;
+    }
+
+    .contentTree .treeNodeIcon .nodeName {
+        display: table-cell;
+        white-space: nowrap;
+        width: auto;
+        font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+        vertical-align: top;
+    }
+
+.contentTree .nodeSelectedStyle .nodeName {
+    background: #D5EFFC;
+}
+
+.product-price-list tr:first-child td:first-child {
+    padding-right: 100px;
+}
+
+.umb-tree-icon:before {
+    margin-top: -3px;
+}
+
+.product-price-list tr td input {
+    margin-bottom: 0px;
+}
+
+.defaultSkin table.mceLayout {
+    min-width: 66.6%;
+    max-width: 66.6%;
+}
+
+#uc-headline {
+    border: none;
+    display: inline-block;
+    width: 40%;
+    margin: 25px 0px 0px 0px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    background: none;
+    color: black;
+    padding: 0;
+}
+
+    #uc-headline.editable:hover {
+        border-bottom: 1px dotted #d9d9d9;
+    }
+
+    #uc-headline.readOnly:hover {
+        border: none;
+    }
+
+#FilterOrdersDropDownList {
+    min-width: 30%;
+}
+
+.tinyButton {
+    max-width: 30px !important;
+    min-width: 30px !important;
+    padding: 0px !important;
+}
+
+.mediumButton[disabled="disabled"] {
+    color: gray !important;
+}
+
+.ui-timepicker-div .ui-widget-header {
+    margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+    text-align: left;
+}
+
+    .ui-timepicker-div dl dt {
+        float: left;
+        clear: left;
+        padding: 0 0 0 5px;
+    }
+
+    .ui-timepicker-div dl dd {
+        margin: 0 10px 10px 40%;
+    }
+
+.ui-timepicker-div td {
+    font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-timepicker-rtl {
+    direction: rtl;
+}
+
+    .ui-timepicker-rtl dl {
+        text-align: right;
+        padding: 0 5px 0 0;
+    }
+
+        .ui-timepicker-rtl dl dt {
+            float: right;
+            clear: right;
+        }
+
+        .ui-timepicker-rtl dl dd {
+            margin: 0 40% 10px 10px;
+        }
+
+.ui_tpicker_minute_slider {
+    width: 100%;
+}
+
+.ui_tpicker_hour_slider {
+    width: 100%;
+}
+
+.ui-timepicker-div .ui_tpicker_hour_slider span.ui-slider-handle,
+.ui-timepicker-div .ui_tpicker_hour_slider a.ui-slider-handle {
+    border: 1px solid #cccccc !important;
+    background: #f6f6f6 50% 50% repeat-x !important;
+}
+
+.ui-timepicker-div .ui_tpicker_minute_slider span.ui-slider-handle,
+.ui-timepicker-div .ui_tpicker_minute_slider a.ui-slider-handle {
+    border: 1px solid #cccccc !important;
+    background: #f6f6f6 50% 50% repeat-x !important;
+}
+
+.productTarget {
+    margin-bottom: 8px;
+}
+
+.multiPicker .treeHeaderText {
+    width: 50.5%;
+}
+
+.multiPicker .multiPickerHeaderText {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.multiPicker .multiPickerTree {
+    display: inline-block;
+    width: 48%;
+    overflow-y: scroll;
+    height: 99%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.multiPicker .selectedNodes {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    height: 99%;
+    box-sizing: border-box;
+}
+
+.boxbody .dialog-actions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    padding: 20px;
+    margin: 0;
+}
+
+
+    .boxbody .dialog-actions .footerOkCancel, .boxbody .dialog-actions .footerOkCancel .dialog-saveButton {
+        float: right;
+    }
+
+        .boxbody .dialog-actions .footerOkCancel em {
+            display: none;
+        }
+
+.footerOkCancel .dialog-saveButton {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #53a93f;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom,#53a93f,#53a93f);
+    border-color: rgba(0,0,0,0.1);
+    margin-left: 5px;
+}
+
+.footerOkCancel input[type="submit"] {
+    padding: 0 12px;
+    min-width: 65px;
+}
+
+.footerOkCancel .dialog-cancelButton {
+    color: #000;
+    -moz-border-radius: 0;
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .footerOkCancel .dialog-cancelButton:hover {
+        text-decoration: underline;
+    }
+
+form[action*="editvariantprices.aspx"] .product-relations .propertyContainer.propertyItems {
+    overflow: auto;
+}
+
+.product-relations {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+    .product-relations .boxbody .dialog-actions {
+        height: 30px;
+    }
+
+    .product-relations .boxbody .dialog-header {
+        height: 5%;
+    }
+
+    .product-relations .boxbody .contentPane {
+        height: 86%;
+    }
+
+    .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation {
+        margin-top: -130px;
+        padding-top: 130px;
+        box-sizing: border-box;
+    }
+
+        .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation ucommerce-multi-picker .multiPicker .multiPickerAction {
+            height: 100%;
+            box-sizing: border-box;
+            margin-top: -32px;
+            padding-top: 32px;
+        }
+
+
+
+            .product-relations .boxbody, .product-relations .boxbody .propertyItems,
+            .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation ucommerce-multi-picker,
+            .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation ucommerce-multi-picker .multiPicker,
+            .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation ucommerce-multi-picker .multiPicker .multiPickerAction .selectedNodes,
+            .product-relations .boxbody .propertyItems .multiPickerContainer-CreateProductRelation ucommerce-multi-picker .multiPicker .multiPickerAction .multiPickerTree {
+                height: 100%;
+            }
+
+.multiPicker .selectedNodes .selectedNode {
+    display: table;
+    cursor: pointer;
+}
+
+    .multiPicker .selectedNodes .selectedNode:hover {
+        background-color: #f8f8f8;
+    }
+
+    .multiPicker .selectedNodes .selectedNode .removeIcon {
+        display: table-cell;
+        cursor: pointer;
+        padding-right: 15px;
+    }
+
+    .multiPicker .selectedNodes .selectedNode .node {
+        display: table-cell;
+        vertical-align: top;
+        padding-top: 5px;
+    }
+
+    .multiPicker .selectedNodes .selectedNode .selectedNodeIcon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+    }
+
+.imagePickerContainer .selectedNodes {
+    width: 100%;
+}
+
+.selectedNodes .selectedNode .selectedNodeName {
+    padding-left: 20px;
+    white-space: nowrap;
+    background-repeat: no-repeat;
+    font-size: 14px;
+}
+
+    .selectedNodes .selectedNode .selectedNodeName .nodeName {
+        font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        display: inline;
+    }
+
+
+/* Override width and height for multi picker tree on categories picker on product editor */
+.multiPicker .multiPickerTree, .multiPicker .selectedNodes {
+    overflow: auto;
+    padding-top: 10px;
+}
+
+.selectedNodes .selectedNodes {
+    width: 100% !important;
+}
+
+.categoriesForProducts .multiPicker .treeHeaderText {
+    width: 30%;
+}
+
+.propertyPane.leftAligned.categoriesForProducts {
+    height: 99%;
+}
+
+.categoriesForProducts .propertyItem {
+    margin: 0px !important;
+    padding: 0px !important;
+    height: 100%;
+}
+
+    .categoriesForProducts .propertyItem .propertyItemContent {
+        height: 97%;
+    }
+
+
+.categoriesForProducts .contentTree.multiPicker {
+    height: 100%;
+}
+
+.categoriesForProducts .propertyItem .propertyItemContent > div > div {
+    height: 100%;
+}
+
+.categoriesForProducts .contentTree.multiPicker {
+    height: 100%;
+}
+
+.definitionsGraph {
+    height: 100%;
+}
+
+    .definitionsGraph #container {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+    }
+
+    .definitionsGraph .selectedNodeInformation {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .definitionsGraph canvas {
+    }
+
+    .definitionsGraph .network-manipulationDiv {
+        border: 1px solid rgb(184, 184, 184);
+    }
+
+    .definitionsGraph .selectedDefinitionLabel {
+        font-weight: bold;
+    }
+
+.tableLayout {
+    display: table;
+    width: 100%;
+}
+
+.tableCellLayout {
+    display: table-cell;
+}
+
+.definitionsGraph .tableLayout .tableCellLayout {
+    padding: 10px;
+}
+
+    .definitionsGraph .tableLayout .tableCellLayout:nth-child(1) {
+        width: 50%;
+        min-width: 166px;
+        display: table-cell;
+    }
+
+.definitionsGraph .tableLayout {
+}
+
+.definitionsGraph .selectedNodeInformation .tableLayout:nth-child(odd) {
+    background: rgba(247, 247, 247, 0.56);
+}
+
+.definitionsGraph .selectedNodeInformation .tableLayout:nth-child(even) {
+}
+
+.definitionsGraph .network-manipulationUI.add {
+    display: none;
+}
+
+.definitionsGraph.nodeSelected .network-manipulationUI.delete {
+    display: none;
+}
+
+.definitionsGraph .network-manipulationUI.edit {
+    /*display: none;*/
+}
+
+.network-manipulationDiv .network-manipulationUI.edit {
+    display: none;
+}
+
+.definitionsGraph .network-seperatorLine {
+    visibility: hidden;
+}
+
+.mce-statusbar {
+    display: none !important;
+}
+
+.propertyList .tab-section-header {
+    margin-top: 0px;
+}
+
+.btn-group {
+    width: 66.6%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+button.multiselect.dropdown-toggle.btn.btn-default {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    padding: 0px 0px 0px 11px;
+    border-radius: 2px;
+    text-align: left;
+    width: 100%;
+    font-size: inherit;
+    line-height: 27px;
+}
+
+
+.open > .multiselect-container.dropdown-menu {
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-top: none;
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0;
+    z-index: 1;
+}
+
+.multiselect-container > li > a > label.checkbox {
+    display: inline-block;
+    word-break: break-all;
+    color: #555;
+    vertical-align: top;
+    margin-top: 1px;
+    line-height: 18px;
+    width: 100%;
+    display: inline-block;
+}
+
+.multiselect-container > li > a {
+    text-decoration: none;
+}
+
+.multiselect-container > li {
+    padding: 0px 5px 0px 30px;
+    height: 20px;
+}
+
+.multiselect-container.dropdown-menu {
+    display: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+}
+
+.multiselect-container li.active {
+    background-color: #2E8AEA;
+}
+
+    .multiselect-container li.active a label {
+        color: #fff;
+    }
+
+.multiselect-container li:hover {
+    background-color: #2E8AEA;
+}
+
+.treeTop input {
+    margin: 5px;
+}
+
+/*For IE*/
+@media all and (-ms-high-contrast: none) {
+    .multiselect-container > li.active {
+        background-color: rgb(38,160,218);
+    }
+
+    .multiselect-container > li:hover {
+        background-color: rgb(38,160,218);
+    }
+
+    .treeTop {
+        line-height: 15px;
+    }
+
+    .contentTree .treeItemExpandContainer {
+        top: 1px;
+    }
+
+    .treeTop input {
+        margin-top: 0px;
+        padding-top: 1px !important;
+    }
+}
+
+/*.treeTop input {
+	*margin-top: 0px;
+	*padding-top: 0px !important;
+	margin-top: 0px\0/;
+	padding-top: 0px !important\0/;
+	margin-top: 0px\9 /;
+	padding-top: 0px !important\9 /;
+}*/
+
+.multiselect-container li:hover a label {
+    color: #fff;
+}
+
+.multiselect-container .active a {
+    color: #fff;
+    outline: 0;
+}
+
+.multiselect-container > li > a > label {
+    padding: 0px;
+    margin-top: 2px;
+}
+
+
+td .btn-group {
+    width: 200px;
+}
+
+    td .btn-group .multiselect-container.dropdown-menu {
+        width: 198px;
+        position: absolute;
+        min-width: inherit;
+    }
+
+    td .btn-group ul li a {
+        word-break: break-all;
+    }
+
+.multiselect-container > li > a > label > input[type=checkbox] {
+    margin-left: -20px;
+}
+
+.treeItemExpandContainer {
+    float: left;
+}
+
+.propertyItemHeader {
+    max-width: 180px;
+}
+
+ul.multiselect-container.dropdown-menu {
+    height: 240px;
+    overflow: auto;
+}
+
+.hasDatepicker {
+    *height: 30px;
+    height: 30px\9;
+    height: 30px\0;
+}
+
+.caret {
+    overflow: hidden;
+    float: right;
+}
+
+    .caret select:focus {
+        border: none;
+    }
+
+    .caret select {
+        margin: 0;
+        border: none;
+        *height: 27px;
+        height: 27px\9;
+        height: 27px\0;
+    }
+
+.contentTree .treeNodeIcon .nodeName span {
+    line-height: 15px;
+}
+/*For Firefox*/
+@-moz-document url-prefix() {
+    .treeTop {
+        line-height: 15px;
+    }
+
+    .caret {
+        margin-top: -1px;
+        margin-bottom: -2px;
+        margin-right: -3px;
+        height: 29px;
+    }
+
+        .caret select {
+            height: 29px;
+            padding-right: 3px;
+        }
+
+    .multiselect-container li.active {
+        background-color: rgb(51,153,255);
+    }
+
+    .multiselect-container li:hover {
+        background-color: rgb(51,153,255);
+    }
+
+    .multiselect-container > li {
+        padding: 0px 5px 3px 30px;
+        height: 19px;
+    }
+}
+
+.voucherTopLeftCell {
+    vertical-align: top;
+    height: 100%;
+    display: inline-table;
+    width: 46%;
+}
+
+.voucherFieldset {
+    height: 100%;
+}
+
+.customFilter {
+    display: inline;
+    vertical-align: middle;
+}
+
+    .customFilter input[type="text"].hasDatepicker {
+        min-width: 25%;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .customFilter .ui-datepicker-trigger {
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+
+    .customFilter .customFilterDivider {
+        vertical-align: middle;
+        vertical-align: -webkit-baseline-middle;
+        vertical-align: -moz-middle-with-baseline;
+    }
+
+    .customFilter input[type="submit"] {
+        margin-top: 20px;
+    }
+
+a.propertyLink {
+    margin-left: 3px;
+}
+
+.multiPickerTree.false {
+    width: 100% !important;
+    height: 100%;
+    overflow: hidden;
+}
+
+.multiPickerAction {
+    height: 100%;
+    overflow: hidden;
+}
+
+.contentCatalogItems, .singlepicker-container, .multiPicker, .multiPickerTree .treeTop, {
+    height: 100%;
+}
+
+.contentTree .treeNodeIcon {
+    padding-top: 0px;
+}
+
+.multiProductPicker {
+    height: 100%;
+    margin-top: -90px;
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
+    .multiProductPicker .multiPickerContainer-Product, .multiProductPicker .multiPickerContainer-Product .multiPicker,
+    .multiProductPicker .multiPickerContainer-Product .multiPicker .multiPickerTree,
+    .multiProductPicker .multiPickerContainer-Product .multiPicker .selectedNodes {
+        height: 100%;
+    }
+
+        .multiProductPicker .multiPickerContainer-Product .multiPicker .multiPickerAction {
+            margin-top: -34px;
+            padding-top: 34px;
+            box-sizing: border-box;
+        }
+
+
+.app-preview .details-info {
+    background-color: transparent;
+    border-bottom: none;
+    position: relative;
+    white-space: nowrap;
+    min-height: 170px;
+    margin-left: 0;
+    margin-bottom: 15px;
+    box-shadow: none !important;
+}
+
+.app-preview .icon-container {
+    margin-right: 25px;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0;
+    border: 0;
+    padding-bottom: 25px;
+}
+
+.app-preview .img-container {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px #919890;
+}
+
+.app-preview .appThumbInDetailedView {
+    width: 200px;
+    box-shadow: none;
+    vertical-align: middle;
+}
+
+.app-preview .info-box-top {
+    box-sizing: border-box;
+    min-height: 180px;
+    padding-bottom: 40px;
+    vertical-align: top;
+    display: inline-block;
+    white-space: normal;
+    position: relative;
+    width: 100%;
+    margin-left: -229px;
+    padding-left: 229px;
+}
+
+.app-preview .appTitleInDetailedView {
+    font-size: 30px;
+    margin: 15px 30px 10px 0;
+    font-weight: 300;
+    line-height: 29px;
+    white-space: normal;
+    display: block;
+    color: #777777;
+    overflow-wrap: break-word;
+}
+
+.app-preview .createdBy {
+    display: block;
+    overflow-wrap: break-word;
+}
+
+    .app-preview .createdBy p {
+        margin: 0 0 15px 0;
+    }
+
+.app-preview small, .small {
+    font-size: 13.8px;
+    padding: 0;
+}
+
+.app-preview .supportLink, .app-preview .documentationLink {
+    margin-left: -3px;
+    cursor: pointer;
+    overflow-x: hidden;
+}
+
+.app-preview .supportSpan, .app-preview .documentationSpan {
+    display: block;
+    color: #25bbad;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13.8px;
+    font-weight: 200;
+}
+
+.app-preview .supportImg, .app-preview .documentationImg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
+
+.app-preview #installButton {
+    width: 150px;
+    margin: 42px 0 0 0;
+    position: relative;
+    display: block;
+    padding: 0;
+    margin-right: 0;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px #919890;
+    background-color: #25BBad;
+    color: #ffffff;
+    float: right;
+    transition: background-color .3s;
+    cursor: pointer;
+}
+
+    .app-preview #installButton:hover, .app-preview #installButton:focus {
+        background-color: #14635C;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .app-preview #installButton span, .app-preview #succeedButton span {
+        text-align: center;
+        display: block;
+        padding: 9px 9px;
+        font-size: 13px;
+    }
+
+.app-preview .descriptionHeader, .app-preview .changelogHeader {
+    color: #777777;
+    font-size: 22px;
+}
+
+.app-preview .appDescriptionInDetailedView {
+    color: #777777;
+    overflow-wrap: break-word;
+    white-space: pre;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    font-size: 15px;
+}
+
+.info-box-top a {
+    color: #34739b;
+    text-decoration: none;
+}
+
+.loading i {
+    font-size: 350px;
+    z-index: 38;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+.loaderIndication {
+    width: 100%;
+    height: 100%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.loading {
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    color: rgba(35, 34, 34, 0.29);
+    display: table;
+    position: absolute;
+    margin: -10px;
+}
+
+.appInstall {
+    position: relative;
+    height: 100%;
+    margin-top: -10px;
+    padding-top: 10px;
+}
+
+.appError {
+    color: red;
+    height: 15px;
+    display: block;
+}
+
+.upload label {
+    margin-right: 20px;
+    display: inline-block;
+    float: left;
+}
+
+.upload .upload-container {
+    display: block;
+    margin-left: 130px;
+}
+
+.upload .upload-container, .upload button {
+    display: block;
+}
+
+.app-preview .changeLogHeader {
+    color: #777777;
+    font-size: 22px;
+}
+
+.app-preview .changeLogNotes {
+    font-size: 15px;
+    color: #777777;
+}
+
+.upload-container button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0px 6px;
+}
+
+.upload input[type="file"] {
+    font-size: 13px;
+    padding: 5px;
+    margin-left: -5px;
+    background-color: #FFF;
+}
+
+.upload label {
+    font-size: 13px;
+    line-height: 30px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .upload input[type="file"] {
+        padding: 0px;
+        margin-left: 0px;
+    }
+
+    .upload label {
+        line-height: 20px;
+    }
+
+    .upload-container button {
+        padding: 2px 8px;
+    }
+}
+
+.manifestContent {
+    padding: 20px 0px 0px 20px;
+    height: 220px;
+    width: 160px;
+    float: left;
+}
+
+    .manifestContent a {
+        text-decoration: none;
+    }
+
+.thumbnail {
+    display: block;
+    padding: 0;
+    margin: 0 0 20px 0;
+    line-height: 1.42857143;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    width: 150px;
+    width: 150px;
+    -webkit-box-shadow: 0 10px 6px -6px #919890;
+    -moz-box-shadow: 0 10px 6px -6px #919890;
+    box-shadow: 0 2px 4px #919890;
+    height: 210px;
+    cursor: pointer;
+}
+
+.masterCustomIcon {
+    display: block;
+    width: 90%;
+    min-height: 95px;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.thumbnail .caption {
+    color: #777777;
+    width: 90%;
+    min-height: 95px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+.appTitle {
+    margin-top: -5px;
+    margin-bottom: 0;
+    height: 1.2em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    font-size: 17px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    line-height: 1.1;
+    color: #444444;
+}
+
+.appAuthor {
+    font-size: 13px;
+    margin-bottom: 15px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-top: -5px;
+}
+
+.thumbnail:hover {
+    transform: scale(1.15);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+}
+
+.installPreview, .installedPreview {
+    width: 70%;
+}
+
+.product-relations .boxbody .propertyPane.dialog-header {
+    margin: 0px;
+    height: 113px;
+    display: block;
+    position: relative;
+    top: -11px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+.propertyPane.dialog-header h3 span {
+    padding-top: 15px !important;
+    display: inline-block;
+    margin: 0;
+    font-size: 17.5px;
+    line-height: 40px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.orderAudit .propertyPaneTitel {
+    display: none;
+}
+
+.propertyPaneTitel.orderOverViewTitel {
+    display: none;
+}
+
+.propertyPaneTitel.orderLinesTitel {
+    display: none;
+}
+
+.propertyPaneTitel.orderDiscountsTitel {
+    display: none;
+}
+
+.dialog-header h3 {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 8px 10px 0 0;
+}
+
+.dialog-header {
+    padding-top: 20px;
+}
+
+.modalTabView .sectionGroupHeader, .modalTabView #sectionGroupTabs.ui-tabs-nav {
+    border-left: none;
+}
+
+.product-relations .boxbody .contentPane.create-product-relation {
+    height: 100%;
+    margin-top: -138px;
+    padding-top: 138px;
+    box-sizing: border-box;
+    padding-bottom: 85px;
+}
+
+.product-relations .boxbody .contentPane.set-category-products, .product-relations .boxbody .contentPane, .product-relations .boxbody .contentCatalogItems {
+    height: 100%;
+    margin-top: -138px;
+    padding-top: 138px;
+    box-sizing: border-box;
+    padding-bottom: 70px;
+}
+
+.set-category-products .contentTree.multiPicker, .set-category-products .multiPickerContainer-dialog, .multipicker-container, .multipicker-container .multiPicker {
+    height: 100%
+}
+
+    .set-category-products .multiPickerAction, .multipicker-container .multiPicker .multiPickerAction {
+        box-sizing: border-box;
+        margin-top: -34px;
+        padding-top: 34px;
+    }
+
+input[type=text].contentPickerSearchInput {
+    width: 100%;
+    padding-right: 27px;
+}
+
+.selectedNodes .selected-nodes-container {
+    display: flex;
+    flex-flow: column;
+}
+
+    .selectedNodes .selected-nodes-container .selectedNode {
+        display: flex;
+    }
+
+
+    .selectedNodes .selected-nodes-container .selectedNode {
+        display: flex;
+        flex-flow: row;
+        overflow: hidden;
+    }
+
+        .selectedNodes .selected-nodes-container .selectedNode .removeIcon {
+            display: flex;
+            flex: 0 0 20px;
+            flex-flow: column;
+        }
+
+        .selectedNodes .selected-nodes-container .selectedNode .node {
+            display: flex;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .selectedNodes .selected-nodes-container .selectedNode .nodeName {
+            display: flex;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .selectedNodes .selected-nodes-container .selectedNode .node .treeNodeIcon {
+            display: flex;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+.contentPickerSearchPlaceHolder {
+    position: relative;
+}
+
+.clear-search {
+    position: absolute;
+    right: 6px;
+    top: 3px;
+    cursor: pointer;
+    color: #a7a7a7;
+    font-size: 20px;
+    width: 16px;
+}
+
+    .clear-search.clear-search-spinner {
+        margin-top: 5px;
+    }
+
+    .clear-search:hover {
+        color: black;
+    }
+
+.content-picker-search-result {
+    padding: 3px 0 3px 0;
+}
+
+.content-picker-search-placeHolder {
+    position: relative;
+}
+
+.content-picker-search-result {
+    display: flex;
+    flex-flow: row;
+    min-width: 0;
+    cursor: pointer;
+    align-items: center;
+    padding: 10px 0;
+}
+
+    .content-picker-search-result:hover {
+        background-color: #f8f8f8;
+    }
+
+.content-picker-search-result-checkbox {
+    flex: 0 0 16px;
+}
+
+.content-picker-search-result-icon {
+    flex: 0 0 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+.content-picker-search-result-text {
+    flex: 1 1 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 5px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+.selectedNodes .removeIcon img {
+    padding: 2px 0 0 5px;
+}
+
+.uc-menubar .secondary-button-wrapper .secondary-button-label {
+    position: relative;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #e9e9eb;
+    color: #000;
+    box-shadow: none;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.uc-menubar .secondary-button-wrapper .secondary-button-label:hover {
+        color: #343434;
+        text-decoration: none;
+        background: #e4e4e4;
+        background-position: 0 -15px;
+        transition: background-position .1s linear;
+    }
+
+.uc-menubar .secondary-button-wrapper:nth-child(1) .secondary-button-label:hover {
+    text-decoration: none;
+    background: #2dc381;
+    background-position: 0 -15px;
+    transition: background-position .1s linear;
+}
+
+.uc-menubar .secondary-button-wrapper:nth-child(1) {
+    order: 1;
+}
+
+.uc-menubar  .secondary-button-wrapper:nth-child(1) .secondary-button-label {
+        align-self: auto;
+        width: auto;
+        background-color: #35c786;
+        background-image: linear-gradient(180deg,#35c786,#35c786);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff35c786",endColorstr="#ff35c786",GradientType=0);
+        border-color: #35c786 #35c786 #258b5d;
+        border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+        color: #fff;
+        padding: 6px 14px !important;
+        display: block;
+        height: auto;
+    }
+
+.uc-menubar {
+    width: 100%;
+    padding: 10px 20px;
+    position: static;
+    height: auto;
+}
+
+.uc-menubar  span span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: auto;
+    }
+
+.uc-menubar .secondary-button-wrapper input {
+    display: none;
+}
+
+.dataTables_wrapper #productTable_filter {
+    float: none;
+}
+
+.dataTables_filter input {
+    width: 100%;
+    font-weight: 700;
+    padding: 5px 5px 5px 25px;
+}
+
+.dataTables_filter .icon-search {
+    position: absolute;
+    top: 1px;
+    left: 7px;
+    color: #d9d9d9;
+    font-size: 14px;
+}
+
+.uc-scrollable {
+    padding-top: 0
+}
+
+.dataTables_filter {
+    display: flex;
+}
+
+    .dataTables_filter input {
+        width: auto;
+        min-width: 160px;
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+        .dataTables_filter input::-webkit-input-placeholder {
+            color: #d9d9d9;
+        }
+
+        .dataTables_filter input::-moz-placeholder {
+            color: #d9d9d9;
+        }
+
+        .dataTables_filter input:-ms-input-placeholder {
+            color: #d9d9d9;
+        }
+
+        .dataTables_filter input:-moz-placeholder {
+            color: #d9d9d9;
+        }
+
+table.dataList td {
+    padding: 12px 12px 12px 15px;
+}
+
+table.dataTable thead tr th {
+    padding: 12px 8px 12px 15px;
+}
+
+#productTable_info {
+    color: #cacace;
+    margin-top: 10px;
+}

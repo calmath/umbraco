@@ -1,0 +1,6 @@
+<span>Full Name</span>
+<a href="/shop/basket.html" title="basket">
+	<svg>
+		<use xlink:href="#svg-basket"></use>
+	</svg>
+</a>

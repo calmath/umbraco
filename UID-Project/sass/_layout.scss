@@ -1,0 +1,270 @@
+/// Number of columns in the grid layout
+/// @group Configuration
+/// @access public
+/// @type number
+$maxCols : 12;
+
+body {
+	position: static;
+	width: 100%;
+	min-height: 100%;
+	text-align: center;
+	font-size: $base-font-size + px;
+}
+
+html {
+	font-size: $base-font-size + px;
+}
+
+main {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: 0;
+	box-sizing: border-box;
+	margin: auto;
+	text-align: center;
+}
+
+@for $i from 1 to ($maxCols + 1) {
+
+	.col-md-#{$i} {
+
+		@if($i < 3) {
+			width: 50%;
+		}@else {
+			width: 100%;
+		}
+
+
+		@if($i < $maxCols) {
+
+			$setWidth : (100% / $maxCols) * $i;
+
+			@media (min-width: $bp-desktop) {
+				width: $setWidth;
+			}
+		}
+
+	}
+
+}
+
+.umb-grid {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.grid-section {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+
+	& > div {
+		margin: 0 auto getPadding();
+
+		@media (min-width: $bp-desktop) {
+			margin: 0 auto getPadding(desktop);
+		}
+	}
+
+	& > div.noMargin {
+		margin: 0 auto;
+	}
+
+	div[class*="theme-"] {
+
+		&.edge:first-child {
+
+			.wysiwyg {
+
+				@media (min-width: $bp-desktop) {
+					padding: getPadding(desktop) 0;
+				}
+			}
+		}
+	}
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content : flex-start;
+	align-items: stretch;
+	align-content : stretch;
+	max-width: pxToRem($pageWidth);
+	margin: auto;
+	text-align: left;
+	box-sizing: border-box;
+	padding: 0 getPadding();
+
+	@media (min-width: $bp-desktop) {
+		padding: 0 getPadding(desktop);
+	}
+
+	&.no-wrap {
+		flex-wrap: nowrap;
+	}
+}
+
+.column {
+
+	flex-direction: column;
+	box-sizing: border-box;
+
+	&[class^="col-md-"] {
+
+		padding: 0 0 getPadding();
+
+		@media (min-width: $bp-desktop) {
+			padding: 0 pxToRem(map-get($padding, default) / 2) 0 0;
+		}
+	}
+
+	&.col-md-4:nth-last-child(2) {
+		@media (min-width: $bp-desktop) {
+			padding: 0 pxToRem(map-get($padding, default) / 4);
+		}
+	}
+
+	&:last-child {
+		padding: 0;
+
+		@media (min-width: $bp-desktop) {
+			padding: 0 0 0 pxToRem(map-get($padding, default) / 2);
+		}
+	}
+
+	&:first-child {
+		@media (min-width: $bp-desktop) {
+			padding: 0 pxToRem(map-get($padding, default) / 2) 0 0;
+		}
+	}
+
+	&.col-md-12 {
+		@media (min-width: $bp-desktop) {
+			padding: 0;
+		}
+	}
+
+	& > div {
+		height: 100%;
+
+		& > div {
+			height: 100%;
+		}
+
+		& > script {
+
+			& ~ div {
+				height: auto;
+			}
+
+		}
+	}
+}
+
+.noGap {
+
+	.column {
+		padding: 0 !important;
+	}
+}
+
+.edge {
+
+	> .row {
+		padding: 0;
+
+		@media (min-width: $bp-desktop) {
+			padding: 0 getPadding(desktop);
+		}
+	}
+}
+
+.edge.noGap {
+	> .row {
+		padding: 0;
+		margin: 0 auto getPadding();
+		@media (min-width: $bp-desktop) {
+			margin: 0 auto getPadding(desktop);
+		}
+	}
+}
+
+.edge.noGap.noMargin {
+	> .row {
+		margin: 0 auto;
+	}
+}
+
+.flex-auto-width {
+	.column {
+		width: auto;
+		box-sizing: border-box;
+		padding: 0 getPadding() 0 0;
+
+		@media (min-width: $bp-desktop) {
+			padding: 0 getPadding(desktop) 0 0;
+		}
+	}
+}
+
+div[class*="theme-"] {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+[class^="theme-"] {
+
+	.wysiwyg {
+		padding: getPadding();
+		box-sizing: border-box;
+
+		@media(min-width: $bp-desktop) {
+			padding: getPadding(desktop);
+			//padding: getPadding(desktop) 0;
+		}
+	}
+
+	&.light {
+		.wysiwyg {
+
+			padding: 0;
+
+			@media(min-width: $bp-desktop) {
+				padding: 0;
+			}
+		}
+	}
+
+}
+
+.col-md-12 {
+	[class^="theme-"] {
+		.wysiwyg {
+			@media(min-width: $bp-desktop) {
+				padding: getPadding(desktop);
+			}
+		}
+	}
+}
+
+.col-md-4, .col-md-6 {
+	.wysiwyg {
+		padding: getPadding();
+		box-sizing: border-box;
+	}
+}

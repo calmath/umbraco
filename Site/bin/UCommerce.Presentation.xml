@@ -1,0 +1,433 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UCommerce.Presentation</name>
+    </assembly>
+    <members>
+        <member name="T:UCommerce.Presentation.IMultiLingual">
+            <summary>
+            Contains definition for a multi lingual class.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Presentation.IMultiLingual.CultureCode">
+            <summary>
+            The culture code.
+            </summary>
+            <example>
+            da-DK for Denmark, en-GB for Great Britian etc.
+            </example>
+        </member>
+        <member name="T:UCommerce.Presentation.Presenters.IPresenter`1">
+            <summary>
+            Coordinating mechanism for UIs.
+            </summary>
+            <typeparam name="TView">The type of the view.</typeparam>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.IPresenter`1.InjectView(`0)">
+            <summary>
+            The view the presenter is coordinating.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.IPresenter`1.HydrateView">
+            <summary>
+            Hydrates the view by setting any required information
+            on it like properties.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.IPresenter`1.WireEvents">
+            <summary>
+            Wires the events.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.IPresenter`1.UnwireEvents">
+            <summary>
+            Unwires the events.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Presenters.Presenter`1">
+            <summary>
+            Base class for presenters.
+            </summary>
+            <typeparam name="TView"></typeparam>
+        </member>
+        <member name="P:UCommerce.Presentation.Presenters.Presenter`1.View">
+            <summary>
+            Gets the view for the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Presenter`1.InjectView(`0)">
+            <summary>
+            Injects the view into the presenter.
+            </summary>
+            <param name="view"></param>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Presenter`1.WireEvents">
+            <summary>
+            Wires the view's events to the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Presenter`1.UnwireEvents">
+            <summary>
+            Unwires the view's events from the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Presenter`1.HydrateView">
+            <summary>
+            Hydrates the view by setting any required information
+            on it like properties.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Email.EditEmailProfilePresenter.WireEvents">
+            <summary>
+            Wires the view's events to the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Email.EditEmailProfilePresenter.UnwireEvents">
+            <summary>
+            Unwires the view's events from the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Email.EditEmailTypePresenter.WireEvents">
+            <summary>
+            Wires the view's events to the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Email.EditEmailTypePresenter.UnwireEvents">
+            <summary>
+            Unwires the view's events from the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Orders.EditPaymentMethodPresenter.WireEvents">
+            <summary>
+            Wires the view's events to the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Orders.EditPaymentMethodPresenter.UnwireEvents">
+            <summary>
+            Unwires the view's events from the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Orders.EditShippingMethodPresenter.WireEvents">
+            <summary>
+            Wires the view's events to the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Presenters.Settings.Orders.EditShippingMethodPresenter.UnwireEvents">
+            <summary>
+            Unwires the view's events from the presenter.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DateTimePicker.OnPreRender(System.EventArgs)">
+            <summary>
+            Renders the content of the control.
+            </summary>
+            <param name="e"></param>
+            <remarks>
+            This datepicker plugin is an extension to JQueryUi.
+            Documentation available at: http://trentrichardson.com/examples/timepicker/
+            Also JQueryUI: http://api.jqueryui.com/datepicker/#option-dateFormat
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DateTimePicker.GetDateTimeFormatForJquery">
+            <summary>
+            JQuery UI component requires year format identifier in: 'yy'.
+            </summary>
+            <returns></returns>
+            <remarks>Returns the date time format in to lower to esnure the jquery plugin does not format the selected date with names instead of numbers.</remarks>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DateTimePicker.GetTimeFormatForJQuery">
+            <summary>
+            Time picker requires TT instead of tt to display AM and PM in uppercase.
+            </summary>
+            <returns>Returns the time pattern adjusted for date picker format.</returns>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DateTimePicker.EnsureOnlyTwoYearIdentifiers(System.String)">
+            <summary>
+            Returns the correct identifier for a short time format according to standards in JQueryUI.s
+            </summary>
+            <param name="dateFormatInput"></param>
+            <returns></returns>
+            <remarks>
+            Assumption: All cultures uses either 'yyyy' or 'yy' in their short date pattern. Unit test shows all default cultures in .NET does so.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Presentation.UI.IJavaScriptFactory">
+            <summary>
+            Handles the generation of JavaScript.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.IJavaScriptFactory.CreateJavascript(System.String[])">
+            <summary>
+            This method will encapsulate the parts with <script></script> and add
+            each part as line in the script.
+            </summary>
+            <param name="parts"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Presentation.UI.Resources.IResourcesIncludeList">
+            <summary>
+            This interface is used for returning the control that contains all the resource dependencies (js, css, etc.).
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.UI.Resources.IResourcesControls">
+            <summary>
+            This interface is used for returning the control that contains all the resource dependencies (js, css, etc.).
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DatePicker.GetDateTimeFormatForJquery">
+            <summary>
+            JQuery UI component requires year format identifier in: 'yy'.
+            </summary>
+            <returns></returns>
+            <remarks>Returns the date time format in to lower to esnure the jquery plugin does not format the selected date with names instead of numbers.</remarks>
+        </member>
+        <member name="M:UCommerce.Presentation.UI.DatePicker.EnsureOnlyTwoYearIdentifiers(System.String)">
+            <summary>
+            Returns the correct identifier for a short time format according to standards in JQueryUI.s
+            </summary>
+            <param name="dateFormatInput"></param>
+            <returns></returns>
+            <remarks>
+            Assumption: All cultures uses either 'yyyy' or 'yy' in their short date pattern. Unit test shows all default cultures in .NET does so.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Adapters.CheckBoxControlAdapter">
+            <summary>
+            Extracts the value from a check box control.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Adapters.TextBoxControlAdapter">
+            <summary>
+            Extracts the value from a <see cref="T:System.Web.UI.WebControls.TextBox"/>.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.DeleteButtonPlaceholder">
+            <summary>
+            An indication that you want uCommerce to provide a delete button for your section.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.CheckBoxControlFactory">
+            <summary>
+            Creates a <see cref="T:System.Web.UI.WebControls.CheckBox"/> control.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.DefaultControlFactory">
+            <summary>
+            Renders a text box for any data type.
+            </summary>
+            <remarks>
+            This is typically the last control to be use.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.DropDownListControlFactory">
+            <summary>
+            Creates a <see cref="T:System.Web.UI.WebControls.DropDownList"/> for data definition "Enum".
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.LongTextControlFactory">
+            <summary>
+            Factory for long text control.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.NumberControlFactory">
+            <summary>
+            Factory for number controls.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.RichTextControlFactory">
+            <summary>
+            Create a rich text editor control using TinyMCE.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.Factories.ShortTextControlFactory">
+            <summary>
+            Creates a default textbox for "ShortText" data type.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.SaveButtonPlaceholder">
+            <summary>
+            An indication that you want uCommerce to provide a save button for your section.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.IRequireScriptBlock">
+            <summary>
+            Implement IRequireScript to add supporting JavaScript to page.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.IControlAdapter">
+            <summary>
+            Extracts value from a control.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.IControlAdapter.Adapts(System.Web.UI.Control)">
+            <summary>
+            Does this adapter adapt the specified control.
+            </summary>
+            <param name="control">The control.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.IControlAdapter.GetValue(System.Web.UI.Control)">
+            <summary>
+            Gets the value from control.
+            </summary>
+            <param name="control">The control.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.IPropertyControlFactory">
+            <summary>
+            Creates appropriate control for <see cref="T:UCommerce.EntitiesV2.Definitions.IProperty">properties</see>.
+            creates
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.PropertyControlFactory">
+            <summary>
+            Creates appropriate controls for <see cref="T:UCommerce.EntitiesV2.Definitions.IProperty">properties</see>
+            and extracts values from them.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.PropertyControlFactory.GetControl(UCommerce.EntitiesV2.Definitions.IProperty)">
+            <summary>
+            Gets the control.
+            </summary>
+            <param name="property">The property.</param>
+            <returns></returns>
+            <remarks>
+            Visits all registered <see cref="T:UCommerce.Presentation.Web.Controls.IControlFactory">control factories</see>
+            and uses the first one which supports the <see cref="T:UCommerce.EntitiesV2.DataType"/> of the
+            <see cref="T:UCommerce.EntitiesV2.Definitions.IProperty"/> in question.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Controls.IControlFactory">
+            <summary>
+            Factories for supporting custom data type controls.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.IControlFactory.Supports(UCommerce.EntitiesV2.DataType)">
+            <summary>
+            Does the control factory support the specified data type.
+            </summary>
+            <param name="dataType">Type of the data.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.IControlFactory.GetControl(UCommerce.EntitiesV2.Definitions.IProperty)">
+            <summary>
+            Gets the control supporting the property.
+            </summary>
+            <remarks>
+            Fully initialized control with the value property.
+            </remarks>
+            <param name="property">The property.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.SimpleValidationSummary.GetRenderUpLevel">
+            <summary>
+            This is the way the RenderUpLevel is calculated in the OnPreRender implementation of ValidationSummary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Controls.ViewEnabledControl`1.RefreshEditor(System.String)">
+            <summary>
+            Refreshes the editor, redirecting to specified URL.
+            </summary>
+            <param name="redirectUrl">The pageurl the browser must redirect to.</param>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.IConfigurable">
+            <summary>
+            Configuration of objects. New or existing.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Presentation.Web.IConfigurable.DataSource">
+            <summary>
+            DataSource is used for presenting an existing object for configuration.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.IConfigurable.New">
+            <summary>
+            Factory method to create a new object for configuration and
+            store it in a data store.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.IUrlResolver">
+            <summary>
+            Resolves URLs local to the app.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.IUrlResolver.ResolveUrl(System.String)">
+            <summary>
+            Resolves the URL.
+            </summary>
+            <remarks>
+            Assumes an URL local to the app, e.g. /catalog/somepage.aspx
+            and resolves it to an URL matching the hosting environment
+            of the app, i.e. app is hosted in /somedir.
+            ~/catalog/somepage.aspx => /somedir/catalog/somepage.aspx.
+            </remarks>
+            <param name="localUrl">The local URL.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Marketing.ITargetUi">
+            <summary>
+            Identifies a whether a <see cref="T:UCommerce.Marketing.Targets.ITarget"></see> UI is
+            configuring a <see cref="T:UCommerce.Marketing.Targets.IDisplayTarget"/> or apply target.
+            (<see cref="T:UCommerce.Marketing.Targets.IOrderLineTarget"/> and <see cref="T:UCommerce.Marketing.Targets.IPurchaseOrderTarget"/>).
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.CommandArgs">
+            <summary>
+            Arguments for a <see cref="T:UCommerce.Presentation.Web.Pages.ICommand"/>.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.ICommand">
+            <summary>
+            A command.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.TabViewBuilder">
+            <summary>
+            Class for building the Umbraco tab view.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Pages.TabViewBuilder.GetControlName(System.String)">
+            <summary>
+            Gets the control.ascx piece of the virtual path.
+            </summary>
+            <param name="virtualPath">In the form of ../../somecontrol.ascx or somecontrol.ascx.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.IBackendLocalizationService">
+            <summary>
+            Ensures the culture code.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.ISection">
+            <summary>
+            Defines a UI section.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Presentation.Web.Pages.ISection.GetCommands">
+            <summary>
+            Returns <see cref="T:UCommerce.Presentation.Web.Pages.ICommand">commands</see> for this section.
+            </summary>
+            <remarks>
+            This is where the menu should be initialized.
+            </remarks>
+        </member>
+        <member name="P:UCommerce.Presentation.Web.Pages.ISection.Show">
+            <summary>
+            Gets a value indicating whether or not this section should be displayed.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Presentation.Web.Pages.ITabView">
+            <summary>
+            Contains definition for pages hosting a tab view control.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Presentation.Web.QueryString.Catalog.DeletedProductSku">
+            <summary>
+            Used to signal if a product has been deleted and redirected to it's parent category
+            </summary>
+        </member>
+    </members>
+</doc>

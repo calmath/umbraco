@@ -1,0 +1,1498 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UCommerce.Transactions.Payments</name>
+    </assembly>
+    <members>
+        <member name="T:UCommerce.Transactions.Payments.Adyen.AdyenHttpPaymentExtractor">
+            <summary>
+            Responsible for extracting payment from Adyen requests.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Adyen.AdyenHttpPaymentExtractor.Extract(System.Web.HttpRequest)">
+            <summary>
+            Extracts the specified HTTP request.
+            </summary>
+            <param name="httpRequest">The HTTP request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Adyen.AdyenPaymentMethodService.Extract(System.Web.HttpRequest)">
+            <summary>
+            Extracts payment from request using the default payment gateway callback extractor.
+            </summary>
+            <param name="httpRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Adyen.AdyenPaymentMethodService.RunCheckoutPipelineIfNeeded(UCommerce.EntitiesV2.Payment,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Run the checkout pipeline for auth or acquire requests if needed.
+            </summary>
+            <param name="payment"></param>
+            <param name="dict"></param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetMd5Computer.GetPreMd5Key(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            See http://developer.authorize.net/guides/SIM/ (Subject: Custom Transaction Fingerprint Code)
+            </summary>
+            <param name="transactionKey">Transaction Key</param>
+            <param name="apiLogin">Api login</param>
+            <param name="sequence">Sequence nr - Payment id</param>
+            <param name="timestamp">timestamp - create utc time in seconds sins 1/1 1970</param>
+            <param name="amount">Amount</param>
+            <returns>Md5 key</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetMd5Computer.IsMatch(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            See http://developer.authorize.net/guides/SIM/ (Subject: Using the MD5 Hash Feature) and http://developer.authorize.net/downloads/samplecode/ (SIM code)
+            </summary>
+            <param name="md5Hash">Md5 Hash specified in account</param>
+            <param name="apiLogin">Api login</param>
+            <param name="transactionId">Transaction Id</param>
+            <param name="amount">Amount</param>
+            <param name="expected">Expected Md5Hash from respons param</param>
+            <returns>Md5hash is match</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService">
+            <summary>
+            Authorize.Net integration using SIM APIs.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the page to post at Authorize.NET using <see cref="P:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.AuthorizedotnetPageBuilder"/>.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Requests the payment.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns></returns>
+            <remarks>Authroize.NET only supports USD which this method secures by checking the ISO code and throws an exception.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processes the callback from Authorize.NET after a customer authorizes a payment request.
+            </summary>
+            <param name="payment">The payment.</param>
+            <remarks>Method communicates with Authorize.NET server and processes the auth_codes from the response.
+            Normally the callback would do a redirect at the end.
+            Instead we write the page directly to them.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.DownloadPageContent(System.Uri,UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Downloads the content of the accept or decline Url.
+            </summary>
+            <param name="uri">The URI.</param>
+            <param name="payment">The payment.</param>
+            <returns></returns>
+            <remarks>This method converts the HTML page of the accept or decline url into a string. 
+            Instead of rederecting Authorize.NET in the <see cref="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)"/>, we write the HTML page directly to them
+            in their request. This method Returns the string to write to Authorize.NET.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from Authorize.NET.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+            <remarks>Method uses Authorize.NET SDK to cancel the payment.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from Authorize.NET.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+            <remarks>Method uses Authorize.NET SDK to Acquire the payment.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Authorizedotnet.AuthorizedotnetPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            This method is not supported as Authorize.NET not allows refunds.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePageBuilder.Build(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            It only uses to BuildBody to build the page from a html file.
+            </summary>
+            <param name="paymentRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePageBuilder.AddPaymentForm(System.Text.StringBuilder,System.String)">
+            <summary>
+            Reads the paymentFormTemplate into the page StringBuilder
+            </summary>
+            <param name="page">The page</param>
+            <param name="paymentFormTemplate">The template to use</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePageBuilder.CreateSelectOptions(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Create a html option with value and text 
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService">
+            <summary>
+            Implementation of the http://www.braintreepayments.com/ payment provider.
+            </summary>
+            <remarks>
+            The flow is a little different for Braintree than the rest for the framework.
+            The form is submitted and braintree processes and calls back. The form validation results
+            are in the callback and if any error we show the form again. This flow continues until form validation succeeds.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the page with the information needed by the payment provider.
+            </summary>
+            <remarks>
+            Output is formatted in accordance to the payment form template configured.
+            </remarks>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>The html rendered.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Redirect to the configured payment form.
+            </summary>
+            <param name="paymentRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processes the callback and excecutes a pipeline if there is one specified for this paymentmethodservice.
+            </summary>
+            <param name="payment">The payment to process.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns>Succes</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment with the payment gateway.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns>Succes</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns>Succes</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Braintree.BraintreePaymentMethodService.GetErrorMessage(Braintree.Result{Braintree.Transaction})">
+            <summary>
+            Gets the error message for the transaction in a appropriate format.
+            </summary>
+            <param name="transactionResult">The transaction result</param>
+            <returns>Error message</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer">
+            <summary>
+            Computes md5 hashes when MD5-key control is enabled.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer.GetRefundKey(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the refund key <paramref name="orderId"/>, <paramref name="transact"/> and <paramref name="amount"/>.
+            </summary>
+            <returns>Md5 key.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer.GetCancelMd5Key(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the cancel MD5 key computed by <paramref name="orderId"/> and <paramref name="transact"/>.
+            </summary>
+            <returns>md5 key.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer.GetCaptureMd5Key(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the capture MD5 key computed by <paramref name="orderId"/>, <paramref name="transact"/> and <paramref name="amount"/>.
+            </summary>
+            <returns>Md5 key.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer.GetPreMd5Key(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes a Md5 hash of <paramref name="orderId"/>, <paramref name="currency"/> and <paramref name="amount"/> parameters and Merchant, Key1, Key2 from the configuration.
+            </summary>
+            <returns>Md5 hash</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsMd5Computer.GetPostMd5Key(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Computes a Md5 hash of <paramref name="transact"/> and <paramref name="amount"/> parameters and Key1, Key2 from the configuration.
+            </summary>
+            <returns>Md5 hash</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService">
+            <summary>
+            Implementation of the http://dibs.dk payment provider.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the page with the information needed by the payment provider.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>The html rendered.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processes the callback and excecutes a pipeline if there is one specified for this paymentmethodservice.
+            </summary>
+            <param name="payment">The payment to process.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.GetStatus(System.String)">
+            <summary>
+            Gets the status.
+            </summary>
+            <param name="input">The input where the status is extracted from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.GetErrorMessage(System.String)">
+            <summary>
+            Gets the error message.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.EPay.EPayMd5Computer">
+            <summary>
+            Computes md5 hashes when MD5-key control is enabled.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayMd5Computer.GetPreMd5Key(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes a Md5 hash of the 3 parameters, the MerchantId and a key
+            </summary>
+            <param name="orderId">Current order id</param>
+            <param name="merchantId"></param>
+            <param name="currency">Used currency</param>
+            <param name="amount">Amount <example>100 for 1 USD or 150 for 1.50 USD</example></param>
+            <param name="key">The key.</param>
+            <returns>Md5 hash</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayMd5Computer.GetPostMd5Key(System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes a Md5 hash of the 3 parameters and a key.
+            </summary>
+            <param name="amount">Amount <example>100 for 1 USD or 150 for 1.50 USD</example></param>
+            <param name="orderId">Order id</param>
+            <param name="transactionId">Transaction id</param>
+            <param name="key">The key.</param>
+            <returns>Md5 hash</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.EPay.EPayPageBuilder">
+            <summary>
+            Builds a EPay redirect page.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPageBuilder.#ctor(UCommerce.Transactions.Payments.EPay.EPayMd5Computer,UCommerce.Web.ICallbackUrl,UCommerce.Web.IAbsoluteUrlService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.EPay.EPayPageBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPageBuilder.GetLanguageCode(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Get the language.
+            </summary>
+            <param name="paymentRequest"></param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPageBuilder.GetParameters(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Gets the parameters. Override this method if you want to add other parameters.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPageBuilder.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the form.
+            </summary>
+            <param name="page">The <see cref="T:System.Text.StringBuilder" />.</param>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService">
+            <summary>
+            Implementation of the http://epay.dk payment provider
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.#ctor(UCommerce.Transactions.Payments.EPay.EPayPageBuilder,UCommerce.Transactions.Payments.EPay.EPayMd5Computer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.GetPbsError(System.Int32,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Gets the PBS error.
+            </summary>
+            <param name="errorNumber">The error number.</param>
+            <param name="paymentMethod">The payment method. Needed to get configuration data</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.GetEpayError(System.Int32,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Gets the Epay error.
+            </summary>
+            <param name="errorNumber">The error number.</param>
+            <param name="paymentMethod">The payment method. Needed to get configuration data</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.GetError(System.Int32,System.Int32,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Gets the error from PBS and Epay and joins them into a string.
+            </summary>
+            <param name="pbsErrorNumber">The PBS error number.</param>
+            <param name="epayErrorNumber">The epay error number.</param>
+            <param name="paymentMethod">The payment method. Needed to get configuration data</param>
+            <returns>A string containng the errors</returns>
+        </member>
+        <member name="P:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>The language.</value>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the forms to be submitted to the payment provider.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>A string containing the html form.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.EWay.EWayExtensions">
+            <summary>
+            Extensions for use in the EWay payment provider.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.EWay.EWayPaymentMethodService">
+            <summary>
+            eWay payment provider http://eway.com.au.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EWay.EWayPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processes the payment resonse. 
+            Sets the paymentstatus to either acquired or declined. 
+            </summary>
+            <param name="payment">The payment request.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EWay.EWayPaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Makes a placeholder transaction and redirects to eWay payment site. 
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>Payment</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.EWay.EWayPaymentMethodService.addQueryString(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Adds the query string.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.GlobalCollect.Api.IAddExtraData.AddExtraData(System.String,System.String)">
+            <summary>
+            Add an additional set of data to be included in the resulting MODIFIED XML
+            </summary>
+            <param name="s">The value to be added.</param>
+            <param name="tag">The tag to include the value inside.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.GlobalCollect.GlobalCollectPaymentMethodService.GetOrderStatusFromPayment(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Calls Global Collect for a payment status corresponding to values in GlobalCollectPaymentStatus
+            </summary>
+            <param name="payment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.GlobalCollect.GlobalCollectPaymentMethodService.PaymentQualifiesForRefund(System.Int32,UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Determines weather a payment is fit for refund. 
+            </summary>
+            <remarks>
+            See "AuthFlowDescribedFromSupport.pdf" in docs\IPaymentWindow\Global Collect
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.GlobalCollect.GlobalCollectPaymentMethodService.PaymentQualifiesForCancel(System.Int32,UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Determines weather a payment is fit for cancel. See "AuthFlowDescribedFromSupport.pdf" in docs\IPaymentWindow\Global Collect
+            </summary>
+            <remarks>
+            See "AuthFlowDescribedFromSupport.pdf" in docs\IPaymentWindow\Global Collect
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ideal.Ing.IdealPaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Validates that the currency matches the provider
+            </summary>
+            <param name="paymentRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ideal.Ing.IdealPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Extracts the transaction result from the body of the HTTP request
+            </summary>
+            <param name="payment"></param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ideal.Ing.IdealPaymentMethodService.Extract(System.Web.HttpRequest)">
+            <summary>
+            Extracts <see cref="T:UCommerce.EntitiesV2.Payment"/> from the body of the HTTP request performed during callback from iDEAL.
+            </summary>
+            <remarks>
+            iDEAL is special because it’s URL is static thus only contains the paymentMethodId.
+            To find the payment in question the method will extract the body of the HTTP request and find the purchaseID in the XML payload.
+            Payment will contain the full XML response from iDEAL ING in a custom property called "response".
+            </remarks>
+            <param name="request">HttpRequest to extract</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ideal.Ing.IdealSha1Computer.GetAsHexaDecimal(System.Byte[])">
+            <summary>
+            Byte array to Hex Decimal string
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayHttpRequester">
+            <summary>
+            Sends an XML request to MultiSafepay and returns an XML-element containing the response.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentRequestBuilder">
+            <summary>
+            Builds the XML document needed for the payment url request and returns it as a string.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService">
+            <summary>
+            MultiSafepay Connect payment method service.
+            </summary>
+            <remarks>Setup to use the MtultiSafepay Connect option.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the forms to be submitted to the payment provider.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>A string containing the html form.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Redirects to '/{PaymentMethodName}/{PaymentGuid}/PaymentRequest.axd', and lets the current page execution finish.
+            </summary>
+            <param name="paymentRequest">Information used to generate the URL to redirect to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.GuardAgainstIncorrectResponse(System.Xml.XmlElement)">
+            <summary>
+            Protects against incorrect response that doesnt correspond with expected code from MultiSafepay
+            </summary>
+            <param name="xmlElement">The XmlElement.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.Extract(System.Web.HttpRequest)">
+            <summary>
+            Extracts the transaction ID from the notification sent by MultiSafepay
+            </summary>
+            <param name="httpRequest">The httpRequest object.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.GetStatusRemotelyFromMultiSafePay(System.String,UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Get the status of the transaction and saves the transaction ID from MultiSafepay
+            </summary>
+            <param name="transactionId">The transactionId.</param>
+            <param name="payment">The payment object</param>
+            <returns>A string containing the status</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.MultiSafepay.MultiSafepayStatusRequestBuilder">
+            <summary>
+            Builds the Xml document needed for the status request and returns it as a string.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService">
+            <summary>
+            Implementation of the Netaxept payment provider
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.#ctor(UCommerce.Infrastructure.Logging.ILoggingService,UCommerce.Web.IAbsoluteUrlService,UCommerce.Web.ICallbackUrl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.RequestPayment(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Validates that the currency matches the provider. Makes placeholder request.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Netaxept.NetaxeptPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.AcquirePaymentShaSignIn">
+            <summary>
+            Class used to build a string to hash when a payment needs to be acquired.
+            Ogone needs a "sha sign" which is a signature used to verify that the data is identically in both ends.
+            The "sha sign" is a sha-1 hash of the string this class builds.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.AcquirePaymentShaSignIn.BuildHashString(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Builds the string to hash when the merchant makes an acquire request at Ogone.
+            Method is used in AcquirePaymentInternal at the PaymentMethodService.
+            </summary>
+            <param name="dict">The dict.</param>
+            <param name="shaSignOut">The sha sign out.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.AcquirePaymentShaSignIn.BuildStringSection(System.String,System.String,System.String)">
+            <summary>
+            Builds a section of the string to hash. 
+            Method helps to match the rules of building a sha sign given by Ogone.
+            Keys must be in upper and empty values must be ignored.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="value">The value.</param>
+            <param name="shaSign">The sha sign.</param>
+            <returns>A string section in "KEY=value" format.</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.CancelPaymentShaSignIn">
+            <summary>
+            Class used to build a string to hash when a payment needs to be cancelled.
+            Ogone needs a "sha sign" which is a signature used to verify that the data is identically in both ends.
+            The "sha sign" is a sha-1 hash of the string this class builds.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.CancelPaymentShaSignIn.BuildHashString(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Builds the string to hash when the payment is being canceled by the merchant.
+            </summary>
+            <param name="dict">The dictionary of the parameters that is being send in the query string to Ogone.</param>
+            <param name="shaSignOut">The shaSignOut as configured in Ogone back-end.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.CancelPaymentShaSignIn.BuildStringSection(System.String,System.String,System.String)">
+            <summary>
+            Builds a section of the string to hash. 
+            Method helps to match the rules of building a sha sign given by Ogone.
+            Keys must be in upper and empty values must be ignored.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="value">The value.</param>
+            <param name="shaSign">The sha sign.</param>
+            <returns>A string section in "KEY=value" format.</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.OgoneExtensions">
+            <summary>
+            Extensions for working with Ogone
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.OgonePageBuilder">
+            <summary>
+            implementation of the OgonePageBuilder.
+            Class is used to build a form, used to do a payment request at Ogone.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePageBuilder.BuildHead(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the head attributes.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePageBuilder.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the body attributes.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="paymentRequest">The payment request.</param>
+            <remarks></remarks>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService">
+            <summary>
+            Implementation of the Ogone Payment provider.
+            The implementation supports Authorize, Acquire, and Cancel.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Method is called when the order is being completed by the merchant when the <see cref="T:UCommerce.EntitiesV2.Payment"/> is authorized. 
+            </summary>
+            <param name="payment">The authorized payment.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Method is called when the order is being canceled by the merchant before the <see cref="T:UCommerce.EntitiesV2.Payment"/> is acquired.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processes the callback from Ogone after the customer has entered credit card information and clicked submit.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Method is called when the order is being canceled by the merchant, after the <see cref="T:UCommerce.EntitiesV2.Payment"/> have been acquired by the merchant.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the page.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.ConvertAuthorizeResultToPaymentStatus(System.Int32)">
+            <summary>
+            Gets the payment status code of the callback. 
+            Method is used in order to tell the system weither the payment request
+            is authorized, acquired or declined. Return status has to be either "authorized" (5) or "acquired" (9) for not to be declined.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>The PaymentStatusCode to set equivilent to the status set at Ogone.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.ConvertAcquireResultToPaymentStatus(System.Int32)">
+            <summary>
+            Gets the status of the response when doing acquire on the order.
+            Method is used in order to tell the system weither the acquire is succeful or failed.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>The PaymentStatusCode to set equivilent to the status set at Ogone.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.ConvertCancelResultToPaymentStatus(System.Int32)">
+            <summary>
+            Gets the status of the response when doing a cancel payment.
+            Method is used in order to tell the system weither the cancel payment was accepted or declined. 
+            </summary>
+            <param name="status">The status.</param>
+            <returns>The PaymentStatusCode to set equivilent to the status set at Ogone.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.ConvertRefundResultToPaymentStatus(System.Int32)">
+            <summary>
+            Gets the status of the response when doing a refund on the <see cref="T:UCommerce.EntitiesV2.Payment"/>.
+            Method is used in order to tell the system weither the refund was accepted or declined. 
+            </summary>
+            <param name="status">The status.</param>
+            <returns>The PaymentStatusCode to set equivilent to the status set at Ogone.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.RequestOgone(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Requests the Ogone paymentprovider.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="formValuesToPost">The form values to post.</param>
+            <returns>The result of the request. Return format is XML.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.AddQueryString(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Appends the query string to the URL.
+            </summary>
+            <param name="dictionary">The dictionary of key/values to attach to the URL.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.GetMaintenanceDirectUrl(System.Boolean)">
+            <summary>
+            Gets the maintenance direct URL for cancel, acquire and refund payment.
+            
+            </summary>
+            <returns>The url either in testmode or production mode.</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService.GetNCResponseErrorMessage(System.Xml.Linq.XElement)">
+            <summary>
+            Gets the errorCode and errorMessage of the ncresponse.
+            This method is called when a maitenance or payment request fails
+            </summary>
+            <param name="ncresponse">The XElement that contains attributes: "NCERROR" and "NCERRORPLUS".</param>
+            <returns>A string containing the error code with the error message</returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.OgoneSha1Computer">
+            <summary>
+            OgoneSha1Computer helps <see cref="T:UCommerce.Transactions.Payments.Ogone.OgonePaymentMethodService"/> make the sha sign by
+            hashing a seed string.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.OgoneSha1Computer.ComputeHash(System.String)">
+            <summary>
+            Computes the sha-1 hash.
+            </summary>
+            <param name="stringToHash">The string to hash.</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.PaymentRequestShaSignIn">
+            <summary>
+            Builds a string to hash when a payment which needs to be authorized or instant captured.
+            Ogone needs a "sha sign" which is a signature used to verify that the data is identically in both ends.
+            The "sha sign" is a sha-1 hash of the string this class builds.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.PaymentRequestShaSignIn.BuildHashString(UCommerce.Transactions.Payments.PaymentRequest,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Builds the string to hash when a payment is requested. 
+            Method is used in the OgonePageBuilder.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <param name="shaSignIn">The sha sign in as configured at Ogone back-end.</param>
+            <param name="acceptUrl">The accept URL.</param>
+            <param name="backUrl">The back URL.</param>
+            <param name="cancelUrl">The cancel URL.</param>
+            <param name="declineUrl">The decline URL.</param>
+            <param name="exceptionUrl">The exception URL.</param>
+            <param name="operation">The operation value that tells Ogone what to do in the maintenance request.</param>
+            <param name="pspid">The pspid of the Ogone account.</param>
+            <returns>The string to be hashed and send with the payment request.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.PaymentRequestShaSignIn.BuildStringSection(System.String,System.String,System.String)">
+            <summary>
+            Builds a section of the string to hash. 
+            Method helps to match the rules of building a sha sign given by Ogone.
+            Keys must be in upper and empty values must be ignored.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="value">The value.</param>
+            <param name="shaSign">The sha sign.</param>
+            <returns>A string section in "KEY=value" format.</returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Ogone.ProcessCallBackShaSignOut">
+            <summary>
+            Class used to build a string to hash when Ogone does a callback to our server.
+            Ogone needs a "sha sign" which is a signature used to verify that the data is identically in both ends.
+            The "sha sign" is a sha-1 hash of the string this class builds.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.ProcessCallBackShaSignOut.BuildHashString(System.Web.HttpContext,System.String)">
+            <summary>
+            Builds the string to hash when Ogone performs the callback at "paymentProccessor.axd"
+            </summary>
+            <param name="context">The context contains the parameters send to the "paymentProccessor.axd".</param>
+            <param name="shaSignOut">The ShaSignOut as configured in the Ogone back-end.</param>
+            <returns>The string to be hashed.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Ogone.ProcessCallBackShaSignOut.BuildStringSection(System.String,System.Web.HttpContext,System.String)">
+            <summary>
+            Builds a section of the string to hash. 
+            Method helps to match the rules of building a sha sign given by Ogone.
+            Keys must be in upper and empty values must be ignored.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="context">The context.</param>
+            <param name="shaSign">The sha sign.</param>
+            <returns>A string section in "KEY=value" format.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerFalsePage.BuildHead(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the head attributes.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerFalsePage.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the body attributes.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Payer.PayerMd5Computer">
+            <summary>
+            Computes md5 hashes when MD5-key control is enabled.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerMd5Computer.GetMd5Key(System.String,System.String,System.String)">
+            <summary>
+            Computes a Md5 hash of the 3 parameters
+            </summary>
+            <param name="input">The xml data input</param>
+            <param name="key1">The prefix key.</param>
+            <param name="key2">The postfix key</param>
+            <returns>Md5 hash</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerTruePage.BuildHead(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the head attributes.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerTruePage.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the body attributes.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Payer.PayerPageBuilder">
+            <summary>
+            Builds a Payer redirect page.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPageBuilder.#ctor(UCommerce.Infrastructure.Globalization.ILocalizationContext,UCommerce.Transactions.Payments.Payer.PayerMd5Computer,UCommerce.Web.ICallbackUrl,UCommerce.Web.IAbsoluteUrlService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.Payer.PayerPageBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPageBuilder.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the form.
+            </summary>
+            <param name="page">The <see cref="T:System.Text.StringBuilder" />.</param>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService">
+            <summary>
+            Implementation of the http://payer.se payment provider
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.#ctor(UCommerce.Transactions.Payments.Payer.PayerPageBuilder,UCommerce.Transactions.Payments.Payer.PayerMd5Computer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the forms to be submitted to the payment provider.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>A string containing the html form.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.IsValidRequest(System.Web.HttpRequest,System.String,System.String)">
+            <summary>
+            Determines whether the request is valid
+            </summary>
+            <param name="request">The request</param>
+            <param name="key1">Key1 from configuration</param>
+            <param name="key2">Key2 from configuration</param>
+            <returns>
+            	<c>true</c> if the request is valid, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService">
+            <summary>
+            Implementation of the http://payex.com payment provider.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.#ctor(UCommerce.Infrastructure.Globalization.ILocalizationContext,UCommerce.Transactions.Payments.PayEx.PayExMd5Computer,UCommerce.Web.IAbsoluteUrlService,UCommerce.Web.ICallbackUrl,UCommerce.Infrastructure.Environment.IWebRuntimeInspector)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            RenderPage is not used for PayEx.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>A string containing the html form.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="P:UCommerce.Transactions.Payments.PayPal.ButtonEncrypter.Charset">
+            <summary>
+            Character encoding, e.g. UTF-8, Windows-1252
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayPal.ButtonEncrypter.SignAndEncrypt(System.String)">
+            <summary>
+            Sign a message and encrypt it for the recipient.
+            </summary>
+            <param name="message">Name value pairs
+            must be separated by \n (vbLf or chr&#40;10)),
+            for example "cmd=_xclick\nbusiness=..."</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.PayPal.PayPalExpressPaymentMethodService">
+            <summary>
+            PayPal Express payment provider.
+            </summary>
+            <remarks>
+            More info at https://developer.paypal.com/webapps/developer/docs/classic/express-checkout/integration-guide/ECGettingStarted/.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.PayPal.PayPalRecurringPaymentMethodService">
+            <summary>
+            Support for recurring payments with PayPal.
+            </summary>
+            <remarks>
+            Main difference lies in added parameters sent during auth and no support for Capture, Void, Refund.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayPal.PayPalPaymentMethodService.RemotePaymentStatusIsOkToCompleteOrder(System.Web.HttpRequest)">
+            <summary>
+            Verfies that the remote payment status is OK to complete the order.
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+            <remarks>
+            Payment status will either be: A) completed, or B) pending. If it's
+            pending because we're authorizing it's OK to complete the payment.
+            
+            Any other combinations of remote "pending" payment status and pending reason
+            than "pendingauthorization" are not considered valid for completing the
+            payment.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.PayPal.PayPalPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <remarks>
+            Docs at https://developer.paypal.com/webapps/developer/docs/classic/api/merchant/RefundTransaction_API_Operation_NVP/
+            </remarks>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.PayPal.PayPalWebSitePaymentsStandardRecurringPaymentPageBuilder">
+            <summary>
+            Page builder for generating encrypted PayPal buttons for subscriptions.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer">
+            <summary>
+            Computes md5 hashes for Quickpay md5 checks
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer.GetPreMd5Key(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes md5 hash for pre-authorization check
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer.GetMd5KeyFromResponseValueString(System.String,System.String)">
+            <summary>
+            Computes md5 hash from concatenated response fields
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer.GetCancelPreMd5Key(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes md5 hash for pre-cancel check
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer.GetAcquirePreMd5Key(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes md5 hash for pre-acquire check
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer.GetRefundPreMd5Key(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Computes md5 hash for pre-refund check
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder">
+            <summary>
+            Builds a Quickpay redirection page
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder.#ctor(UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer,UCommerce.Web.IAbsoluteUrlService,UCommerce.Web.ICallbackUrl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder.GetTwoLetterLanguageCode(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Adds the language to the <see cref="T:System.Text.StringBuilder"/>
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder.BuildBody(System.Text.StringBuilder,UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds the form.
+            </summary>
+            <param name="page">The <see cref="T:System.Text.StringBuilder" />.</param>
+            <param name="paymentRequest">The payment request.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder.GetParameters(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Returns the parameters needed to be posted with the form to initiate the payment at QuickPay.
+            </summary>
+            <param name="paymentRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder.AddParameters(System.Text.StringBuilder,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Appends the parameters to the stringBuilder that needs to be posted to the form to initiate the payment at QuickPay.
+            </summary>
+            <param name="page"></param>
+            <param name="parametersToAdd"></param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService">
+            <summary>
+            Quickpay integration via hosted payment form.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.#ctor(UCommerce.Transactions.Payments.Quickpay.QuickpayPageBuilder,UCommerce.Transactions.Payments.Quickpay.QuickpayMd5Computer,UCommerce.Infrastructure.Environment.IWebRuntimeInspector)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.RenderPage(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Renders the forms to be submitted to the payment provider.
+            </summary>
+            <param name="paymentRequest">The payment request.</param>
+            <returns>A string containing the html form.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.ValidateApiCall(System.String,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Determines if the API operation was successful
+            </summary>
+            <param name="message">The XML response string.</param>
+            <param name="paymentMethod">The payment method.</param>
+            <returns>The call status</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.GetCallStatusMessage(System.String)">
+            <summary>
+            Gets the Quickpay status message.
+            </summary>
+            <param name="message">The quickpay response message.</param>
+            <returns>Call status message string.</returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.Quickpay.QuickpayPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SagePay.SagePayMd5Computer">
+            <summary>
+            Computes md5 hashes when MD5-key control is enabled.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService">
+            <summary>
+            Implementation of the SagePay payment provider.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.PROTOCOL_VERSION">
+            <summary>
+            Protocol version used.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.#ctor(UCommerce.Transactions.Payments.SagePay.SagePayMd5Computer,UCommerce.Transactions.INumberSeriesService,UCommerce.Web.IAbsoluteUrlService,UCommerce.Web.ICallbackUrl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService"/> class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.GetStatus(System.String)">
+            <summary>
+            Parses the <paramref name="statusString"/> to a <see cref="T:UCommerce.Transactions.Payments.SagePay.SagePayStatusCode"/>.
+            </summary>
+            <param name="statusString">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.GetField(System.String,System.String)">
+            <summary>
+            Gets the field value from the <paramref name="response"/> string. Each pair should have the format "Name=value" seperated by a newline.
+            </summary>
+            <param name="fieldName">Name of the field.</param>
+            <param name="response">The response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.GetSignatureParameterList(System.Web.HttpRequest,System.String,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Gets the list of parameters used for the encryption signature.
+            </summary>
+            <param name="request">The request context.</param>
+            <param name="securityKey">The security key.</param>
+            <param name="paymentMethod">The payment method</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.GetHttpRequestValueUrlDecoded(System.Web.HttpRequest,System.String)">
+            <summary>
+            Gets the HTTP request value URL decoded.
+            </summary>
+            <param name="request">The request context.</param>
+            <param name="name">The parameter name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.ProcessCallback(UCommerce.EntitiesV2.Payment)">
+            <summary>
+            Processed the callback received from the payment provider.
+            </summary>
+            <param name="payment">The payment.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.WriteResponse(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Writes the <paramref name="dictionary"/> to the response in "Key=Value" form.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment from the payment provider. This is often used when you need to call external services to handle the acquire process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.RefundPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Refunds the payment from the payment provider. This is often used when you need to call external services to handle the refund process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Cancels the payment from the payment provider. This is often used when you need to call external services to handle the cancel process.
+            </summary>
+            <param name="payment">The payment.</param>
+            <param name="status">The status.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService.GetSystemURL(System.String,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Gets the sagepay url.
+            </summary>
+            <param name="strType">Type of the STR.</param>
+            <param name="paymentMethod">The payment method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayV3PaymentMethodService.GetSignatureParameterList(System.Web.HttpRequest,System.String,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Used in ProcessCallback for generating an MD5 check.
+            </summary>
+            <param name="request"></param>
+            <param name="securityKey"></param>
+            <param name="paymentMethod"></param>
+            <returns></returns>
+            <remarks>V.3 of the protocol contains more details when generating the hash. That is why we have an overriden method here.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayV3PaymentMethodService.CancelPaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>t
+            Cancels a payment that hasn't already been settled.
+            </summary>
+            <param name="payment"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <remarks>To Support DEFFERED payments in 3.0 we've derrived from the standard gateway, and will check if deffered payments are configured. If so, we need to call an abort operation.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayV3PaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            acquires a payment that hasn't already been settled.
+            </summary>
+            <param name="payment"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <remarks>To Support DEFFERED payments in 3.0 we've derrived from the standard gateway, and will check if deffered payments are configured. If so, we need to call a release operation.</remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SagePay.SagePayV3PaymentMethodService.GetSystemURL(System.String,UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Get the URL for which an appropiate action needs to be sent.
+            </summary>
+            <param name="strType"></param>
+            <param name="paymentMethod"></param>
+            <returns></returns>
+            <remarks>System urls are the same, but the way we figure out which one to use is different.</remarks>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SecureTrading.SecureTradingConstants">
+            <summary>
+            Constants for looking for different parameters in querystring callback and building the request in pagebuilder.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder">
+            <summary>
+            Provides functionality to build the form needed to post to SecureTrading:
+            reference guide: http://www.securetrading.com/files/documentation/STPP-Payment-Pages-Setup-Guide.pdf
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.GetParameters(UCommerce.Transactions.Payments.PaymentRequest)">
+            <summary>
+            Builds requried parameters Check reference guide page 29 for required fields.
+            </summary>
+            <param name="paymentRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.AddCustomFieldsForAuthRequest(System.Collections.Generic.IDictionary{System.String,System.String},UCommerce.EntitiesV2.PaymentMethod)">
+            <summary>
+            Adds a custom field to the parameters list
+            </summary>
+            <remarks>Adding AuthRequestParameter allows to return it in the redirect to payment processor. Hence we can distinquish an auth request in process paymentrequest.
+            Allows for implementing notifications at a later point.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.AddHashedSecurityCheck(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            The hidden field sitesecurity is a hashed field with a secret password and some parameters hashed together to prevent fraud. 
+            The order of the values in the hash has to follow Secure Tradings guidelines.
+            http://www.securetrading.com/files/documentation/STPP-Payment-Pages-Setup-Guide.pdf page 35
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.GetMd5Hash(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            Gets a hashed value for parameters supplied in the right order that you setup with secure trading.
+            The values that you supply are not fixed. You need to contact support to set that up. We've set them up in the order below.
+            http://www.securetrading.com/files/documentation/STPP-Payment-Pages-Setup-Guide.pdf page 35
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.AddSettlementStatus(System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean)">
+            <summary>
+            SettleStatus is Secure tradings way of deffering on "instant capture".
+            Per default the value is 0, which means that the money will be acquired right away - which in their setup is the following day.
+            Setting this value to "2" suspends the settlement, thus this money can be acquired within seven days. After that the transaction will be canceled.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPageBuilder.AddRequiredFieldsForPaymentRequest(UCommerce.Transactions.Payments.PaymentRequest,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Those are the minimum required fields (orderreference is not, but it links to the purchaseorder beeing linked with this payment).
+            </summary>
+            <param name="paymentRequest"></param>
+            <param name="dictionary"></param>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SecureTrading.SecureTradingHttpPaymentExtractor">
+            <summary>
+            Responsible for extracting a payment origin from secure trading.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingHttpPaymentExtractor.Extract(System.Web.HttpRequest)">
+            <summary>
+            Extract the payment from the payment request
+            </summary>
+            <param name="httpRequest"></param>
+            <returns>Payment extracted</returns>
+            <remarks>
+            Secure trading have the possibility to pass along custom fields that are sent to the gateway in order to recognize the payment.
+            We've setup the configuration to return paymentrefrence - which is sent along in the payment form.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPaymentMethodService.RequestMatchesAuthRequest(System.Collections.Specialized.NameValueCollection,System.Boolean)">
+            <summary>
+            AuthRequestParameter Should be included in querystring when returning from Secure Trading payment gateway.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPaymentMethodService.AcquirePaymentInternal(UCommerce.EntitiesV2.Payment,System.String@)">
+            <summary>
+            Acquires the payment if payment is authorized. 
+            </summary>
+            <param name="payment"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <remarks>http://www.securetrading.com/files/documentation/STPP-Transaction-Update.pdf
+            page 9 describes the xml to be sent for updating the transaction. 
+            </remarks>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.SecureTradingPaymentMethodService.PaymentQualifiesForCancel(UCommerce.Transactions.Payments.SecureTrading.SecureTradingTransactionQueryXmlResponse)">
+            <summary>
+            Payment may in some cases qualify for cancelation instead of refund as acquiering money takes one day to process. 
+            </summary>
+            <param name="transactionQueryResponse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Transactions.Payments.SecureTrading.XmlHttpPost">
+            <summary>
+            Allows for creating a HttpPost with xml and basic 64bit encoded security.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Transactions.Payments.SecureTrading.XmlHttpPost.EncodeTo64Utf8(System.String)">
+            <summary>
+            Encodes a string to Base64
+            </summary>
+            <param name="input"></param>
+            <returns>Base64 encoded string</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,105 @@
+<div class="umb-dialog" ng-controller="UmbracoDeploy.RestoreDialogController as vm">
+
+    <div class="umb-dialog-body">
+
+        <div class="umb-pane" ng-cloak>
+
+            <umb-load-indicator
+                ng-if="vm.loading">
+            </umb-load-indicator>
+
+            <div ng-if="!vm.loading">
+
+                <!-- Start restore -->
+                <div ng-if="!vm.restore.status">
+
+                    <div class="flex items-center" style="margin-bottom: 20px;">
+
+                        <h4 class="bold" style="margin: 0;">Restore your website from</h4>
+
+                        <div class="btn-group">
+
+                            <a class="btn btn-link dropdown-toggle ud-friendly-dropdown" data-toggle="dropdown" href="#" style="margin-left: 5px;">
+                                <h4 class="bold" style="margin: 0; display: inline-block;">{{ vm.restoreWorkspace.Name }}</h4> <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <!-- dropdown menu links -->
+                                <li ng-repeat="workspace in vm.config.RestoreWorkspaces">
+                                    <a href ng-click="vm.changeDestination(workspace)"><i class="icon icon-globe-alt"></i> {{ workspace.Name }}</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <p>This will download the latest changes from <em>{{ vm.restoreWorkspace.Name }}</em> and apply them to your local site. This includes changes to content, media, files and all the underlying data such as document types.</p>
+                        <p style="margin-top: 15px; margin-bottom: 30px;">
+                            <strong style="font-weight: bold; color: #000;">Notice:</strong> Downloading and restoring will take a bit of time to do, meanwhile you cannot change or deploy any content.
+                        </p>
+                    </div>
+
+                    <div>
+                        <umb-button
+                            type="button"
+                            button-style="success"
+                            action="vm.startRestore(vm.restoreWorkspace)"
+                            label="Restore from {{ vm.restoreWorkspace.Name }}"
+                            disabled="!vm.restoreWorkspace"
+                            state="vm.restoreButtonState">
+                        </umb-button>
+                    </div>
+
+                </div>
+
+                <ud-restore-progress
+                    ng-if="vm.restore.status === 'inProgress'"
+                    progress="vm.restore.restoreProgress"
+                    target-name="vm.restoreWorkspace.Name"
+                    current-activity="vm.restore.currentActivity"
+                    timestamp="vm.restore.timestamp"
+                    server-timestamp="vm.restore.serverTimestamp">
+                </ud-restore-progress>
+
+                <ud-restore-complete
+                    ng-if="vm.restore.status === 'completed'"
+                    on-back="nav.hideDialog()"
+                    timestamp="vm.restore.timestamp"
+                    server-timestamp="vm.restore.serverTimestamp">
+                </ud-restore-complete>
+
+                <ud-error
+                    ng-if="vm.restore.error.hasError"
+                    comment="vm.restore.error.comment"
+                    log="vm.restore.error.log"
+                    exception="vm.restore.error.exception"
+                    status="vm.restore.status"
+                    operation="restore"
+                    on-back="vm.resetRestore()"
+                    on-debug="vm.showDebug()"
+                    timestamp="vm.restore.timestamp"
+                    server-timestamp="vm.restore.serverTimestamp"
+                    show-debug="vm.restore.showDebug">
+                </ud-error>
+
+                <div class="umb-deploy-debug" ng-if="vm.restore.showDebug">
+                    <div class="umb-deploy-debug-console" ng-bind-html-unsafe="vm.restore.trace"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="umb-dialog-footer btn-toolbar umb-btn-toolbar">
+        <a class="btn btn-link ng-scope" ng-click="nav.hideDialog()">
+            <localize key="general_close">Close</localize>
+        </a>
+    </div>
+
+
+</div>
+

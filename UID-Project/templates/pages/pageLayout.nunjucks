@@ -1,0 +1,132 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing login page" %}
+
+{% extends "mainLayout.nunjucks" %}
+{% set heroText = data[language].text.typewriter %}
+{% set accordionIcon = '<svg class="icon"><use xlink:href="#svg-plus" class="closed"></use><use xlink:href="#svg-minus" class="opened"></use></svg>' %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand1 edge typewriter">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="theme-brand1">
+							<div class="wysiwyg">
+								<div>
+									{{ data[language].text.wysiwyg | safe }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 column">
+						<div>
+							<div class="accordions">
+							{% set accordions = data[language].text.accordions %}
+							{% for accordion in accordions %}
+								{% include "components/accordionItem.nunjucks" %}
+							{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge noGap">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="theme-brand2">
+							{% set showImage = true %}
+							{% set blockTitle = "individuals" %}
+							{% include "components/imageBgBlock.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand3">
+							{% set showImage = false %}
+							{% set blockTitle = "employers" %}
+							{% include "components/imageBgBlock.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand4">
+							{% set blockTitle = "apprentershipProviders" %}
+							{% include "components/imageBgBlock.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div>
+							<div class="wysiwyg">
+								<div>
+									{{ data[language].text.wysiwyg | safe }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand6">
+							<div class="wysiwyg">
+								<div>
+									{{ data[language].text.wysiwyg | safe }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand2">
+							<div class="wysiwyg">
+								<div>
+									{{ data[language].text.wysiwyg | safe }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						<div>
+							<div class="accordions">
+								{% set accordions = data[language].text.accordionColours %}
+								{% for accordion in accordions %}
+									{% include "components/accordionItem.nunjucks" %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand1">
+							{% set showImage = false %}
+							{% set blockTitle = "employers" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

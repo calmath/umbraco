@@ -1,0 +1,260 @@
+{
+	"data" : {
+		"en" : {
+			"login" : {
+				"title" : "Login",
+				"url" : "/login"
+			},
+			"nav" : [
+				{
+					"title" : "Example",
+					"link" : "/example",
+					"about" : "Example",
+					"class" : "theme-brand6"
+				},
+				{
+					"title" : "Privacy",
+					"link" : "/content",
+					"about" : "Text only page example"
+				},
+				{
+					"title" : "Contact us",
+					"link" : "/contact-us",
+					"about" : "Contact us mock up"
+				}
+			],
+			"cookie" : {
+				"copy" : [
+					"This site uses cookies, ",
+					"read more here",
+					" and click the accept button. This is the best Cookie Banner ever!"
+				],
+				"cta" : "Always Accept",
+				"link" : "/cookie-policy"
+			},
+			"text" : {
+				"typewriter" : "Text",
+				"hero" : {
+					"text" : "Text",
+					"bold" : "bold"
+				},
+				"pages" : {
+					"example" : {
+						"link" : "example",
+						"title" : "Example page",
+						"copy" : "Example content",
+						"ctaTitle" : "cta Title",
+						"ctaCopy" : "cta content"
+					}
+				},
+				"footer" : {
+					"funded" : "funded text",
+					"links" : [
+						{
+							"link" : "/example",
+							"title" : "Privacy and GDPR"
+						},{
+							"link" : "/example",
+							"title" : "T&Cs"
+						}
+					],
+					"copyright" : "© 2018, Company Name."
+				},
+				"wysiwyg" : "<h2>Heading 2</h2><h3>Heading 3</h3><h4>Heading 4</h4><p>ad sumo eligendi insolens mel. <i>Admodum nominati te eum</i>, <b>sea error aperiam ad</b>, at tibique voluptatibus pro. Eos nisl tollit repudiandae at, oportere periculis in vix. Veri simul consulatu qui an. Ferri <a href=\"#\">admodum probatus te sit</a>.</p><ul><li>List item 1 lorem ipsum lorem ipsum</li><li>List item 2</li></ul><ol><li>Order list item 1</li><li>Ordered list item 2</li></ol>",
+				"accordions" : [
+					{
+						"index" : 0,
+						"name" : "testA",
+						"title" : "testA",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 1,
+						"name" : "testA",
+						"title" : "testA",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 2,
+						"name" : "testA",
+						"title" : "testA",
+						"content" : "content/defaultAccordion.nunjucks"
+					}
+				],
+				"accordionColours" : [
+					{
+						"index" : 0,
+						"class" : "theme-brand1",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 1,
+						"class" : "theme-brand2",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 2,
+						"class" : "theme-brand3",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 3,
+						"class" : "theme-brand4",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 4,
+						"class" : "theme-brand5",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					},{
+						"index" : 5,
+						"class" : "theme-brand6",
+						"name" : "testB",
+						"title" : "testB",
+						"content" : "content/defaultAccordion.nunjucks"
+					}
+				]
+			},
+			"examples" : {
+				"example" : {
+					"colour" : "brand5",
+					"title" : "example",
+					"hero" : {
+						"text" : "Text",
+						"bold" : "bold"
+					},
+					"copy" : "<h2>Copy</h2><p>Content</p>",
+					"accordions" : [
+						{
+							"index" : 0,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 1,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 2,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 3,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 4,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 5,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						},{
+							"index" : 6,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : " theme-brand1"
+						},{
+							"index" : 7,
+							"name" : "accord1",
+							"title" : "accord1",
+							"content" : "<p>Lorem ipsum</p>",
+							"class" : ""
+						}
+					]
+				}
+			},
+			"shop" : {
+				"title" : "Shop",
+				"copy" : "<h2>Copy</h2><p>Content</p>",
+				"products" : [
+					{
+						"index" : 0,
+						"name" : "Sku1",
+						"title" : "Product item 1",
+						"description" : "A description of the product<br>Its very good.",
+						"image" : "/images/brand4-phone.jpg",
+						"listingimage" : "/images/logo-dwp.jpg",
+						"price" : "£5.00"
+					},
+					{
+						"index" : 0,
+						"name" : "Sku1",
+						"title" : "Product item 1",
+						"image" : "/images/brand4-phone.jpg",
+						"listingimage" : "/images/logo-dwp.jpg",
+						"price" : "£5.00"
+					},
+					{
+						"index" : 0,
+						"name" : "Sku1",
+						"title" : "Product item 1",
+						"image" : "/images/brand4-phone.jpg",
+						"listingimage" : "/images/logo-dwp.jpg",
+						"price" : "£5.00"
+					},
+					{
+						"index" : 0,
+						"name" : "Sku1",
+						"title" : "Product item 1",
+						"image" : "/images/brand4-phone.jpg",
+						"listingimage" : "/images/logo-dwp.jpg",
+						"price" : "£5.00"
+					},
+					{
+						"index" : 0,
+						"name" : "Sku1",
+						"title" : "Product item 1",
+						"image" : "/images/brand4-phone.jpg",
+						"listingimage" : "/images/logo-dwp.jpg",
+						"price" : "£5.00"
+					}
+				]
+			}
+		},
+		"social" : [
+			{
+				"title" : "Facebook",
+				"name" : "facebook",
+				"link" : "https://www.facebook.com/"
+			},{
+				"title" : "Instagram",
+				"name" : "instagram",
+				"link" : "https://www.instagram.com/"
+			},{
+				"title" : "Linked In",
+				"name" : "linkedin",
+				"link" : "https://www.linkedin.com/"
+			},{
+				"title" : "Twitter",
+				"name" : "twitter",
+				"link" : "https://www.twitter.com/"
+			},{
+				"title" : "Youtube",
+				"name" : "youtube",
+				"link" : "https://www.youtube.com/"
+			},{
+				"title" : "Email",
+				"name" : "email",
+				"link" : "mailto:test@company.com"
+			}
+		]
+	}
+}

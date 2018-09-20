@@ -1,0 +1,6 @@
+<div class="heroBlock">
+	<h1>{{ heroText | safe }}</h1>
+	{% if(heroIcon)%}
+	<img src="{{ heroIcon }}" class="heroIcon" alt="hero icon" />
+	{% endif %}
+</div>

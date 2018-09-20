@@ -1,0 +1,26 @@
+.login {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 pxToRem(16px) 0 auto;
+
+	@media (min-width: $bp-desktop) {
+		margin: auto;
+	}
+
+	a {
+
+		@media (min-width: $bp-desktop) {
+			padding: pxToRem(6px) pxToRem(25px);
+			border: pxToRem(1px) solid getUiColour(outline, brand5);
+		}
+	}
+
+	button {
+		@media (min-width: $bp-desktop) {
+			padding: pxToRem(6px) pxToRem(25px);
+			border: pxToRem(1px) solid getUiColour(outline, brand5);
+			background-color: #fff;
+		}
+	}
+}

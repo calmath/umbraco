@@ -1,0 +1,98 @@
+.bgImageBlock {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	margin: 0;
+	display: block;
+	box-sizing: border-box;
+
+	.bottomBorder {
+		border: 0;
+	}
+}
+
+.bgImageBlock_img {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: pxToRem(200px);
+	padding: 0;
+	margin: 0;
+	display: block;
+	overflow: hidden;
+
+	img {
+		@include objectFit();
+		height: pxToRem(200px);
+		width: 100%;
+
+	}
+}
+
+.bgImageBlock_title {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: getPadding() getPadding() 0;
+	margin: 0;
+	display: block;
+	box-sizing: border-box;
+	text-align: left;
+	//transition: ease-out $animShort width, ease-out $animShort left;
+
+	.bottomBorder {
+		padding: 0 0 pxToRem(map-get($padding, default) / 2);
+	}
+
+	h3 {
+		position: relative;
+		display: block;
+		box-sizing: border-box;
+		transition: $animShort ease-out color, $animShort ease-out border,
+		$animShort ease-out transform;
+	}
+}
+
+.bgImageBlock_text {
+	@include font(constant);
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: getPadding();
+	margin: 0;
+	display: block;
+	box-sizing: border-box;
+	transition: $animShort ease-out color;
+	text-align: left;
+
+	@media (min-width: $bp-desktop) {
+		padding: getPadding() getPadding() getPadding(desktop);
+	}
+}
+
+.borderBottomAnimate {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: pxToRem(3px);
+	transition: width $animShort ease-out;
+}
+
+a:hover, a:active, a:focus {
+	.bgImageBlock {
+		.bgImageBlock_title {
+			h3 {
+				transform: translate3d(getPadding(), 0, 0);
+			}
+		}
+	}
+}

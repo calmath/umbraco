@@ -1,0 +1,123 @@
+.dataList tbody tr:nth-child(even)
+{
+	background-color: #F5F5F5;
+}
+
+.dataList tbody tr:nth-child(odd)
+{
+	background-color: #FFFFFF;
+}
+
+.dataList tbody tr.odd {
+	background-color: white;
+}
+
+.dataList th
+{
+	width: auto !important;
+	font-weight: bold;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+}
+
+.dataList tbody tr
+{
+	border-style: none;
+}
+
+table.dataList 
+{
+	line-height: normal;
+	border-collapse: collapse;
+}
+
+.dataList tr.clickable:hover
+{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.dataList .amountCell
+{
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.dataList .quantityCell
+{
+	text-align: center;
+}
+
+.dataList .textCell
+{
+	text-align: left;
+}
+
+tr.listOdd
+{
+}
+
+tr.listEven 
+{
+	background-color: #F5F5F5;
+}
+
+.list thead th {
+	border-bottom: solid;
+	border-bottom-width: 1px;
+}
+
+.list tbody tr:hover
+{
+	background-color: #DDDDDD;
+}
+
+.list .amountCell
+{
+	padding-right: 10px;
+	text-align: right;
+	width: 80px;
+}
+
+.list .quantityCell
+{
+	text-align: center;
+}
+
+.list .textCell
+{
+	text-align: left;
+}
+
+/* SORT */
+
+#sortable td {
+	padding: 5px;
+}
+
+#sortable th:first-child, #sortable td:first-child {
+	padding-right: 30px;
+}
+
+#sortable thead:last-child {
+	text-align: right;
+}
+
+#sortable tr td:last-child {
+	text-align: right;
+}
+
+#sortable tbody tr:hover
+{
+	cursor: move;
+	text-decoration: none;
+}
+
+.newSortOrder.newSortOrder {
+	display: none;
+}
+
+.imageButton {
+	  width: 36px;
+}

@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.NotFoundPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="umb-grid">
+    <div class="grid-section">
+        <div class="theme-brand1 edge">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="wysiwyg">
+                        <div>
+                            <h1>@Model.Content.Name</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")

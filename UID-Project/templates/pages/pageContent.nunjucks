@@ -1,0 +1,35 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing static templates" %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand1 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								<h1>Privacy</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

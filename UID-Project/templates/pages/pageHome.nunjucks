@@ -1,0 +1,75 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing static templates" %}
+
+{% extends "mainLayout.nunjucks" %}
+{% set heroText = data[language].text.typewriter %}
+{% set showImage = true %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand1 edge typewriter">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-9 column">
+						<div class="wysiwyg">
+							<div>
+								<h4>Free mental health support service for individuals, employers and apprenticeship providers.</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="noGap edge stretch">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div>
+							<div class="theme-brand6">
+								{% set blockTitle = "individuals" %}
+								{% include "components/imageBgBlock.nunjucks" %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div>
+							<div class="theme-brand5">
+								{% set blockTitle = "employers" %}
+								{% include "components/imageBgBlock.nunjucks" %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div>
+							<div class="theme-brand4">
+								{% set blockTitle = "apprentershipProviders" %}
+								{% include "components/imageBgBlock.nunjucks" %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						<p>{{ data[language].text.footer.funded }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="flex-auto-width">
+				<div class="row clearfix">
+					<div class="col-md-2 column">
+						<img src="/images/logo-dwp.jpg" alt="Department for work and pensions" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

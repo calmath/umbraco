@@ -1,0 +1,101 @@
+<div class="ud-full-overlay">
+
+    <div class="ud-selector" ng-if="!installStarterKit">
+
+        <div class="ud-selector-intro">
+            <h3><strong>Final touch: choose a starter kit or go with a clean slate</strong></h3>
+            <p>
+                Do you want to build a website in Umbraco from a starterkit or from a clean slate? -
+                If you are new to Umbraco we recommend the Starterkit, to give you a sense of what Umbraco has to offer.
+			</p>
+        </div>
+
+        <div class="ud-selector-choices">
+
+            <a href 
+                ng-click="selectStarterKit('ced954d1-8c0f-4abe-bdda-99e7a787d052')" class="ud-selector-choice" 
+                ng-class="{'selected': starterkitName === 'ced954d1-8c0f-4abe-bdda-99e7a787d052'}">
+
+                <div class="ud-selector-presentation -solid">
+
+                    <svg class="ud-selector-kit" width="140px" height="200px" viewBox="0 0 140 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect id="Rectangle-1" x="0" y="0" width="140" height="200"></rect>
+
+                            <g class="fill" id="1" transform="translate(10.000000, 10.000000)" fill="#E8E6E6">
+                                <rect id="Rectangle-2" x="0" y="0" width="120" height="76"></rect>
+                            </g>
+
+                            <g class="fill" id="4" transform="translate(10.000000, 94.000000)" fill="#E8E6E6">
+                                <rect id="Rectangle-2-Copy-7" x="82.5" y="0" width="37.5" height="19.7571807"></rect>
+                                <rect id="Rectangle-2-Copy-6" x="41" y="0" width="37.5" height="19.7571807"></rect>
+                                <rect id="Rectangle-2-Copy-5" x="0" y="0" width="37.5" height="19.7571807"></rect>
+                            </g>
+
+                            <g class="fill" id="3-2" transform="translate(10.000000, 121.000000)" fill="#E8E6E6">
+                                <rect id="Rectangle-2" x="0" y="0.1" width="83.904872" height="28.7269382"></rect>
+                                <rect id="Rectangle-2" x="88.1857328" y="0.1" width="31.67837" height="28.7269382"></rect>
+                            </g>
+
+                            <g class="fill" id="2" transform="translate(10.000000, 157.000000)" fill="#E8E6E6">
+                                <rect id="Rectangle-2" x="0" y="0" width="57.5" height="33"></rect>
+                                <rect id="Rectangle-2" x="62.5" y="0" width="57.5" height="33"></rect>
+                            </g>
+
+                        </g>
+                    </svg>
+
+                </div>
+
+                <div class="ud-selector-info">
+                    <h4><strong>Small business site</strong></h4>
+                    <p>
+                        A website for a typical small business, with plenty of sample content and a beautiful design 
+                    </p>
+                </div>
+            </a>
+
+            <a href ng-click="selectStarterKit('blank')" 
+                class="ud-selector-choice" 
+                ng-class="{'selected': starterkitName === 'blank'}">
+                <div class="ud-selector-presentation">
+
+                </div>
+
+                <div class="ud-selector-info">
+                    <h4><strong>Clean slate</strong></h4>
+                    <p>
+                        You know Umbraco and prefer the endless possibilities of starting from scratch
+                    </p>
+                </div>
+            </a>
+
+        </div>
+		
+        <button 
+            style="clear: both;" ng-disabled="starterkitName === ''" 
+            class="umb-era-button -green" ng-click="startInstall()">
+          Continue
+		</button>
+
+    </div>
+
+    <div ng-if="installStarterKit">
+
+        <div class="ud-selector-intro">
+            <h3><strong>{{installStatus}}</strong></h3>
+            <p>Starterkit is being downloaded, installed and configured, this should take no longer than 1 minute</p>
+            
+            <div class="ud-selector-intro-loader">
+                <umb-progress-bar
+                    percentage="{{installProgress}}">
+                </umb-progress-bar>
+            </div>
+            
+            <div class="ud-selector-intro-status">{{ installStatus }}</div>
+        </div>
+
+    </div>
+
+</div>

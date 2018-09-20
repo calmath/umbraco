@@ -1,0 +1,53 @@
+{
+  "DefaultTemplate": "umb://template/c1f33759827c4f9f87eca86757a7aa09",
+  "AllowedTemplates": [
+    "umb://template/c1f33759827c4f9f87eca86757a7aa09"
+  ],
+  "Icon": "icon-document",
+  "Thumbnail": "folder.png",
+  "Description": null,
+  "AllowedAtRoot": false,
+  "IsContainer": false,
+  "Parent": null,
+  "AllowedChildContentTypes": [],
+  "CompositionContentTypes": [
+    "umb://document-type/524b1efa80134bb2b9b56c8826309df4",
+    "umb://document-type/9a175abf70dc40c2bde2d72eb7cf43a4",
+    "umb://document-type/ce863051fe6a4f9fbf9ea651ace3a255",
+    "umb://document-type/fdcde6eaf5864abd94df70eb6f35f9d4"
+  ],
+  "PropertyGroups": [],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/75b6a8d5eb4b429886f3c8d991edc279",
+  "Dependencies": [
+    {
+      "Udi": "umb://document-type/524b1efa80134bb2b9b56c8826309df4",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type/9a175abf70dc40c2bde2d72eb7cf43a4",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type/ce863051fe6a4f9fbf9ea651ace3a255",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type/fdcde6eaf5864abd94df70eb6f35f9d4",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://template/c1f33759827c4f9f87eca86757a7aa09",
+      "Ordering": true,
+      "Mode": 0
+    }
+  ],
+  "Name": "Login page",
+  "Alias": "login",
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.DocumentTypeArtifact",
+  "__version": "2.0.14"
+}

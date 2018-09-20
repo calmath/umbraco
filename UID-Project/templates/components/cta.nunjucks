@@ -1,0 +1,17 @@
+<a href="{{ data[language].text.pages[blockTitle].link }}" title="{{ data[language].text.pages[blockTitle].title }}">
+	<div class="ctaBlock">
+		<div class="innerWrap">
+			<div class="bgImageBlock_title">
+				<h3 class="bottomBorder">{{ data[language].text.pages[blockTitle].ctaTitle }}</h3>
+			</div>
+			<div class="bgImageBlock_text">
+				{{ data[language].text.pages[blockTitle].ctaCopy }}
+			</div>
+			<div class="cta_icon">
+				<svg>
+					<use xlink:href="#svg-arrow"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+</a>

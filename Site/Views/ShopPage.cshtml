@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ShopPage>
+@using AutoMapper.Internal
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using UCommerce.Runtime
+@using UCommerce.EntitiesV2
+@using UCommerce.Api
+@{
+    Layout = "Master.cshtml";
+//https://docs.ucommerce.net/ucommerce/v7.18/getting-started/catalog-foundation/catalog-library.html
+//https://docs.ucommerce.net/ucommerce/v7.18/getting-started/ucommerce-api-overview.html
+}
+
+@{
+    ICollection<Category> rootCategories = UCommerce.Api.CatalogLibrary.GetRootCategories();
+    foreach (Category rootCategory in rootCategories)
+    {
+        <h4>@rootCategory.Name</h4>
+        SiteContext.Current.CatalogContext.CurrentCategory = rootCategory;
+    }
+
+    //category resolved from the CatalogContext
+    Category category = SiteContext.Current.CatalogContext.CurrentCategory;
+
+    ICollection<Product> products = UCommerce.Api.CatalogLibrary.GetProducts(category);
+    foreach (Product product in products)
+    {
+        <h4>@product.Name</h4>
+    }
+}

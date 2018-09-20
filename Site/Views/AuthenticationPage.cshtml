@@ -1,0 +1,72 @@
+﻿@using Access2Work.Web.Controllers
+@using Access2Work.Web.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.AuthenticationPage>
+@using ContentModels = Access2Work.Web.Models.Content;
+@{
+    Layout = "Master.cshtml";
+}
+<div class="umb-grid">
+    <div class="grid-section">
+        <div class="theme-brand1 edge">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="wysiwyg">
+                        <div>
+                            <h1>@Model.Content.Name</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
+
+<div class="umb-grid">
+    <div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div>
+
+                    @{
+
+                        if (User.Identity.IsAuthenticated)
+                         {
+                             <p>Logged in: @User.Identity.Name</p>
+                             <p>@Html.ActionLink("Log out", "MemberLogout", "MemberLoginSurface")</p>
+                         }
+                        else
+                        {
+                            if (TempData["Status"] == null)
+                            {
+                                @Html.Action("MemberIdentify", "MemberLoginSurface")
+                            }
+                            else if ((string)TempData["Status"] == "Login")
+                            {
+                                var loginModel = TempData["LoginModel"] as MemberLoginModel;
+                                @Html.Action("MemberLogin", "MemberLoginSurface", loginModel)
+                            }
+                            else if ((string)TempData["Status"] == "Register")
+                            {
+                                var loginModel = TempData["LoginModel"] as MemberLoginModel;
+                                @Html.Action("MemberRegister", "MemberLoginSurface", loginModel)
+                            }
+                            else if ((string)TempData["Status"] == "Error")
+                            {
+                                <div class="wysiwyg">
+                                    <div>
+                                        @Html.Raw(Model.Content.ErrorMessage)
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

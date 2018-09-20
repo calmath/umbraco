@@ -1,0 +1,122 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing login page" %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div>
+						<div id="umbraco_form_98989ac373084849ac57aac4d7e4bd57" class="umbraco-forms-form participantreferralform umbraco-forms-">
+							<form>
+								<div class="umbraco-forms-page">
+									<fieldset class="umbraco-forms-fieldset" id="a7506383-a1d8-41ea-9fc8-c5f00bc9b4a7">
+										<div class="row-fluid">
+											<div class="umbraco-forms-container col-md-12">
+												<div class=" umbraco-forms-field name shortanswer mandatory">
+													<label for="6f381b24-6da4-4c7e-f707-81350c7478ff" class="umbraco-forms-label">
+														Name<span class="umbraco-forms-indicator">*</span>
+													</label>
+													<div class="umbraco-forms-field-wrapper">
+														<input type="text" name="6f381b24-6da4-4c7e-f707-81350c7478ff" id="6f381b24-6da4-4c7e-f707-81350c7478ff" class=" text" value="" maxlength="500" placeholder="Name *" data-val="true" data-val-required="Please enter your name">
+														<span class="field-validation-valid" data-valmsg-for="6f381b24-6da4-4c7e-f707-81350c7478ff" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+												<div class=" umbraco-forms-field password shortanswer mandatory">
+													<label for="6f381b24-6da4-4c7e-f707-81350c7478ff1" class="umbraco-forms-label">
+														Password<span class="umbraco-forms-indicator">*</span>
+													</label>
+													<div class="umbraco-forms-field-wrapper">
+														<input type="password" name="6f381b24-6da4-4c7e-f707-81350c7478ff1" id="6f381b24-6da4-4c7e-f707-81350c7478ff1" class=" text" value="" maxlength="500" placeholder="Password *" data-val="true" data-val-required="Please enter your name">
+														<span class="field-validation-valid" data-valmsg-for="6f381b24-6da4-4c7e-f707-81350c7478ff" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+												<div class=" umbraco-forms-field occupation shortanswer mandatory alternating">
+													<label for="2e070498-ceac-47a4-eeac-1531eea0db1d" class="umbraco-forms-label">
+														Occupation<span class="umbraco-forms-indicator">*</span>
+													</label>
+													<div class="umbraco-forms-field-wrapper">
+														<input type="text" name="2e070498-ceac-47a4-eeac-1531eea0db1d" id="2e070498-ceac-47a4-eeac-1531eea0db1d" class=" text" value="" maxlength="500" placeholder="Occupation *" data-val="true" data-val-required="Please enter your occupation">
+														<span class="field-validation-valid" data-valmsg-for="2e070498-ceac-47a4-eeac-1531eea0db1d" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+												<div class=" umbraco-forms-field howshouldwecontactyou singlechoice mandatory alternating">
+													<div class="umbraco-forms-label">
+														How should we contact you?<span class="umbraco-forms-indicator">*</span>
+													</div>
+													<span class="umbraco-forms-tooltip help-block">Please select your preferred contact method</span>
+													<div class="umbraco-forms-field-wrapper">
+														<div class="  radiobuttonlist" id="2b35d6af-2cbd-4a57-c2a5-19803278c33a">
+															<input type="radio" name="2b35d6af-2cbd-4a57-c2a5-19803278c33a" id="2b35d6af-2cbd-4a57-c2a5-19803278c33a_0" value="Email" data-val="true" data-val-requiredlist="Please select your preferred contact method">
+															<label for="2b35d6af-2cbd-4a57-c2a5-19803278c33a_0" tabindex="0">Email</label>
+															<br>
+															<input type="radio" name="2b35d6af-2cbd-4a57-c2a5-19803278c33a" id="2b35d6af-2cbd-4a57-c2a5-19803278c33a_1" value="Phone" data-val="true" data-val-requiredlist="Please select your preferred contact method">
+															<label for="2b35d6af-2cbd-4a57-c2a5-19803278c33a_1" tabindex="0">Phone</label>
+															<br>
+															<input type="radio" name="2b35d6af-2cbd-4a57-c2a5-19803278c33a" id="2b35d6af-2cbd-4a57-c2a5-19803278c33a_2" value="Text" data-val="true" data-val-requiredlist="Please select your preferred contact method">
+															<label for="2b35d6af-2cbd-4a57-c2a5-19803278c33a_2" tabindex="0">Text</label>
+															<br>
+														</div>
+														<span class="field-validation-valid" data-valmsg-for="2b35d6af-2cbd-4a57-c2a5-19803278c33a" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+												<div class=" umbraco-forms-field tickthisboxtoconfirmyouareinwork multiplechoice mandatory">
+													<div class="umbraco-forms-label">
+														Tick this box to confirm you are in work                                                            <span class="umbraco-forms-indicator">*</span>
+													</div>
+													<div class="umbraco-forms-field-wrapper">
+														<span class="checkboxlist" id="72bd28e5-fd60-4a4e-df7c-93db4847f7e5">
+															<input type="checkbox" class="" name="72bd28e5-fd60-4a4e-df7c-93db4847f7e5" id="72bd28e5-fd60-4a4e-df7c-93db4847f7e5_0" value="I confirm" data-val="true" data-val-requiredlist="Please provide a value for Tick this box to confirm you are in work">
+															<label for="72bd28e5-fd60-4a4e-df7c-93db4847f7e5_0" tabindex="0">I confirm</label>
+															<br>
+														</span>
+														<span class="field-validation-valid" data-valmsg-for="72bd28e5-fd60-4a4e-df7c-93db4847f7e5" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+												<div class=" umbraco-forms-field whendoesitsuitforustogetintouch multiplechoice mandatory alternating">
+													<div class="umbraco-forms-label">
+														When does it suit for us to get in touch?                                                            <span class="umbraco-forms-indicator">*</span>
+													</div>
+													<span class="umbraco-forms-tooltip help-block">Please select the day(s) of the week and time of day you are available to be contacted.</span>
+													<div class="umbraco-forms-field-wrapper">
+														<span class="checkboxlist" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4">
+															<input type="checkbox" class="" name="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_0" value="Monday" data-val="true" data-val-requiredlist="Please select a suitable time for us to get in touch">
+															<label for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_0" tabindex="0">Monday</label>
+															<br>
+															<input type="checkbox" class="" name="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_1" value="Tuesday" data-val="true" data-val-requiredlist="Please select a suitable time for us to get in touch">
+															<label for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_1" tabindex="0">Tuesday</label>
+															<br>
+															<input type="checkbox" class="" name="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_2" value="Wednesday" data-val="true" data-val-requiredlist="Please select a suitable time for us to get in touch">
+															<label for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_2" tabindex="0">Wednesday</label>
+															<br>
+															<input type="checkbox" class="" name="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_3" value="Thursday" data-val="true" data-val-requiredlist="Please select a suitable time for us to get in touch">
+															<label for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_3" tabindex="0">Thursday</label>
+															<br>
+															<input type="checkbox" class="" name="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" id="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_4" value="Friday" data-val="true" data-val-requiredlist="Please select a suitable time for us to get in touch">
+															<label for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4_4" tabindex="0">Friday</label>
+															<br>
+														</span>
+														<span class="field-validation-valid" data-valmsg-for="00fd384c-1575-41b2-eb3f-9de7dc3b23c4" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<div class="umbraco-forms-navigation row-fluid">
+										<div class="col-md-12">
+											<input type="submit" class="btn primary" value="Submit" name="__next">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

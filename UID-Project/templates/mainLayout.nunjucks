@@ -1,0 +1,24 @@
+{% extends "layout.nunjucks" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+{% endblock %}
+
+{% block header %}																	
+	<header class="theme-default">
+		{% include "components/header.nunjucks" %}
+	</header>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+	{% include "components/footer.nunjucks" %}
+	{% include "components/cookie.nunjucks" %}
+	<script src="/js/index.js" async></script>
+<div class="hide">
+	{% include "components/svg.svg" %}
+</div>
+{% endblock %}

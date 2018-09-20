@@ -1,0 +1,21 @@
+<div class="cookieBanner" id="cookieBanner">
+	<div class="cookieWrapper theme-default">
+		<p>
+			{% for item in data[language].cookie.copy %}
+			{% if loop.index0 == 1 %}
+			<a href="{{ data[language].cookie.link }}">
+			{% endif %}
+			{{ item }}
+			{% if loop.index0 == 1 %}
+			</a>
+			{% endif %}
+			{% endfor %}
+		</p>
+		<button class="button prime">{{ data[language].cookie.cta }}</button>
+	</div>
+	<button class="button icon">
+		<svg class="icon">
+			<use xlink:href="#svg-cross"></use>	
+		</svg>
+	</button>
+</div>

@@ -1,0 +1,411 @@
+/// Square size for checkbox and radio inputs
+/// @group Forms
+/// @access public
+/// @type pixel
+$boxWidth: 22px;
+/// Maximum width of an input field
+/// @group Forms
+/// @access public
+/// @type rem
+$inputMax : pxToRem(570px);
+/// Placeholder colour
+/// @group Forms
+/// @access public
+/// @type hex
+$placeholderColour : #ac9c9a;
+/// The gap between labels for viewports with width larger than 1024px
+/// @group Forms
+/// @access public
+/// @type percentage
+$labelGap : percentage(1/3) - 30%;
+/// Creates styling for radio and checkbox inputs
+/// @param {boolean} $isRadio - If true style for radio
+/// @param {int} $col - Number of columns the label will be used in
+/// @group Forms
+@mixin checkRadioLabel($isRadio: false, $col: 12) {
+
+	display: none;
+
+	& + label {
+		@include font();
+		position: relative;
+		text-align: left;
+		width: 100%;
+		min-height: pxToRem(60px);
+		height: auto;
+		display: block;
+		border-bottom: pxToRem(2px) solid #f5f3f3;
+		padding: pxToRem(16px) pxToRem($boxWidth + 8px) pxToRem(16px) 0;
+		overflow: hidden;
+		margin: 0;
+		box-sizing: border-box;
+
+		@if($col > 6) {
+
+			@media (min-width: $bp-desktop) {
+				$col6Padding : pxToRem(map-get($padding, default) / 2 + $boxWidth);
+				width: percentage(1/3) - $labelGap;
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0 $labelGap 0 0;
+				padding: pxToRem(16px) $col6Padding pxToRem(16px) 0;
+			}
+		}
+
+		&:nth-of-type(3n+3) {
+
+			&::after {
+
+				@media (min-width: $bp-desktop) {
+
+					@if($isRadio) {
+						left: calc(100% - #{pxToRem(52px)});
+					}@else {
+						left: calc(100% - #{pxToRem(53px)});
+					}
+				}
+			}
+		}
+
+		&::before {
+			position: relative;
+			left: pxToRem($boxWidth + 8px);
+			top: 0;
+			width: pxToRem($boxWidth);
+			height: pxToRem($boxWidth);
+			box-sizing: border-box;
+			display: block;
+			transform: translate3d(0, 0, 0);
+			border: pxToRem(1px) solid getUiColour(breakLine);
+			background-color: getUiColour(bgLight);
+			content : "";
+			float: right;
+
+			@if($isRadio) {
+
+				border-radius: pxToRem(50px);
+
+			}
+
+			@if($col > 6) {
+
+				@media (min-width: $bp-desktop) {
+					left: 0;
+				}
+			}
+		}
+
+		&::after {
+			position: absolute;
+			display: block;
+			content : "";
+			float: right;
+
+			@if($isRadio) {
+
+				border-radius: pxToRem(50px);
+				top: pxToRem(21px);
+				left: calc(100% - #{pxToRem(17px)});
+				width: pxToRem(12px);
+				height: pxToRem(12px);
+				transform: scale(0, 0);
+				background-color: getUiColour(breakLine);
+				transition: ease-out $animShort transform;
+
+				@if($col > 6) {
+					@media (min-width: $bp-desktop) {
+						left: calc(100% - #{pxToRem(51px)});
+					}
+				}
+
+			}@else {
+
+				left: calc(100% - #{pxToRem(18px)});
+				top: pxToRem(26px);
+				width: pxToRem(14px);
+				height: pxToRem(2px);
+				background-color: getUiColour(bgLight);
+				transition: ease-out $animShort background-color;
+
+				@if($col > 6) {
+					@media (min-width: $bp-desktop) {
+						left: calc(100% - #{pxToRem(52px)});
+					}
+				}
+
+			}
+		}
+	}
+
+	&:checked {
+
+		& + label {
+
+			&::after {
+
+				@if($isRadio) {
+
+					transform: scale(1, 1);
+
+				}@else {
+
+					background-color: getUiColour(breakLine);
+
+				}
+
+			}
+		}
+	}
+
+}
+
+.umbraco-forms-form {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	box-sizing: border-box;
+}
+
+.umbraco-forms-fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.umbraco-forms-field {
+
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0 0 getPadding();
+	margin: 0;
+	box-sizing: border-box;
+	display: block;
+
+	input, select {
+
+		box-sizing: border-box;
+	}
+
+	&.shortanswer {
+
+		padding: 0 0 pxToRem(map-get($padding, default) / 2);
+		max-width: $inputMax;
+
+		.umbraco-forms-label {
+			position: absolute;
+		}
+
+		input {
+			@include font(accordion);
+			width: 100%;
+			border: 0;
+			border-bottom: pxToRem(2px) solid getUiColour(breakLine);
+			padding: 0 0 pxToRem(20px);
+			color: getUiColour(outline);
+
+			&::placeholder {
+				@include font(normal, textLight);
+			}
+
+			&:-ms-input-placeholder {
+				@include font(normal, textLight);
+			}
+
+			&::-moz-placeholder {
+				@include font(normal, textLight);
+			}
+
+			&:focus {
+
+				&::placeholder {
+					color: $placeholderColour;
+				}
+
+				&:-ms-input-placeholder {
+					color: $placeholderColour;
+				}
+
+				&::-moz-placeholder {
+					color: $placeholderColour;
+				}
+			}
+		}
+	}
+
+	&.dropdown {
+
+		select {
+			width: 100%;
+		}
+	}
+
+	&.singlechoice {
+
+		.umbraco-forms-label {
+			@include font(subHeader);
+			padding: 0 0 getPadding();
+		}
+
+		@media (min-width: $bp-desktop) {
+			margin: getPadding(desktop) auto 0;
+		}
+	}
+
+	&.multiplechoice {
+
+		.umbraco-forms-label {
+			@include font(subHeader);
+			padding: 0 0 getPadding();
+		}
+
+		@media (min-width: $bp-desktop) {
+			margin: getPadding(desktop) auto 0;
+		}
+	}
+}
+
+.umbraco-forms-label {
+	@include font(normal);
+	position: relative;
+	left: 0;
+	top: pxToRem(-2px);
+	right: auto;
+	height: auto;
+	padding: 0;
+	display: block;
+	margin: 0;
+	z-index: 1;
+	text-align: left;
+	max-width: $inputMax;
+
+	&.hide {
+		display: none;
+	}
+}
+
+.umbraco-forms-tooltip {
+	&.help-block {
+		display: none;
+	}
+}
+
+.umbraco-forms-field-wrapper {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	display: block;
+	margin: 0;
+	text-align: left;
+}
+
+.field-validation-error {
+	@include font(error);
+	position: relative;
+	left: 0;
+	top: 0;
+	margin: pxToRem(-2px) 0 0;
+	border-top: pxToRem(2px) solid getUiColour(outline, brand2);
+	text-decoration-skip: block;
+	text-align: left;
+	width: 100%;
+	display: block;
+	padding: pxToRem(map-get($padding, default) / 4) 0 getPadding();
+}
+
+.radiobuttonlist + .field-validation-error {
+	margin: pxToRem(-2px) 0 0;
+
+	@media (min-width: $bp-desktop) {
+		width: percentage(1/3) - $labelGap;
+	}
+}
+
+.checkboxlist + .field-validation-error {
+	margin: pxToRem(-2px) 0 0;
+	@media (min-width: $bp-desktop) {
+		width: percentage(1/3) - $labelGap;
+	}
+}
+
+input[type="checkbox"] + label + .field-validation-error {
+	margin: pxToRem(-4px) 0 0;
+	z-index: 1;
+	@media (min-width: $bp-desktop) {
+		width: percentage(1/3) - $labelGap;
+		margin: pxToRem(-6px) 0 0;
+	}
+}
+
+.checkboxlist, .radiobuttonlist, .checkbox {
+	font-size: 0;
+
+	input[type="checkbox"] {
+		@include checkRadioLabel();
+	}
+
+	input[type="radio"] {
+		@include checkRadioLabel(true);
+		display: none;
+	}
+
+	@media (min-width: $bp-desktop) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content : flex-start;
+		align-items: stretch;
+		align-content : stretch;
+	}
+
+	br {
+		display: none;
+	}
+
+}
+
+.umbraco-forms-navigation {
+
+	position: relative;
+	display: block;
+	//margin: 0 0 getPadding(desktop);
+	text-align: center;
+
+	@media (min-width: $bp-desktop) {
+		text-align: left;
+		//margin: getPadding(desktop) 0;
+	}
+
+	.btn {
+		&.primary {
+			@include resetButtonStyle();
+			@include font(accordion);
+			position: relative;
+			left: 0;
+			top: 0;
+			width: 50%;
+			max-width: pxToRem(158px);
+			background-color: getUiColour(bg, default);
+			text-align: center;
+			padding: pxToRem(8px) 0;
+			border: pxToRem(2px) solid getUiColour(bg, default);
+			transition: $animShort ease-out background-color;
+
+			&:active {
+				background-color: getUiColour(bg, default, true);
+			}
+
+			&:hover {
+				background-color: getUiColour(bg, default, true);
+			}
+		}
+	}
+}

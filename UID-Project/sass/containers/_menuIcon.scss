@@ -1,0 +1,92 @@
+/// Thickness of individual lines in the hamburger icon
+/// @group components
+/// @access public
+/// @type pixel
+$menuLineHeight : 2px;
+
+.menuIcon {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: pxToRem($tapSize);
+	height: pxToRem($tapSize);
+	margin: 0 0 0 $gl-gutter;
+	display: inline-block;
+	pointer-events: none;
+	vertical-align: middle;
+	pointer-events: all;
+	cursor: pointer;
+	border-radius: pxToRem($tapSize * 2);
+	border: pxToRem($menuLineHeight) solid getUiColour(fill, default);
+	background: 0;
+	padding: 0;
+
+	&:disabled {
+		cursor: default;
+		pointer-events: none;
+
+		.menuLine {
+			opacity: 0.5;
+		}
+	}
+
+	@media (min-width: $bp-desktop) {
+		display: none;
+	}
+}
+
+.menuLine {
+	position: absolute;
+	left: pxToRem(8px);
+	width: pxToRem(20px);
+	height: pxToRem($menuLineHeight);
+	display: block;
+	pointer-events: none;
+	background-color: getUiColour(fill, default);
+	margin: 0;
+	transform-origin: 50% 50%;
+	transition: $animShort ease-out transform, $animShort ease-out opacity;
+
+	&.first {
+		top: pxToRem(10px);
+	}
+
+	&.second {
+		top: 50%;
+		margin: -(pxToRem($menuLineHeight / 2)) 0 0;
+	}
+
+	&.third {
+		bottom: pxToRem(10px);
+	}
+}
+
+.menuOpen {
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+
+	body {
+		overflow: hidden;
+		position: relative;
+		height: 100%;
+	}
+
+	.menuLine {
+		&.first {
+			top: 50%;
+			margin: -(pxToRem($menuLineHeight / 2)) 0 0;
+			transform: rotate(-45deg);
+		}
+
+		&.second {
+			transform: rotate(-45deg);
+			opacity: 0;
+		}
+
+		&.third {
+			transform: rotate(45deg);
+			bottom: initial;
+		}
+	}
+}

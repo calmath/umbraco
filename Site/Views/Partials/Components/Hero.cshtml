@@ -1,0 +1,63 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.IHero>
+@using AutoMapper.Internal
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = null;
+}
+    
+@{
+    var theme = Model.Content.Theme.ToNullSafeString();
+
+    var bgImageStyle = string.Empty;
+    if (Model.Content.BackgroundImage != null && !string.IsNullOrWhiteSpace(Model.Content.BackgroundImage.Url) )
+    {
+        bgImageStyle = string.Format("style=background-image:url('{0}')", Model.Content.BackgroundImage.Url);
+    }
+
+    var typeWriterClass = string.Empty;
+    if (this.Model.Content.UseTypewriterStyle)
+    {
+        typeWriterClass = "typewriter"; 
+    }
+
+}
+
+@if (Model.Content.NarrowHero)
+{
+    var heading = Model.Content.Heading ;
+    if (string.IsNullOrWhiteSpace(heading))
+    {
+        heading = Model.Content.Name; 
+    }
+
+    <div class="theme-brand1 edge">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="wysiwyg">
+                    <div>
+                        <h1>@heading</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (!string.IsNullOrWhiteSpace(Model.Content.Heading))
+     {
+         <div class="theme-brand1 edge @typeWriterClass" @bgImageStyle >
+             <div class="row clearfix">
+                 <div class="col-md-12 column">
+                     <div class="heroBlock">
+                         <h1>@Model.Content.Heading</h1>
+                         @if (Model.Content.Icon != null && !string.IsNullOrWhiteSpace(Model.Content.Icon.Url))
+                         {
+                             <img class="heroIcon" src="@Model.Content.Icon.Url">
+                         }
+                     </div>
+                 </div>
+             </div>
+         </div>
+     }
+}

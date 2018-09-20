@@ -1,0 +1,49 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing static templates" %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<h2>Style guide</h2>
+						<ul>
+							<li><a href="/layout">Layout</a></li>
+							<li><a href="/components">Components</a></li>
+						</ul>
+						<h2>Templates</h2>
+						<ul>
+							<li><a href="/home">Home</a></li>
+							<li><a href="/forms">Forms</a></li>
+							<li><a href="/content">Content</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/shop">Shop</a></li>
+							<li><a href="/404">404</a></li>
+						</ul>
+						<h2>Examples</h2>
+						<ul>
+							{% for link in data[language].nav %}
+							{% if link.items %}
+							{% for innerLink in link.items %}
+							<li>
+								<a href="{{ innerLink.link }}">{{ innerLink.title }}</a> - {{ innerLink.about }}
+							</li>
+							{% endfor %}
+							{% else %}
+							<li>
+								<a href="{{ link.link }}">{{ link.title }}</a> - {{ link.about }}
+							</li>
+							{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,24 @@
+{
+  "UseInEditor": false,
+  "CacheDuration": 0,
+  "CacheByPage": false,
+  "CacheByMember": false,
+  "DontRender": true,
+  "ControlType": "",
+  "ControlAssembly": "",
+  "ScriptPath": "~/Views/MacroPartials/RenderUmbracoFormScripts.cshtml",
+  "XsltPath": "",
+  "Properties": [],
+  "Udi": "umb://macro/a239a0914e6a4264b7ec66468b4db3ef",
+  "Dependencies": [
+    {
+      "Udi": "umb://partial-view-macro/RenderUmbracoFormScripts.cshtml",
+      "Ordering": true,
+      "Mode": 1
+    }
+  ],
+  "Name": "Render Form Scripts",
+  "Alias": "RenderFormScripts",
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.MacroArtifact",
+  "__version": "2.0.14"
+}

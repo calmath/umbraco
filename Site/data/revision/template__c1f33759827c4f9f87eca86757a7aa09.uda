@@ -1,0 +1,16 @@
+{
+  "File": "umb://template-file/LoginPage.cshtml",
+  "Master": null,
+  "Udi": "umb://template/c1f33759827c4f9f87eca86757a7aa09",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/LoginPage.cshtml",
+      "Ordering": true,
+      "Mode": 0
+    }
+  ],
+  "Name": "Login page",
+  "Alias": "LoginPage",
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.TemplateArtifact",
+  "__version": "2.0.14"
+}

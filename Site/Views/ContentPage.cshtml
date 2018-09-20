@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContentPage>
+@using AutoMapper.Internal
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<div class="umb-grid">
+    <div class="grid-section">
+        @Html.Partial("~/Views/Partials/Components/Hero.cshtml")
+    </div>
+</div>
+
+@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
+

@@ -1,0 +1,1 @@
+This file is just here as a placeholder and can be deleted (note that there will be an application pool recycle if you alter any files in the App_Code folder).

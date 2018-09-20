@@ -1,0 +1,40 @@
+.imageTitle {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	margin: 0 auto getPadding(desktop);
+	text-align: center;
+
+	img {
+
+		width: pxToRem(130px);
+		margin: 0 auto getPadding();
+	}
+
+	h4 {
+		font-weight: $fontBold;
+	}
+}
+
+.edge {
+
+	.imageTitle {
+
+		@media (min-width: $bp-desktop) {
+			margin: 0 auto;
+		}
+	}
+}
+
+.row {
+
+	> div:last-child {
+
+		.imageTitle {
+			margin: auto;
+		}
+	}
+}

@@ -1,0 +1,6 @@
+<button title="menu" class="menuIcon" id="menuIcon" disabled>
+	<span class="menuLine first"></span>
+	<span class="menuLine second"></span>
+	<span class="menuLine third"></span>
+	<span class="access">Menu</span>
+</button>

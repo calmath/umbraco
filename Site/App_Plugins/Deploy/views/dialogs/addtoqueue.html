@@ -1,0 +1,33 @@
+<div class="umb-dialog" ng-controller="UmbracoDeploy.AddToQueueDialogController as addToQueueVm">
+    <div class="umb-pane" ng-cloak>
+        <div class="deployModal unstyled" ng-if="addToQueueVm.addedToQueue == false">
+            <h4 class="bold">Queue {{addToQueueVm.item.name}} for transfer to {{addToQueueVm.deployConfiguration.Target.Name}}</h4>
+            <p>This will put <span class="bold">{{addToQueueVm.item.name}}</span> in the queue for the next transfer, nothing will be transfered yet</p>
+
+            <div ng-if="addToQueueVm.withBranch">
+                <p>Should all pages below <span class="bold">{{addToQueueVm.item.name}}</span> be included in the deploy, or is it only <span class="bold">{{addToQueueVm.item.name}}</span> you want to deploy to {{addToQueueVm.deployConfiguration.Target.Name}}?</p>
+                <hr/>
+                <label>
+                    <input type="checkbox" ng-model="addToQueueVm.includeDescendants"/>
+                    Include all pages below <span class="bold">{{addToQueueVm.item.name}}</span>
+                </label>
+            </div>
+            <umb-button
+                type="button"
+                button-style="success"
+                action="addToQueueVm.addToQueue(addToQueueVm.item)"
+                label="Queue">
+            </umb-button>
+        </div>
+        <div ng-if="addToQueueVm.addedToQueue">
+            <h5>Changes have been queued</h5>
+            <p>When you are ready to deploy your full set of changes, go to the deployment dashboard to start the deployment</p>
+            <umb-button
+                type="button"
+                button-style="success"
+                action="addToQueueVm.closeDialog()"
+                label="Okay">
+            </umb-button>
+        </div>
+    </div>
+</div>

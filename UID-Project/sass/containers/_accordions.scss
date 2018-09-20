@@ -1,0 +1,138 @@
+@include accordion("");
+
+.accordions {
+	position: relative;
+	margin: 0;
+	background-color: getUiColour(bgLight, default);
+}
+
+.accordionHeader {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	margin: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: pxToRem(1px) solid getUiColour(bgLight);
+	border-bottom: pxToRem(1px) solid getUiColour(bgLight);
+	background-color: getUiColour(bg);
+	border-bottom: 0;
+	box-sizing: border-box;
+	display: block;
+	transition: ease-out $animShort background-color;
+}
+
+.accordionTitle {
+	$titlePadding: pxToRem($iconSize + map-get($padding, default) * 2);
+	@include font(accordion);
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: getPadding() $titlePadding getPadding() getPadding();
+	margin: 0;
+	box-sizing: border-box;
+	display: block;
+	line-height: pxToRem(15px);
+	transition: $animShort ease-out color;
+}
+
+.accordionIcon {
+	position: absolute;
+	top: 50%;
+	right: getPadding();
+	display: block;
+	margin: -(pxToRem($iconSize / 2)) 0 0;
+	width: pxToRem($iconSize);
+	height: pxToRem($iconSize);
+
+	.icon {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+
+		use {
+			fill: getUiColour(fill);
+			transition: $animShort ease-out fill;
+		}
+	}
+
+	.opened {
+		opacity: 0;
+	}
+
+	.closed {
+		opacity: 1;
+	}
+}
+
+.accordionWrapper {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	display: block;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	transition: ease-out height $animShort;
+}
+
+.accordionContent {
+	@include wysiwyg();
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: getPadding();
+	margin: 0;
+	box-sizing: border-box;
+	background-color: getUiColour(textLight);
+	border-bottom: 0;
+
+	a {
+		visibility: hidden;
+	}
+
+	p {
+		@include font(accordion);
+	}
+}
+
+.accordionControl:checked {
+
+	& + .accordionHeader {
+
+		background-color: getUiColour(bg, default);
+
+		.accordionIcon {
+
+			.opened {
+				opacity: 1;
+			}
+
+			.closed {
+				opacity: 0;
+			}
+		}
+
+		& + .accordionWrapper {
+
+			.accordionContent {
+
+				a {
+					visibility: visible;
+				}
+			}
+		}
+	}
+}

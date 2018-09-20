@@ -1,0 +1,16 @@
+{
+  "File": "umb://template-file/ShopPage.cshtml",
+  "Master": null,
+  "Udi": "umb://template/7d9f22fb9adc4d41ae8b1a775e3528e5",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/ShopPage.cshtml",
+      "Ordering": true,
+      "Mode": 0
+    }
+  ],
+  "Name": "Shop page",
+  "Alias": "ShopPage",
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.TemplateArtifact",
+  "__version": "2.0.14"
+}

@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<createUI>
+	<nodeType alias="Catalog_Root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Catalog/CreateProductCatalogGroup.ascx</usercontrol>
+		<tasks>
+      <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogGroupTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogGroupTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="product_catalog_group">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Catalog/CreateProductCatalog.ascx</usercontrol>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogGroupTask"/>
+			<create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogGroupTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="product_catalog">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Catalog/CreateCategoryOrProduct.ascx</usercontrol>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductCatalogTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="category">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Catalog/CreateCategoryOrProduct.ascx</usercontrol>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CategoryTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CategoryTask"/>
+		</tasks>
+	</nodeType>
+
+	<!-- Product Definitions -->
+	
+	<nodeType alias="settings_definitions_product">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateProductDefinition.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_productdefinition">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateProductDefinitionField.ascx</usercontrol>
+		<tasks>
+      <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionTask" />
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionTask" />
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_productdefinition_field">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionFieldTask" />
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductDefinitionFieldTask" />
+		</tasks>
+	</nodeType>
+
+	<!-- Definitions -->
+
+	<nodeType alias="settings_definitions_definitionType">
+		<header>uCommerce</header>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateDefinition.ascx</usercontrol>
+	  <tasks>
+	  <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionTask" />
+	  <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionTask" />
+	  </tasks>
+  </nodeType>
+
+	<nodeType alias="settings_definitions_definition">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateDefinitionField.ascx</usercontrol>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionTask" />
+		  <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionTask" />
+    </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_definitions_field">
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionFieldTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DefinitionFieldTask"/>
+		</tasks>
+	</nodeType>
+	
+	<!-- Data Types -->
+	
+	<nodeType alias="settings_definitions_datatypes_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateDataType.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_definitions_datatype">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeTask"></create>
+		</tasks>
+		<usercontrol>/UCommerce/Settings/Definitions/CreateDataTypeEnum.ascx</usercontrol>
+	</nodeType>
+
+	<nodeType alias="settings_definitions_datatype_enum">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeEnumTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.DataTypeEnumTask"></create>
+		</tasks>
+	</nodeType>
+
+	<!-- Shipping Methods -->
+
+	<nodeType alias="settings__orders_shippingmethods_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Orders/CreateShippingMethod.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ShippingMethodTask"></delete>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ShippingMethodTask"></create>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders__shippingmethods_shippingmethod">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ShippingMethodTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ShippingMethodTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_order_paymentmethods_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Orders/CreatePaymentMethod.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.PaymentMethodTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.PaymentMethodTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_paymentmethods_paymentmethod">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.PaymentMethodTask"/>
+			<create assembly="UCommerce.Umbraco7" type="Menu.Tasks.PaymentMethodTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_emails_profiles_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Email/CreateEmailProfile.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailProfileTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailProfileTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_emails_types_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Email/CreateEmailType.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailTypeTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailTypeTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_emails_type">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailTypeTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailTypeTask"></create>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_emails_profile">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailProfileTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.EmailProfileTask"></create>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_pricegroups_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Catalog/CreatePriceGroup.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.PriceGroupTask"/>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.PriceGroupTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_pricegroups_pricegroup">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.PriceGroupTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.PriceGroupTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_productrelationtypes_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Catalog/CreateProductRelationType.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductRelationTypeTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductRelationTypeTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_catalog_productrelationtype">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductRelationTypeTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.ProductRelationTypeTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_countries_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Orders/CreateCountry.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CountryTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CountryTask"></create>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_countries_country">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CountryTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CountryTask"></create>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_currencies">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Orders/CreateCurrency.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CurrencyTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CurrencyTask"/>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_currencies_currency">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CurrencyTask"/>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CurrencyTask"/>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_ordernumbersseries_root">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Settings/Orders/CreateOrderNumber.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.OrderNumberSerieTask" />
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.OrderNumberSerieTask" />
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="settings_orders_ordernumbersseries_ordernumberserie">
+		<header>Commerce</header>
+		<tasks>
+      <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.OrderNumberSerieTask" />
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.OrderNumberSerieTask" />
+		</tasks>
+	</nodeType>
+	
+	
+	<!-- Marketing -->
+	<nodeType alias="marketing">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Marketing/Dialogs/CreateCampaign.ascx</usercontrol>
+	  <tasks>
+	    <delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignTask"></delete>
+	    <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignTask"></create>
+	  </tasks>
+	</nodeType>
+
+	<nodeType alias="marketing_campaign">
+		<header>Commerce</header>
+		<usercontrol>/UCommerce/Marketing/Dialogs/CreateCampaignItem.ascx</usercontrol>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignTask"></create>
+		</tasks>
+	</nodeType>
+
+	<nodeType alias="marketing_campaign_item">
+		<header>Commerce</header>
+		<tasks>
+			<delete assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignItemTask"></delete>
+      <create assembly="UCommerce.Umbraco7" type="Menu.Tasks.CampaignItemTask"></create>
+		</tasks>
+	</nodeType>
+</createUI>

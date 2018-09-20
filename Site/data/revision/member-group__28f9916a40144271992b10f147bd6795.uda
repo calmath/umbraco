@@ -1,0 +1,8 @@
+{
+  "Udi": "umb://member-group/28f9916a40144271992b10f147bd6795",
+  "Dependencies": [],
+  "Name": "Site Member",
+  "Alias": null,
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.MemberGroupArtifact",
+  "__version": "2.0.14"
+}

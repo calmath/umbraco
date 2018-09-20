@@ -1,0 +1,21 @@
+<div class="bgLight row">
+	<div class="siteLabel">
+		<a href="/" title="home">
+			<svg>
+				<use xlink:href="#svg-logo"></use>
+			</svg>
+		</a>
+	</div>
+	<div class="siteHeaderWrapper">
+		<div class="siteUser">
+			{% include "components/user.nunjucks" %}
+		</div>
+		<div class="headerNavWrapper">
+			{% include "components/nav.nunjucks" %}
+		</div>
+		<div class="siteNav">
+			{% include "components/login.nunjucks" %}
+			{% include "components/menuIcon.nunjucks" %}
+		</div>
+	</div>
+</div>

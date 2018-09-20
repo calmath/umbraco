@@ -1,0 +1,10 @@
+﻿<div class="selected-nodes-container">
+    <div class="selectedNode" data-ng-repeat="selectedNode in selectedNodes" data-node-id="{{selectedNode.id}}">
+        <div class="removeIcon" ng-click="removeNodeClick(selectedNode)">
+            <img ng-src="{{getDeleteImageIcon()}}" />
+        </div>
+        <div class="node">
+            <span ng-style="getNodeIconStyle(selectedNode.icon)" class="{{getNodeIconClasses(selectedNode.icon)}} selectedNodeName"><span class="nodeName">{{selectedNode.name}}</span></span>
+        </div>
+    </div>
+</div>

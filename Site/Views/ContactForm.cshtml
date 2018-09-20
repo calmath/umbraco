@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContactForm>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<h1>@Model.Content.Heading</h1>
+@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
+
+@Umbraco.RenderMacro("renderUmbracoForm", new {FormGuid=Model.Content.Form.ToString()})
+
+@section EndBodyScripts
+{
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    @Umbraco.RenderMacro("RenderFormScripts")
+}

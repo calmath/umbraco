@@ -1,0 +1,19 @@
+﻿.gridster span.gs-resize-handle.gs-resize-handle-both {
+	background-image: url('/umbraco/ucommerce/css/common/arrow.png');
+}
+
+.fixedHeader .fa-chevron-up {
+    margin-left: -12px;
+	margin-left: -14px\9;
+	margin-left: -14px\0/;
+}
+
+@-moz-document url-prefix() {
+	.fixedHeader .fa-chevron-up {
+		margin-left: -11px;
+	}
+}
+
+.ucommerce-dashboard {
+	overflow-x: initial !important;
+}

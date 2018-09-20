@@ -1,0 +1,222 @@
+/// Bold font weight
+/// @group Typography
+/// @access public
+/// @type number
+$fontBold : bold;
+/// Normal font weight
+/// @group Typography
+/// @access public
+/// @type number
+$fontNormal : normal;
+/// Light font weight
+/// @group Typography
+/// @access public
+/// @type number
+$fontLight : 300;
+/// Website font
+/// @group Typography
+/// @access public
+/// @type string
+$fontFamily : "Muli", sans-serif;
+/// Map of font styles that can be shared between elements.
+/// @group Typography
+/// @access public
+/// @type map
+/// @prop {key} fontStyles.nav - Navigation font configurations
+/// @prop {key} fontStyles.hero - Hero text or h1 font configurations
+/// @prop {key} fontStyles.header - Header font configurations
+/// @prop {key} fontStyles.subHeader - Sub header font configurations
+/// @prop {key} fontStyles.normal - Default font configurations
+$fontStyles : (
+	nav : (
+		weight : $fontNormal,
+		sizeMob : 18px,
+		sizeDesktop : 14px
+	),
+	hero : (
+		weight : $fontLight,
+		sizeMob : 24px,
+		sizeDesktop : 50px
+	),
+	header : (
+		weight : $fontBold,
+		sizeMob : 24px,
+		sizeDesktop : 36px
+	),
+	subHeader : (
+		weight : $fontBold,
+		sizeMob : 18px,
+		sizeDesktop : 20px
+	),
+	footerNav : (
+		weight : $fontBold,
+		sizeMob : 14px,
+		sizeDesktop : 18px
+	),
+	footerCopy : (
+		weight : $fontNormal,
+		sizeMob : 14px,
+		sizeDesktop : 18px
+	),
+	accordion : (
+		weight : $fontNormal,
+		sizeMob : 16px,
+		sizeDesktop : 18px
+	),
+	error : (
+		weight : $fontNormal,
+		sizeMob : 14px,
+		sizeDesktop : 14px
+	),
+	large : (
+		weight : $fontNormal,
+		sizeMob : 18px,
+		sizeDesktop : 36px
+	),
+	normal : (
+		weight : $fontNormal,
+		sizeMob : 18px,
+		sizeDesktop : 20px
+	),
+	constant : (
+		weight : $fontNormal,
+		sizeMob : 18px,
+		sizeDesktop : 18px
+	),
+	typewriter : (
+		weight : $fontLight,
+		sizeMob : 44px,
+		sizeDesktop : 130px
+	)
+);
+/// Setup the font styles for different elements and calsses
+/// @group Typography
+/// @param {string} $type [normal] - Type of font to style, can be normal, subheader,
+/// header, hero or nav.
+/// @param {pixel} $colour [text] - The ui colour type to get. Refer to $colours
+/// variable.
+/// @param {pixel} $theme [default] - Colour theme to match againt, can be default
+/// or brand(1-6)
+/// 
+/// 
+@mixin font($type : normal, $colour: text, $theme: default) {
+
+	$typeStyles : map-get($fontStyles, $type);
+
+	font-family: $fontFamily;
+	font-weight: map-get($typeStyles, weight);
+	font-size: pxToRem(map-get($typeStyles, sizeMob));
+	color : getUiColour($colour, $theme);
+
+	@media (min-width: $bp-desktop) {
+		font-size: pxToRem(map-get($typeStyles, sizeDesktop));
+	}
+
+}
+/// Styles for semantic elements available in RTE
+/// @group Typography
+///
+@mixin wysiwyg() {
+
+	@include lastElement();
+
+	h1 {
+		margin: pxToRem(map-get($padding, default) * 2) auto getPadding();
+	}
+
+	h2, h3, h4, p, li {
+		margin: 0 auto getPadding();
+	}
+
+	ul, ol {
+		@include lastElement();
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: auto;
+		padding: 0;
+		margin: 0 auto getPadding();
+
+		li {
+			list-style-position: inside;
+		}
+	}
+
+	ul {
+
+		li {
+			list-style-type: none;
+
+			&::before {
+				display: inline-block;
+				font-size: 1rem;
+				line-height: 0;
+				width: 1rem;
+				content: "-";
+			}
+		}
+	}
+
+	& > div {
+		@include lastElement();
+	}
+}
+
+h1 {
+	@include font(hero);
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	@include font(header);
+	margin: 0;
+	padding: 0;
+}
+
+h3 {
+	@include font(subHeader);
+	margin: 0;
+	padding: 0;
+}
+
+h4 {
+	@include font(constant);
+	margin: 0;
+	padding: 0;
+}
+
+p, li {
+	@include font(normal);
+	margin: 0;
+	padding: 0;
+
+	a {
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+p {
+
+	a {
+		font-size: inherit;
+	}
+}
+
+a {
+	@include font(nav);
+	text-decoration: none;
+}
+
+button {
+	@include font(nav);
+	text-decoration: none;
+}
+
+.wysiwyg {
+	@include wysiwyg();
+}

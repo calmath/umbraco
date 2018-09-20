@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UCommerce.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:UCommerce.Infrastructure.Components.Windsor.MandatoryAttribute">
+            <summary>
+            The attribute is used by our Castle Windsor IOC container, in order to mark public properties as mandatory.
+            </summary>
+            <remarks>
+            By default, Castle Windsor treats public properties as optional.
+            To enable the feature of having mandatory property injection of services and values, this attribute is used.
+            
+            The main reason for introducing this feature, is to be able to keep any existing constructors, so not to break
+            compatibility with custom extensions that inherit from our services.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Components.Windsor.TypeNameConverterIgnoresTypesInMissingAssemblies">
+            <summary>
+            Converts strings to types while avoiding
+            types, which depend on other types present in
+            assemblies not loaded in the app domain.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.DisposableThreadLifestyleScope">
+            <summary>
+            Disposable thread scope. Use around blocks of code, that is being run on a background thread, to clean up the IOC container's thread scope.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.ManagedThreadLifestyle">
+            <summary>
+            This class is responsible for managing the <see cref="T:Castle.MicroKernel.Lifestyle.Scoped.ILifetimeScope"/> objects used for grouping the components used for Manager Threads.
+            </summary>
+            <remarks>
+            Since managed threads do not have a defined moment when the scope should be closed,
+            the user needs to call <see cref="M:UCommerce.Infrastructure.Configuration.ManagedThreadLifestyle.ReleaseManagedThreadComponents"/> when the scope is done.
+            
+            If <see cref="M:UCommerce.Infrastructure.Configuration.ManagedThreadLifestyle.ReleaseManagedThreadComponents"/> is not called, the risk is that components created on this thread is reused, when the thread is reused,
+            for example if it is part of a thread pool.
+            </remarks>>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.ManagedThreadScopeAccessor">
+            <summary>
+            Managed Thread scope accessor.
+            </summary>
+            <remarks>
+            Defers control over the ILifetimeScopes to the <see cref="T:UCommerce.Infrastructure.Configuration.ManagedThreadLifestyle"/>.
+            This pattern is matching the structure of the default WebRequestScopeAccessor.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.TaskLifestyle">
+            <summary>
+            This class is responsible for managing the <see cref="T:Castle.MicroKernel.Lifestyle.Scoped.ILifetimeScope"/> objects used for grouping the components used for TPL <see cref="T:System.Threading.Tasks.Task"/>
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Configuration.TaskLifestyle.GetScope">
+            <summary>
+            Gets the scope for the current <see cref="T:System.Threading.Tasks.Task"/>. A new scope is created, if one is not present.
+            </summary>
+            <returns>The scope for the current Task.</returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Configuration.TaskLifestyle.YieldScope">
+            <summary>
+            Closes the current scope, disposing it, thereby ensuring that the components are released.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.HybridPerWebRequestTaskThreadScopeAccessor">
+             <summary>
+             A hybrid Castle Windsor scope accessor handling a combination of web request, TPL task and managed thread scopes.
+             </summary>
+             <remarks>
+             The reason for having a hybrid scope accessor is to be able to
+             use the same component registrations in a web request context,
+             as well as when running in TPL tasks or on managed threads.
+             
+             The scope is a way of grouping components.
+             This is an especially important concept when combined with nHibernate.
+            
+             All requests within the same scope shares the same nHibernate session,
+             because we have registered the session provider as a component.
+             
+             And that component is shared by all dependant components in the same scope.
+             </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Configuration.TaskScopeAccessor">
+            <summary>
+            Task scope accessor.
+            </summary>
+            <remarks>
+            Defers control over the ILifetimeScopes to the <see cref="T:UCommerce.Infrastructure.Configuration.TaskLifestyle"/>.
+            This pattern is matching the structure of the default WebRequestScopeAccessor.
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Logging.LoggingExtensions">
+            <summary>
+            Extensions for logging.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Logging.LoggingExtensions.GetTypeLoadExceptionMessages(UCommerce.Infrastructure.Logging.ILoggingService,System.Exception)">
+            <summary>
+            Retrieves all type loader exceptions from the object if any exists.
+            </summary>
+            <param name="loggingService"></param>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Logging.InstallerLoggingServiceAdapter">
+            <summary>
+            Adapts a standard logging service to an installer logging service.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Logging.ILoggingService">
+            <summary>
+            Handles logging of information.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Logging.ILoggingService.Log``1(System.String)">
+            <summary>
+            Logs the specified <paramref name="customMessage"/>.
+            <param name="customMessage">The custom message.</param>
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Logging.ILoggingService.Log``1(System.Exception)">
+            <summary>
+            Logs the specified exception.
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Logging.ILoggingService.Log``1(System.Exception,System.String)">
+            <summary>
+            Logs the specified exception along with a custom message.
+            </summary>
+            <param name="exception">The exception.</param>
+            <param name="customMessage">The custom message.</param>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.DynamicBinUCommerceDirectoryLocator">
+            <summary>
+            Looks up the base directory of the bin\ucommerce folder.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.DynamicBinUCommerceDirectoryLocator.#ctor(System.AppDomain)">
+            <summary>
+            Constructs a <see cref="T:UCommerce.Infrastructure.Runtime.DynamicBinUCommerceDirectoryLocator"/>
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.DynamicBinUCommerceDirectoryLocator.LocateAppsDirectory">
+            <summary>
+            Locates the App directory.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.IPathService">
+            <summary>
+            Returns a virtual path. 
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.AppAssemblyVersionEqualityComparer">
+            <summary>
+            Compares assembly versions againts each other 
+            </summary>
+            <remarks>
+            compares assemblies based on name and version number
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.AssemblyLoader">
+            <summary>
+            Loads assemblies if they are not present in the runtime environment.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.AssemblyLoader.LoadAssemblyFromFileInfo(System.IO.FileInfo)">
+            <summary>
+            Load an assembly into the default context of the current AppDomain.
+            </summary>
+            <remarks>
+            The assembly is shadow copied to a temporary location, to avoid file locking of the assembly.
+            </remarks>
+            <param name="assemblyFileInfo">The file to load.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.AssemblyLoader.CopyFileToTemporaryLocation(System.IO.FileInfo)">
+            <summary>
+            Copies a file to a temporary location, based upon the MD5 value of the contents.
+            </summary>
+            <remarks>
+            The file is only copied, if the MD5 defined temporary file does not contain a file already.
+            
+            If the MD5 hash value matches, then the assumption is that the file is the same.
+            In that case the existing file is reused. 
+            </remarks>
+            <param name="source">The file to copy.</param>
+            <returns>The copied file.</returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.AssemblyLoader.GetMd5HashCodeForFileContent(System.IO.FileInfo)">
+            <summary>
+            Calculate an MD5 hash value for the content of the file, and generate a string representation of the value.
+            </summary>
+            <param name="fi">The file, whose content is to be hashed.</param>
+            <returns>A string representation of the MD5 value for the file.</returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.AssemblyLoader.GetShadowCopyFolderPath">
+            <summary>
+            Path to the shadow copy folder, where the temporary assemblies are located.
+            </summary>
+            <remarks>
+            The path is located in the DataDirectory for the AppDomain.
+            For web applications this is typically the "App_Data" folder.
+            </remarks>
+            <returns>The path.</returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.DynamicAppsDirectoryLocator">
+            <summary>
+            Looks up the base directory of the Apps folder.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.DynamicAppsDirectoryLocator.#ctor(System.AppDomain)">
+            <summary>
+            Cosntructs a new <see cref="T:UCommerce.Infrastructure.Runtime.DynamicAppsDirectoryLocator"/>
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Runtime.DynamicAppsDirectoryLocator.LocateAppsDirectory">
+            <summary>
+            Locates the Apps directory.
+            </summary>
+            <returns>A <see cref="T:System.IO.DirectoryInfo"/> object representing the Apps directory.</returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Runtime.IDirectoryLocator">
+            <summary>
+            Looks up the base directory of the Apps folder
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Environment.IWebRuntimeInspector">
+            <summary>
+            Interface used to determine if WebContext is available in current scope.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Environment.IWebRuntimeInspector.IsWebContext">
+            <summary>
+            Determines if webContext is available in current scope.
+            </summary>
+            <returns>True if current scope is web otherwise false.</returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Environment.WebRuntimeInspector">
+            <summary>
+            Interface used to determine if WebContext is available in current scope.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.ExtendedBooleanConverter">
+            <summary>
+            The converter convert null or empty string values to the default boolean value of "false".
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExtendedBooleanConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts null or empty string objects to "false".
+            </summary>
+            <param name="context">The context.</param>
+            <param name="culture">The culture.</param>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Globalization.CustomGlobalization">
+            <summary>
+            Set any culture to be used for localization.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Globalization.Globalization">
+            <summary>
+            Handles globalization based on the current thread context.
+            </summary>
+            <remarks>
+            Will grab default culture code from web.config in the catalog configration section.
+            </remarks>
+        </member>
+        <member name="P:UCommerce.Infrastructure.Globalization.Globalization.CurrentCultureCode">
+            <summary>
+            Gets the current culture code.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Infrastructure.Globalization.Globalization.CurrentCulture">
+            <summary>
+            Gets the current culture.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Infrastructure.Globalization.Globalization.DefaultCulture">
+            <summary>
+            Gets the default culture.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Globalization.GlobalResourceManager">
+            <summary>
+            Abstraction for app_globalresources
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Globalization.ILanguageService">
+            <summary>
+            Provides The system with languages installed in the system.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Globalization.ILanguageService.GetAllLanguages">
+            <summary>
+            Gets all languages from the current context.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Globalization.ILocalizationContext">
+            <summary>
+            Defines the localization context.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Infrastructure.Globalization.ILocalizationContext.CurrentCultureCode">
+            <summary>
+            Gets the current culture code.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.Null``1(UCommerce.Infrastructure.Guard,``0,System.String)">
+            <summary>
+            Guards against null references.
+            </summary>
+            <param name="guard"></param>
+            <param name="obj"></param>
+            <param name="message"></param>
+            <typeparam name="T"></typeparam>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.Null``1(UCommerce.Infrastructure.Guard,System.Nullable{``0},System.String)">
+            <summary>
+            Guards against null references.
+            </summary>
+            <param name="guard"></param>
+            <param name="obj"></param>
+            <param name="message"></param>
+            <typeparam name="T"></typeparam>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.NullArgument``1(UCommerce.Infrastructure.Guard,``0)">
+            <summary>
+            Guards against null arguments.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="guard">The guard.</param>
+            <param name="obj">The obj.</param>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.NullArgument``1(UCommerce.Infrastructure.Guard,``0,System.String)">
+            <summary>
+            Guards against null arguments.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="guard">The guard.</param>
+            <param name="obj">The obj.</param>
+            <param name="message">The message.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.InvalidOperation(UCommerce.Infrastructure.Guard,System.Boolean,System.String)">
+            <summary>
+            Guards against invalid operations.
+            </summary>
+            <param name="guard">The guard.</param>
+            <param name="invalid">if set to <c>true</c> [invalid].</param>
+            <param name="message">The message.</param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ExceptionExtensions.MissingStartingSlash(UCommerce.Infrastructure.Guard,System.String)">
+            <summary>
+            Guards against a missing starting '/' character in a string.
+            </summary>
+            <param name="guard">The guard.</param>
+            <param name="s">The string to check for missing starting '/'.</param>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Interceptor.ExceptionLoggingInterceptor">
+            <summary>
+            Ìntercepts all methods calls and logs any exceptions thrown.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.ObjectFactory">
+            <summary>
+            Object factory class.
+            </summary>
+        </member>
+        <member name="P:UCommerce.Infrastructure.ObjectFactory.Container">
+            <summary>
+            Gets the container.
+            </summary>
+            <value>The container.</value>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.AddChildContainer(Castle.Windsor.WindsorContainer)">
+            <summary>
+            Adds a child container to the current Castle Windsor container.
+            Components registered in the child container will override the ones from the parent.
+            </summary>
+            <param name="childContainer"></param>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.Resolve``1">
+            <summary>
+            Resolves this instance.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.GetServiceIdsFor``1">
+            <summary>
+            Gets the ids of the registered services for the specified component.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.RegisteredServicesFor(System.Type)">
+            <summary>
+            Gets ids for the registered services.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.Resolve``1(System.String)">
+            <summary>
+            Resolves the specified id.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.ResolveAll``1">
+            <summary>
+            Resolves all implementations for of T.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.GetContainer">
+            <summary>
+            Returns a configured IoC container.
+            </summary>
+            <remarks>
+            When surfacing WindsorContainer as public API (protected/public)
+            dynamic compilation will fail for cshtml, aspx, ascx, etc. as
+            dependencies are rolled out in /bin/ucommerce.
+            This can be solved by either never surfacing the WindsorContainer type
+            from the depedency in /bin/ucommerce or by adding a instance to the
+            runtime/compilation/assemblies node in web.config, which tells .NET
+            which version to use.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.Infrastructure.ObjectFactory.AutoDiscoverConfig">
+            <summary>
+            Searches for the components.config
+            </summary>
+            <returns></returns>
+            <remarks>
+            Search pattern implemented as we cannot say exactly where the configurations file are located as uCommerce may run under different environments. 
+            </remarks>
+        </member>
+        <member name="T:UCommerce.Infrastructure.AutoLifestyleComponentContributor">
+            <summary>
+            Sets component lifestyle based on the context they're running.
+            PerWebRequest for hosted scenarios and Thread for everything else.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.ExtendedComponentBuilder">
+            <summary>
+            Adds the AutolifestleContributor to the component builder.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.ExtendedWindsorContainer">
+            <summary>
+            Class is responsible for creating kernel with the ExtendedComponentBuilder
+            which in turn registers the AutoLifestyleContributor.
+            Adding the AutoLifestyleContributor after the container is created is too
+            late so we have to jump through a couple of hoops to add earlier in the
+            process.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.PathFilterer">
+            <summary>
+            Responsible for filtering paths.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.PathFilterer.Filter(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <summary>
+            Filters away ignoredPaths starting with any of the set of predefined ignored paths
+            </summary>
+            <remarks>Looks at the first part of the path and holds it against ignored paths.</remarks>
+        </member>
+        <member name="M:UCommerce.Infrastructure.PathFilterer.FilterPathParts(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String},System.String)">
+            <summary>
+            Filters away paths that contains any of the black listed path parts, but ignoring the base path part of the possible path
+            </summary>
+            <param name="blackListedPathParts">The path parts to filter away</param>
+            <param name="possiblePaths">The possible paths</param>
+            <param name="basePath">The base search path</param>
+            <returns>The filtered lists of possible paths</returns>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Threading.RetryableAction">
+            <summary>
+            This class represents an action to be retried if it throws an exception.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Threading.RetryableAction.#ctor(System.Action,System.Int32,System.Int32)">
+            <summary>
+            Constructs a new retryable action.
+            </summary>
+            <param name="action">The action to perform.</param>
+            <param name="numberOfTries">The max number of times to try performing the action.</param>
+            <param name="millisecondsBetweenRetries">The grace period between attempts.</param>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Threading.RetryableAction.Run">
+            <summary>
+            Performs the task. Retries if exception is thrown.
+            </summary>
+        </member>
+        <member name="T:UCommerce.Infrastructure.Threading.RetryableTask">
+            <summary>
+            Performs a retryable action on a background thread.
+            </summary>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Threading.RetryableTask.#ctor(System.Action,System.Int32,System.Int32)">
+            <summary>
+            Constructs a new RetryableTask.
+            </summary>
+            <param name="action">The action to perform.</param>
+            <param name="maxNumberOfTries">The maximum number of tries of the action, if an exception is thrown.</param>
+            <param name="gracePeriodBetweenTriesInMilliseconds">The grace period between tries in milliseconds.</param>
+        </member>
+        <member name="M:UCommerce.Infrastructure.Threading.RetryableTask.Start">
+            <summary>
+            Starts the task on a background thread.
+            </summary>
+        </member>
+    </members>
+</doc>

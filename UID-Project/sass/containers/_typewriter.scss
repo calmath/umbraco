@@ -1,0 +1,83 @@
+.typewriter {
+
+	.heroBlock {
+		height: auto;
+	}
+
+	h1 {
+		opacity: 0;
+		font-family: sans-serif;
+		height: auto;
+
+		span {
+			opacity: 0;
+			transition: $animShort ease-out opacity;
+		}
+	}
+
+	span {
+		width: auto;
+		height: pxToRem(30px);
+		max-width: pxToRem(21px);
+		font-family: sans-serif;
+
+		@media (min-width: $bp-desktop) {
+			line-height: 1.5;
+		}
+
+	}
+
+	.ready {
+		opacity: 1;
+
+		span {
+			display: none;
+			font-family: $fontFamily;
+			font-weight: $fontLight;
+
+			&.bold {
+				font-weight: $fontBold;
+			}
+		}
+
+		.typeWriterCursor {
+			display: inline;
+			opacity: 1;
+		}
+
+		.show {
+			display: inline;
+			opacity: 1;
+		}
+	}
+
+	.typeWriterCursor {
+		display: inline;
+		height: auto;
+		line-height: inherit;
+		font-size: inherit;
+		animation-fill-mode: forwards;
+		animation-direction: normal;
+		animation-duration: $animMed;
+		animation-iteration-count: infinite;
+		animation-name: cursorAnim;
+		font-weight: $fontBold;
+		//user-select: none;
+	}
+}
+
+@keyframes cursorAnim {
+	0% {
+		opacity: 1;
+		animation-timing-function: cubic-bezier(1, 0.01, 0.98, 0.57);
+	}
+
+	80% {
+		opacity: 0;
+		animation-timing-function: linear;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}

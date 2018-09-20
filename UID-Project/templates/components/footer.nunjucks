@@ -1,0 +1,23 @@
+<footer>
+	<div class="theme-default">
+		<div class="social">
+			{% for network in data.social %}
+			<a href="{{ network.link }}" title="{{ network.title }}" target="_blank">
+				<svg>
+					<use xlink:href="#svg-{{ network.name }}"></use>
+				</svg>
+			</a>
+			{% endfor %}
+		</div>
+		<nav>
+			<ul>
+				{% for link in data[language].text.footer.links %}
+				<li>
+					<a href="{{ link.link }}" title="{{ link.title }}">{{ link.title }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<p>{{ data[language].text.footer.copyright }}</p>
+		</nav>
+	</div>
+</footer>

@@ -1,0 +1,76 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing static templates" %}
+
+{% extends "mainLayout.nunjucks" %}
+{% set heroText = data[language].text.hero %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand2 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-9 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="theme-brand6">
+							{% set blockTitle = "individuals" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand5">
+							{% set blockTitle = "employers" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="theme-brand4">
+							{% set blockTitle = "apprentership-providers" %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="theme-brand1 edge">
+				<div class="row clearfix">
+					<div class="col-md-9 column">
+						<div class="wysiwyg">
+							<div>
+								{{ data[language].text.wysiwyg | safe }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				<div class="row clearfix">
+					<div class="col-md-7 column">
+						<div>
+							{% set accordions = data[language].text.accordions %}
+							{% set accordionIcon = '<svg class="icon"><use xlink:href="#svg-plus" class="closed"></use><use xlink:href="#svg-minus" class="opened"></use></svg>' %}
+							{% include "components/accordion.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

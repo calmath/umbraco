@@ -1,0 +1,29 @@
+--- da.xml
++++ da.xml
+@@ -1,5 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8" ?>
+ <language xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+-	<area alias="sections" xdt:Transform="Remove" xdt:Locator="Condition(@alias='sections')">
+-		<key alias="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='uCommerce')">uCommerce</key>
++	<area alias="sections" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='sections')">
++		<key alias="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='uCommerce')">uCommerce</key>
+ 	</area>
+@@ -5,10 +5,10 @@
+ 	</area>
+-	<area alias="actions" xdt:Transform="Remove" xdt:Locator="Condition(@alias='actions')">
+-		<key alias="Sort products" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort products')">Sorter produkter</key>
+-		<key alias="Sort catalogs" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort catalogs')">Sorter kataloger</key>
+-		<key alias="Sort categories" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort categories')">Sorter kategorier</key>
+-		<key alias="Sort Campaigns" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort Campaigns')">>Prioritér kampagner</key>
+-		<key alias="Sort Campaign Items" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort Campaign Items')">Prioritér aktiviteter</key>
+-		<key alias="Sort Parent Definitions" type="uCommerce" xdt:Transform="Remove" xdt:Locator="Condition(@alias='Sort Parent Definitions')">Prioritér forældre definitioner</key>
++	<area alias="actions" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='actions')">
++		<key alias="Sort products" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort products')">Sorter produkter</key>
++		<key alias="Sort catalogs" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort catalogs')">Sorter kataloger</key>
++		<key alias="Sort categories" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort categories')">Sorter kategorier</key>
++		<key alias="Sort Campaigns" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Campaigns')">>Prioritér kampagner</key>
++		<key alias="Sort Campaign Items" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Campaign Items')">Prioritér aktiviteter</key>
++		<key alias="Sort Parent Definitions" type="uCommerce" xdt:Transform="InsertIfMissing" xdt:Locator="Condition(@alias='Sort Parent Definitions')">Prioritér forældre definitioner</key>
+ 	</area>
+ </language>
+\ No newline at end of file

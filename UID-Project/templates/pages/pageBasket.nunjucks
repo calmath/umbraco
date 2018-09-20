@@ -1,0 +1,217 @@
+{% set basketObj = data[language].shop %}
+{% set pageTitle = basketObj.title %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand5 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<h1>{{ pageTitle }}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-7 column">
+						<a href="/shop">&lt; Continue Shopping</a>
+					</div>
+					<div class="col-md-3 column login align-right">
+						<a href="/shop/checkout.html" title="Checkout" id="Checkout">Checkout</a>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<br/>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-7 column">
+					<div class="wysiwyg">
+							My Cart (2)
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							Price
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							Quantity
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							Total
+						</div>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-10 column">
+						<hr/>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				{% for product in basketObj.products %}
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-2 column">
+						<div class="wysiwyg">
+							<a href="/shop/product.html"><img src="{{ product.listingimage }}" alt="{{ product.name }}"></a>
+						</div>
+					</div>
+					<div class="col-md-5 column">
+						<div class="wysiwyg">
+							<a href="/shop/product.html">{{ product.title }}</a><br/>
+							Size<br/>
+							<a href="">Remove</a>
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							{{ product.price }}
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							<form id="login">
+								<div class="umbraco-forms-page">
+									<fieldset class="umbraco-forms-fieldset">
+										<div class="row-fluid">
+											<div class="umbraco-forms-container col-md-12">
+												<div class="umbraco-forms-field quantity dropdown mandatory">
+													<span class="umbraco-forms-tooltip help-block">Please enter your quantity</span>
+													<div class="umbraco-forms-field-wrapper">
+														<select name="Quantity" id="Quantity" class="valid" placeholder="Quantity *" data-val="true" data-val-required="Please enter your quantity" aria-required="true" aria-invalid="false" aria-describedby="Size-error">
+															{% for i in range(1, 10) -%}
+																<option value="{{ i }}">{{ i }}</option>
+															{%- endfor %}
+														</select>									
+														<span class="field-validation-valid" data-valmsg-for="Quantity" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							{{ product.price }}
+						</div>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-10 column">
+						<hr/>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				{% endfor %}
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-7 column">
+					</div>
+					<div class="col-md-2 column">
+						<div class="wysiwyg">
+							Subtotal
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							£25.00
+						</div>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-7 column">
+					</div>
+					<div class="col-md-2 column">
+						<div class="wysiwyg">
+							Shipping
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							FREE
+						</div>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+					</div>
+					<div class="col-md-3 column">
+						<hr/>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-1 column">
+					</div>
+					<div class="col-md-7 column">
+					</div>
+					<div class="col-md-2 column">
+						<div class="wysiwyg">
+							Total
+						</div>
+					</div>
+					<div class="col-md-1 column">
+						<div class="wysiwyg">
+							£25.00
+						</div>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<br/>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+					</div>
+					<div class="col-md-3 column login align-right">
+						<a href="/shop/checkout.html" title="Checkout" id="Checkout2">Checkout</a>
+					</div>
+					<div class="col-md-1 column">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

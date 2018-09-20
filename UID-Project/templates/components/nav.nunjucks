@@ -1,0 +1,25 @@
+<nav class="headerNav" id="menuNav">
+	<ul>
+		{% for link in data[language].nav %}
+		<li>
+			{% set isFirst = "" %}
+			{% if loop.first %}
+				{% set isFirst = "active" %}
+			{% endif%}
+			{% if(link.items) %}
+				<p>{{ link.title }}</p>
+				<ul>
+				{% for innerLink in link.items %}
+					<li class="{{innerLink.class}}">
+						<a href="{{ innerLink.link }}" class="{{isFirst}}">{{ innerLink.title }}</a>
+					</li>
+				{% set isFirst = "" %}
+				{% endfor %}
+				</ul>
+			{% else %}
+			<a href="{{ link.link }}" class="{{isFirst}}">{{ link.title }}</a>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+</nav>

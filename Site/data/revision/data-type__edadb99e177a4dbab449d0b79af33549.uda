@@ -1,0 +1,15 @@
+{
+  "EditorAlias": "uc.picker",
+  "DatabaseType": 1,
+  "PreValues": {
+    "selectorType": "product",
+    "treeType": "products"
+  },
+  "Parent": null,
+  "Udi": "umb://data-type/edadb99e177a4dbab449d0b79af33549",
+  "Dependencies": [],
+  "Name": "Products",
+  "Alias": null,
+  "__type": "Umbraco.Deploy,Umbraco.Deploy.Artifacts.DataTypeArtifact",
+  "__version": "2.0.14"
+}

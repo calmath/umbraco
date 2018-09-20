@@ -1,0 +1,17 @@
+﻿@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
+
+@{
+    Layout = "";
+}
+
+@{
+    var item = Model.Items.FirstOrDefault();
+    if (item != null)
+    {
+        var content = item.GetValue("script");
+        if (content != null)
+        {
+            @Html.Raw(content)
+        }
+    }
+}

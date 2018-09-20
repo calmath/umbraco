@@ -1,0 +1,341 @@
+header {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	box-sizing: border-box;
+	max-width: pxToRem($pageWidth);
+	margin: auto;
+	text-align: left;
+
+	@media (min-width: $bp-desktop) {
+		padding: pxToRem(map-get($padding, default) / 2) getPadding();
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: flex-end;
+		align-content : flex-end;
+
+		&.theme-default {
+			background-color: getUiColour(bgLight);
+		}
+	}
+
+	.row {
+		padding: pxToRem((80px - 48px) / 2) map-get($padding, mobile);
+		align-items: center;
+		justify-content: center;
+		align-items: flex-end;
+		align-content : flex-end;
+
+		&.left {
+			width: 100%;
+			display: block;
+		}
+
+		@media (min-width: $bp-desktop) {
+			padding: 0;
+			justify-content: space-between;
+			flex-basis: auto;
+			flex-grow: 1;
+		}
+	}
+}
+
+.siteLabel {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: pxToRem(92px);
+	height: pxToRem(48px);
+	margin: 0 auto 0 0;
+
+	@media (min-width: $bp-desktop) {
+		flex-basis: auto;
+		width: pxToRem(132px);
+		height: pxToRem(68px);
+	}
+
+	svg {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+
+		use {
+			fill-rule: evenodd;
+		}
+	}
+}
+
+.siteHeaderWrapper {
+	height: pxToRem(48px);
+	width: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+
+	@media (min-width: $bp-desktop) {
+		height: pxToRem(68px);
+	}
+}
+
+.siteUser {
+	flex: 1 1 90%;
+	text-align: right;
+	height: pxToRem(24px);
+
+	@media (min-width: $bp-desktop) {
+		height: pxToRem(34px);
+	}
+
+	svg {
+		position: relative;
+		height: 60%;
+		width: pxToRem(32px);
+
+		use {
+			fill-rule: evenodd;
+		}
+	}
+}
+
+.siteNav {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: auto;
+	height: auto;
+	margin: 0;
+	text-align: right;
+	margin: 0 0 0 getPadding();
+
+	@media (min-width: $bp-desktop) {
+		flex-basis: auto;
+	}
+}
+
+.headerNavWrapper {
+	position: fixed;
+	left: 0;
+	top: pxToRem(80px);
+	width: 100%;
+	bottom: 0;
+	display: block;
+	transform: translate3d(-100%, 0, 0);
+	transition: ease-out transform $animShort;
+	z-index: 1000;
+	background-color: getUiColour(bg);
+	overflow: auto;
+
+	@media (min-width: $bp-desktop) {
+		position: relative;
+		transform: translate3d(0, 0, 0);
+		top: 0;
+		padding: 0;
+		transition: none;
+		background-color: getUiColour(bgLight);
+		overflow: visible;
+		//width: calc(100% - 132px);
+		width: auto;
+	}
+}
+
+.headerNav {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	text-align: left;
+	box-sizing: border-box;
+	padding: 0;
+
+	@media (min-width: $bp-desktop) {
+		flex-wrap: nowrap;
+		flex-direction: row;
+	}
+
+	ul {
+		@include listNoStyle();
+		margin: 0;
+
+		@media (min-width: $bp-desktop) {
+			text-align: right;
+
+		}
+
+		ul {
+			li {
+				a {
+					padding: 0 getPadding() 0 pxToRem(map-get($padding, default) * 2);
+					@media (min-width: $bp-desktop) {
+						padding: 0;
+					}
+				}
+
+				&:nth-child(1) {
+					margin: 0;
+				}
+			}
+
+			@media (min-width: $bp-desktop) {
+
+				@each $theme, $key in $colours {
+
+					.theme-#{$theme} {
+						background-color: getUiColour(bgLight);
+
+						a {
+							color: getUiColour(text);
+						}
+					}
+				}
+			}
+		}
+
+		li {
+
+			@media (min-width: $bp-desktop) {
+				margin: 0 0 0 getPadding();
+			}
+
+			@media (min-width: $bp-desktop) {
+				width: auto;
+				display: inline-block;
+				vertical-align: bottom;
+			}
+
+			a {
+				padding: 0 getPadding();
+				box-sizing: border-box;
+				@media (min-width: $bp-desktop) {
+					padding: 0;
+				}
+			}
+		}
+	}
+
+	p {
+		margin: 0;
+		padding: 0 getPadding();
+		line-height: pxToRem(44px);
+		@media (min-width: $bp-desktop) {
+			display: none;
+		}
+	}
+
+	a {
+		//color: #fff;
+		display: none;
+		line-height: pxToRem(44px);
+
+		&:hover {
+			text-decoration: none;
+			@media (min-width: $bp-desktop) {
+
+				margin-bottom: pxToRem(-3px);
+
+				&::after {
+					height: pxToRem(3px);
+				}
+			}
+		}
+
+		&:focus {
+			text-decoration: none;
+
+			@media (min-width: $bp-desktop) {
+
+				margin-bottom: pxToRem(-3px);
+
+				&::after {
+					height: pxToRem(3px);
+				}
+			}
+		}
+
+		@media (min-width: $bp-desktop) {
+			display: block;
+			font-weight: $fontBold;
+			line-height: 1;
+			overflow: visible;
+			margin-bottom: 0;
+			transition: ease-out $animShort margin-bottom;
+
+			&::after {
+				position: relative;
+				left: 0;
+				bottom: pxToRem(-3px);
+				width: 100%;
+				height: 0;
+				background-color: getUiColour(text, default);
+				display: block;
+				transition: ease-out $animShort height;
+				content: "";
+			}
+		}
+
+		&.active {
+			margin-bottom: pxToRem(-3px);
+			@media (min-width: $bp-desktop) {
+
+				&::after {
+					height: pxToRem(3px);
+					background-color: getUiColour(bg, brand5);
+				}
+			}
+		}
+	}
+}
+
+html[lang="cy-GB"] {
+
+	.headerNav {
+
+		ul {
+
+			li {
+
+				a {
+
+					@media (min-width: $bp-desktop) {
+						max-width: pxToRem(75px);
+					}
+
+					@media (min-width: $page-width) {
+						max-width: pxToRem(120px);
+					}
+				}
+			}
+		}
+	}
+}
+
+.menuOpen {
+
+	.headerNavWrapper {
+		transform: translate3d(0, 0, 0);
+	}
+
+	.headerNav {
+
+		a {
+			display: inline;
+		}
+	}
+}
+
+.logo-underscore {
+	fill: getUiColour(bg, default);
+}
+
+.logo-text {
+	fill: getUiColour(bg, default);
+}

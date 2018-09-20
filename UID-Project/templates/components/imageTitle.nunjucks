@@ -1,0 +1,4 @@
+<div class="imageTitle">
+	<img src="{{ imageSrc }}" alt="{{ imageTitle }}" />
+	<h4>{{ imageTitle }}</h4>
+</div>

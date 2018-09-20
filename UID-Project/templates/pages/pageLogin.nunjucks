@@ -1,0 +1,68 @@
+{% set pageTitle = "Testing" %}
+{% set pageDesc = "Testing static templates" %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand5 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<h1>Login</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div id="login_form">
+							<form id="login">
+								<div class="umbraco-forms-page">
+									<fieldset class="umbraco-forms-fieldset">
+										<div class="row-fluid">
+											<div class="umbraco-forms-container col-md-12">
+												<div class="umbraco-forms-field username shortanswer mandatory">
+													<label for="Username" class="umbraco-forms-label">Username<span class="umbraco-forms-indicator">*</span></label>
+													<span class="umbraco-forms-tooltip help-block">Please enter your username</span>
+													<div class="umbraco-forms-field-wrapper">									
+														<input type="text" name="Username" id="Username" class=" text" value="" placeholder="Username *" data-val="true" data-val-required="Please enter your username">
+														<span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+
+												<div class="umbraco-forms-field password shortanswer mandatory">
+													<label for="Password" class="umbraco-forms-label">Password<span class="umbraco-forms-indicator">*</span></label>
+													<span class="umbraco-forms-tooltip help-block">Please enter your password</span>
+													<div class="umbraco-forms-field-wrapper">									
+														<input type="password" name="Password" id="Password" class=" text" value="" placeholder="Password *" data-val="true" data-val-required="Please enter your password">
+														<span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+													</div>
+												</div>
+
+												<div class="umbraco-forms-navigation row-fluid">
+													<div class="col-md-12">
+															<input type="submit" class="btn primary" value="Login" name="login">
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

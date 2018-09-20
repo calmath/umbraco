@@ -1,0 +1,49 @@
+﻿@using AutoMapper.Internal
+@using Newtonsoft.Json.Linq
+@using Umbraco.Web.Templates
+@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
+
+@{
+    Layout = "";
+}
+
+@{
+    int count = 0;
+}
+
+<div class="accordions">
+
+    @foreach (var item in Model.Items)
+    {
+        var theme = string.Empty;
+
+        if (item.GetValue<string>("theme").ToNullSafeString() != null)
+        {
+            var jArray = JArray.Parse(item.GetValue<string>("theme").ToNullSafeString());
+            if (jArray != null && jArray.HasValues && !string.IsNullOrWhiteSpace(jArray.First.Value<string>()))
+            {
+                int intValue;
+                var value = jArray.First.ToString();
+                if (int.TryParse(value, out intValue))
+                {
+                    theme = Umbraco.GetPreValueAsString(intValue);
+                }
+            }
+        }
+
+        <input type="radio" name="testA" id="testA-@count" class="accordionControl" />
+        <div role="heading" class="accordionHeader theme-brand1">
+            <label for="testA-@count" type="button" class="accordionButton" tabindex="0">
+                <span class="accordionTitle">@item.GetValue("question")</span>
+                <span class="accordionIcon"><svg class="icon"><use xlink:href="#svg-plus" class="closed"></use><use xlink:href="#svg-minus" class="opened"></use></svg></span>
+            </label>
+        </div>
+        <div role="region" class="accordionWrapper">
+            <div class="accordionContent">
+                @Html.Raw(item.GetValue("answer"))
+            </div>
+        </div>
+        count++;
+    }
+</div>
+

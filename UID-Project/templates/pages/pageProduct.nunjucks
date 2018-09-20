@@ -1,0 +1,45 @@
+{% set productObj = data[language].shop.products[0] %}
+{% set pageTitle = productObj.title %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand5 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<h1>{{ pageTitle }}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="">
+							<img src="{{ productObj.image }}" alt="{{ productObj.name }}">
+						</div>
+					</div>
+					<div class="col-md-3 column">
+						<div class="">
+							<h4>{{ productObj.title }}
+							<br/>
+							{{ productObj.description }}
+							<br>
+							{{ productObj.price }}</h4>
+						</div>
+					</div>
+					<div class="col-md-3 column">
+						<div class="">
+							{% include "components/addToBasket.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

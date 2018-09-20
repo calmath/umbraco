@@ -1,0 +1,16 @@
+<a href="{{ data[language].text.pages[blockTitle].link }}" title="{{ data[language].text.pages[blockTitle].title }}">
+	<div class="bgImageBlock">
+		<div class="bgImageBlock_img bgLight">
+			{% if showImage %}
+			<img src="/images/example{{ blockTitle }}.jpg" alt="test image" />
+			{% endif %}
+		</div>
+		<div class="bgImageBlock_title">
+			<h3 class="bottomBorder">{{ data[language].text.pages[blockTitle].title }}</h3>
+			<div class="borderBottomAnimate"></div>
+		</div>
+		<div class="bgImageBlock_text">
+			{{ data[language].text.pages[blockTitle].copy }}
+		</div>
+	</div>
+</a>

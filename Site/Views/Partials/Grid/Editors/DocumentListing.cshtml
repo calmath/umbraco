@@ -1,0 +1,28 @@
+﻿@using AutoMapper.Internal
+@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
+
+@{
+    Layout = "";
+}
+
+<div class="pdfs row">
+
+    @foreach (var item in Model.Items)
+    {
+        var heading = item.GetValue("heading").ToNullSafeString();
+        var description = item.GetValue("description").ToNullSafeString();
+        var document = item.GetValue<IPublishedContent>("document");
+
+        <a href="@document.Url" title="@description">
+            <span role="text" class="pdfIcon">
+                <svg>
+                    <use xlink:href="#svg-pdf"></use>
+                </svg>
+                <span>@heading</span>
+
+            </span>
+        </a>
+    }
+
+
+</div>

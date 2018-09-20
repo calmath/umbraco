@@ -1,0 +1,40 @@
+{% set shopObj = data[language].shop %}
+{% set pageTitle = shopObj.title %}
+{% set pageDesc =  shopObj.copy %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand5 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<h1>{{ pageTitle }}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				{% set products = shopObj.products %}
+				{% for row in products|batch(3) %}
+				<div class="row clearfix">
+					{% for product in row %}
+					<div class="col-md-4 column">
+						<div class="wysiwyg">
+							<a href="/shop/product.html"><img src="{{ product.listingimage }}" alt="{{ product.name }}"></a>
+							<h4><a href="/shop/product.html">{{ product.title }}</a>
+							<br/>
+							<a href="/shop/product.html">{{ product.price }}</a></h4>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

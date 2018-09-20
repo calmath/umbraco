@@ -1,0 +1,77 @@
+<div ng-controller="UmbracoDeploy.DeployDialogController as vm">
+
+    <div class="umb-dialog-body">
+        
+        <div class="umb-pane" ng-cloak>
+            
+            <div ng-if="!vm.deploy.status">
+
+                <h4 class="bold">Deploy <em>{{ vm.currentNode.name }}</em> to {{ vm.config.Target.Name }}</h4>
+
+                <p>You are deploying <em>{{ vm.currentNode.name }}</em> directly to {{ vm.config.Target.Name }}, without adding it to the queue.</p>
+                
+                <div style="margin-bottom: 10px;" ng-if="vm.currentNode.hasChildren">
+                    <p>Should all pages below <span class="bold">{{vm.currentNode.name}}</span> be included in the deploy, or is it only <span class="bold">{{ vm.currentNode.name }}</span> you want to deploy to {{ vm.config.Target.Name }}?</p>
+                    <label>
+                        <input style="margin-top: 0;" type="checkbox" ng-model="vm.includeDescendants"/>
+                        Include all pages below "<span class="bold">{{ vm.currentNode.name }}</span>"
+                    </label>
+                </div>
+
+                <umb-button
+                    type="button"
+                    button-style="success"
+                    action="vm.startInstantDeploy()"
+                    label="Deploy"
+                    state="vm.deployButtonState">
+                </umb-button>
+
+            </div>
+
+            <ud-deploy-progress
+                ng-if="vm.deploy.status === 'inProgress'"
+                progress="vm.deploy.deployProgress"
+                target-name="vm.config.Target.Name"
+                current-activity="vm.deploy.currentActivity"
+                timestamp="vm.deploy.timestamp"
+                server-timestamp="vm.deploy.serverTimestamp">
+            </ud-deploy-progress>
+            
+            <ud-deploy-complete
+                ng-if="vm.deploy.status === 'completed'"
+                target-name="vm.config.Target.Name"
+                target-url="vm.config.Target.Url"
+                on-back="nav.hideDialog()"
+                timestamp="vm.deploy.timestamp"
+                server-timestamp="vm.deploy.serverTimestamp">
+            </ud-deploy-complete>
+            
+            <ud-error
+                ng-if="vm.deploy.error.hasError"
+                comment="vm.deploy.error.comment"
+                log="vm.deploy.error.log"
+                exception="vm.deploy.error.exception"
+                status="vm.deploy.status"
+                operation="deploy"
+                on-back="vm.resetDeploy()"
+                on-debug="vm.showDebug()"
+                timestamp="vm.deploy.timestamp"
+                server-timestamp="vm.deploy.serverTimestamp"
+                show-debug="vm.deploy.showDebug">
+            </ud-error>
+
+            <div class="umb-deploy-debug" ng-if="vm.deploy.showDebug">
+                <div class="umb-deploy-debug-console" ng-bind-html-unsafe="vm.deploy.trace"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="umb-dialog-footer btn-toolbar umb-btn-toolbar">
+        <a class="btn btn-link ng-scope" ng-click="nav.hideDialog()">
+            <localize key="general_close">Close</localize>
+        </a>
+    </div>
+
+</div>

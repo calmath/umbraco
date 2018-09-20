@@ -1,0 +1,90 @@
+.ctaBlock {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0 getPadding() getPadding();
+	box-sizing: border-box;
+
+	@media (min-width: $bp-desktop) {
+		padding: 0;
+	}
+
+	.innerWrap {
+		border-width: pxToRem(1px);
+		border-style: solid;
+		height: 100%;
+		transition: $animShort ease-out background-color, $animShort ease-out border;
+	}
+}
+
+.col-md-8 + .col-md-4, .col-md-8 + .col-md-3 {
+	.ctaBlock {
+		.innerWrap {
+			height: auto;
+		}
+	}
+}
+
+[class*="theme-"] {
+	.ctaBlock {
+		background-color: getUiColour(bgLight);
+	}
+}
+
+.cta_icon {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding: 0 getPadding() getPadding() 0;
+	margin: 0;
+	text-align: right;
+	display: block;
+	box-sizing: border-box;
+
+	svg {
+		position: relative;
+		width: pxToRem(40px);
+		height: pxToRem(40px);
+		display: block;
+		margin: 0 0 0 auto;
+
+		use {
+			transition: $animShort ease-out fill;
+		}
+	}
+}
+
+@each $theme, $key in $colours {
+
+	.theme-#{$theme} {
+
+		a:hover, a:focus {
+
+			.ctaBlock {
+
+				h3 {
+					//@if($theme != "brand1" and $theme != "brand2") {
+					color: getUiColour(bg, $theme);
+					//}
+				}
+
+				.bgImageBlock_text {
+
+					//@if($theme != "brand1" and $theme != "brand2") {
+					color: getUiColour(bg, $theme);
+					//}
+				}
+
+				.bottomBorder {
+					border-bottom: pxToRem(3px) solid getUiColour(outline, $theme);
+				}
+
+			}
+		}
+
+	}
+}

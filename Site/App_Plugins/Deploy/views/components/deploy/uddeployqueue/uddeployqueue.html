@@ -1,0 +1,72 @@
+<div>
+    
+    <div ng-if="items.length == 0">
+        <h4 class="bold">No pending changes</h4>
+        <p>The queue is currently empty, everything has been transfered already - to add new items to the queue right click content in the tree on the left and select "queue for transfer"</p>
+
+        <umb-button
+            type="button"
+            button-style="success"
+            action="refreshQueue()"
+            label="Refresh">
+        </umb-button>
+
+    </div>
+
+    <div ng-if="items.length > 0">
+
+        <h4 class="bold">
+            <ng-pluralize
+                count="items.length"
+                when="{
+                    '1': '1 content change ',
+                    'other': '{} content changes '}">
+            </ng-pluralize>ready to send to the {{ targetName }} workspace
+        </h4>
+
+        <p>Content changes have been queued for transfer, these changes can be transfered directly from here</p>
+
+        <div class="ud-queque">
+
+            <div ng-repeat="(entityType, items) in items | grpByEntityType">
+                
+                <h5 class="ud-queque__group-title" ng-click="toggleEntityTypeItems(items)">{{entityType | entityTypeToName}} ({{items.length}})</h5>
+                
+                <ul class="umb-deploy-item-list" ng-show="items.showItems">
+                    <li ng-repeat="item in items">
+                        <umb-node-preview
+                            class="ud-node-preview"
+                            name="item.Name"
+                            allow-remove="true"
+                            on-remove="removeFromQueue(item)"
+                            description="item.IncludeDescendantsText">
+                        </umb-node-preview>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <div class="flex items-center">
+
+            <umb-button
+                type="button"
+                button-style="success"
+                disabled="buttonState === 'busy'"
+                action="startDeploy()"
+                label="Send changes to the {{ targetName }} workspace"
+                state="deployButtonState">
+            </umb-button>
+
+            <umb-button
+                type="button"
+                button-style="link"
+                action="clearQueue()"
+                label="Clear queue">
+            </umb-button>
+
+        </div>
+
+    </div>
+
+</div>

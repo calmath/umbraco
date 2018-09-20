@@ -1,0 +1,87 @@
+{% set pageObj = data[language].examples[page] %}
+{% set pageTitle = pageObj.title %}
+{% set pageDesc =  pageObj.copy %}
+{% set heroText = pageObj.hero.text + pageObj.hero.bold %}
+{% set accordionIcon = '<svg class="icon"><use xlink:href="#svg-plus" class="closed"></use><use xlink:href="#svg-minus" class="opened"></use></svg>' %}
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-{{ pageObj.colour }} edge" style="background-image:url('/images/hero{{ page }}.jpg')">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						{% include "components/heroBlock.nunjucks" %}
+					</div>
+				</div>
+			</div>
+			<div class="theme-{{ pageObj.colour }} light">
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						<div class="wysiwyg">
+							<div>
+								{% include "content/" + page + "Body.nunjucks" %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="theme-{{ pageObj.colour }} edge light" id="imageTitle">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="imageTitle">
+							<img src="/images/{{ pageObj.colour }}-lock.jpg" alt="Confidential">
+							<h4>Confidential</h4>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="imageTitle">
+							<img src="/images/{{ pageObj.colour }}-group.jpg" alt="0800 321 3137">
+							<h4>0800 321 3137</h4>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="imageTitle">
+							<img src="/images/{{ pageObj.colour }}-phone.jpg" alt="Free">
+							<h4>Free</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+						<div>
+							{% set accordions = pageObj.accordions %}
+							<div class="accordions">
+								{% for accordion in accordions %}
+								{% set accordIdInd = accordion.name + "-" + accordion.index %}
+								<input type="radio" name="{{ accordion.name }}" id="{{ accordIdInd }}" class="accordionControl" />
+								<div role="heading" class="accordionHeader{{ accordion.class }}">
+									<label for="{{ accordIdInd }}" type="button" class="accordionButton" tabindex="0">
+										<span class="accordionTitle">{{ accordion.title }}</span>
+										<span class="accordionIcon">{{ accordionIcon | safe }}</span>
+									</label>
+								</div>
+								<div role="region" class="accordionWrapper">
+									<div class="accordionContent">		
+										{{ accordion.content | safe }}
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 column">
+						<div class="theme-{{ pageObj.colour }}">
+							{% set blockTitle = page %}
+							{% include "components/cta.nunjucks" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

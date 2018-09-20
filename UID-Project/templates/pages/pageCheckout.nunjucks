@@ -1,0 +1,31 @@
+{% set basketObj = data[language].basket %}
+{% set pageTitle = basketObj.title %}
+
+{% extends "mainLayout.nunjucks" %}
+
+{% block content %}
+<main>
+	<div class="umb-grid">
+		<div class="grid-section">
+			<div class="theme-brand5 edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div>
+							<h1>{{ pageTitle }}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edge">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="">
+							<h4>Checkout</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

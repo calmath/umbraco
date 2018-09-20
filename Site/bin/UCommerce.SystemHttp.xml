@@ -1,0 +1,434 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UCommerce.SystemHttp</name>
+    </assembly>
+    <members>
+        <member name="T:UCommerce.SystemHttp.App_Start.PreStartEnableAttributesRoutes">
+            <summary>
+            Enables attribute routing in WebAPI.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.App_Start.PreStartEnableAttributesRoutes.EnableAttributesRoutes">
+            <summary>
+            Enable attribute routing in WebAPI.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Attributes.IsAuthenticatedAttribute">
+            <summary>
+            Attribute used to ensure the caller is authenticated.
+            </summary>
+        </member>
+        <member name="P:UCommerce.SystemHttp.Attributes.IsAuthenticatedAttribute.AllowMultiple">
+            <inheritdoc />
+        </member>
+        <member name="M:UCommerce.SystemHttp.Attributes.IsAuthenticatedAttribute.ExecuteActionFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Ensures the caller is authenticated.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Attributes.IsInRoleAttribute">
+            <summary>
+            Ensures the caller has the role specified.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Attributes.IsInRoleAttribute.#ctor(System.Type)">
+            <summary>
+            Constructs the attribute.
+            </summary>
+        </member>
+        <member name="P:UCommerce.SystemHttp.Attributes.IsInRoleAttribute.AllowMultiple">
+            <inheritdoc />
+        </member>
+        <member name="M:UCommerce.SystemHttp.Attributes.IsInRoleAttribute.ExecuteActionFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Ensure the caller has the role specified.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceAppsController">
+            <summary>
+            Web services related to the apps framework.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceAppsController.GetInstalledApps">
+            <summary>
+            Gets a list of installed apps.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceAppsController.GetMaxRequestLength">
+            <summary>
+            Returns the max request length accepted by the system.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceAppsController.Post(UCommerce.SystemHttp.Controllers.UcommerceAppsController.UploadAppRequest)">
+            <summary>
+            Upload an app.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceAppsController.Post(UCommerce.SystemHttp.Controllers.UcommerceAppsController.InstallAppRequest)">
+            <summary>
+            Install an app.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceAppsController.Post(UCommerce.SystemHttp.Controllers.UcommerceAppsController.UninstallAppRequest)">
+            <summary>
+            Uninstall an app.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceAppsController.UploadAppRequest">
+            <summary>
+            DTO.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceAppsController.InstallAppRequest">
+            <summary>
+            DTO.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceAppsController.UninstallAppRequest">
+            <summary>
+            DTO.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceCatalogSearchController">
+            <summary>
+            Web services related to searching in the catalog structure.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogSearchController.FullTextSearchForProductsWithSuggestions(UCommerce.SystemHttp.Models.CatalogSearchRequest)">
+            <summary>
+            Full text search for products by name. Results include suggestions.
+            </summary>
+            <param name="request">Contains the search term that will be used for searching in product names.</param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogSearchController.FullTextSearchForProductsAndVariants(UCommerce.SystemHttp.Models.CatalogSearchRequest)">
+            <summary>
+            Full text search for products and variants by name. Results include suggestions.
+            </summary>
+            <param name="request">Contains the search term that will be used for searching in product and variant names.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceContentController">
+            <summary>
+            Web services related to the content trees.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceContentController.Nodes">
+            <summary>
+            DTO class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceContentController.Get(System.String)">
+            <summary>
+            Get the root node for a service type.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceContentController.Get(System.String,System.String,System.String)">
+            <summary>
+            Gets child nodes.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceContentController.GetImage(System.String)">
+            <summary>
+            Gets image url for a node.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceContentController.Post(UCommerce.SystemHttp.Controllers.UcommerceContentController.Nodes)">
+            <summary>
+            Get specific child nodes.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceDefinitionsController">
+            <summary>
+            Web services related to the definition graph.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceDefinitionsController.Get">
+            <summary>
+            Service used for getting the graph data for Product Definitions.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceDefinitionsController.Get(System.Int32)">
+            <summary>
+            Service used for getting the graph data for all definitions, except products.
+            </summary>
+            <param name="id">The id of the type of definition.</param>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceLocalizationController">
+            <summary>
+            Web services related to localization.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceLocalizationController.Language">
+            <summary>
+            DTO class.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceLocalizationController.Post(UCommerce.SystemHttp.Controllers.UcommerceLocalizationController.Language)">
+            <summary>
+            Returns a list of translated string for a specific language.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceCatalogDeleteController">
+            <summary>
+            Web services related to deleting catalog entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogDeleteController.DeleteCatalogGroup(System.Int32)">
+            <summary>
+            Delete catalog group.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogDeleteController.DeleteCatalog(System.Int32)">
+            <summary>
+            Delete catalog.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogDeleteController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete category.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceCatalogDeleteController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete product.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceMarketingDeleteController">
+            <summary>
+            Web services related to deleting marketing entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceMarketingDeleteController.DeleteCampaign(System.Int32)">
+            <summary>
+            Delete campaign.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceMarketingDeleteController.DeleteCampaignItem(System.Int32)">
+            <summary>
+            Delete campaign item.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceSettingsCatalogDeleteController">
+            <summary>
+            Web services related to deleting catalog settings entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsCatalogDeleteController.DeleteCatalogPriceGroup(System.Int32)">
+            <summary>
+            Delete price group.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsCatalogDeleteController.DeleteProductRelationType(System.Int32)">
+            <summary>
+            Delete product relation type.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController">
+            <summary>
+            Web services related to deleting definition entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteProductDefinition(System.Int32)">
+            <summary>
+            Delete product definition.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteProductDefinitionField(System.Int32)">
+            <summary>
+            Delete product definition field.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteDefinition(System.Int32)">
+            <summary>
+            Delete definition.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteDefinitionField(System.Int32)">
+            <summary>
+            Delete definition field.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteDataType(System.Int32)">
+            <summary>
+            Delete data type.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsDefinitionDeleteController.DeleteDataTypeEnum(System.Int32)">
+            <summary>
+            Delete data type enum.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController">
+            <summary>
+            Web services related to deleting order settings entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController.DeleteShippingMethod(System.Int32)">
+            <summary>
+            Delete shipping method.
+            </summary>
+            <param name="shippingMethodId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController.DeletePaymentMethod(System.Int32)">
+            <summary>
+            Delete payment method.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController.DeleteCountry(System.Int32)">
+            <summary>
+            Delete country.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController.DeleteCurrency(System.Int32)">
+            <summary>
+            Delete currency.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsOrderDeleteController.DeleteOrderNumberSerie(System.Int32)">
+            <summary>
+            Delete order number series.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceSettingsEmailDeleteController">
+            <summary>
+            Web services related to deleting email settings entities.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsEmailDeleteController.DeleteEmailProfile(System.Int32)">
+            <summary>
+            Delete email profile.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSettingsEmailDeleteController.DeleteEmailType(System.Int32)">
+            <summary>
+            Delete email type.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceSynchronizationController">
+            <summary>
+            Web services related to synchronization of Ucommerce data.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceSynchronizationController.GetExportProductForCategory(System.Int32)">
+            <summary>
+            Returns stream of all product data in specified category.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceWidgetCatalogController">
+            <summary>
+            Web services related to the catalog widgets.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetCatalogController.Post(UCommerce.SystemHttp.Models.CatalogSearchRequest)">
+            <summary>
+            Gets products based on a full text search.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceWidgetMarketingController">
+            <summary>
+            Web services related to marketing widgets.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetMarketingController.Get">
+            <summary>
+            Gets a timeline of the active campaigns.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceWidgetController">
+            <summary>
+            Web services related to the widget framework.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetController.Get">
+            <summary>
+            Gets all widgets.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetController.Get(System.String)">
+            <summary>
+            Gets a user's section setup.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetController.Post(UCommerce.SystemHttp.Models.AddWidgetRequest)">
+            <summary>
+            Adds a widget to a user's section.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetController.Get(System.Int32)">
+            <summary>
+            Removes a widget from a user's section.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetController.Post(UCommerce.SystemHttp.Models.UpdateWidgetRequest)">
+            <summary>
+            Updates a widget's settings.
+            </summary>
+            <param name="widgetRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController">
+            <summary>
+            Web services related to order widgets.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController.Get">
+            <summary>
+            Get the available order statuses.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController.Post(UCommerce.SystemHttp.Models.PurchaseOrderCountRequest)">
+            <summary>
+            Gets a sum of orders based on order statuses and time, grouped by store.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController.Post(UCommerce.SystemHttp.Models.PurchaseOrderSearchRequest)">
+            <summary>
+            Get a summary of orders based on interval and order statuses.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController.Get(System.String)">
+            <summary>
+            Get orders per day based on an interval.
+            </summary>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Controllers.UcommerceWidgetOrderController.CurrencySummaryToday(System.String)">
+            <summary>
+            Get revenue summary grouped by currency.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Models.AddWidgetRequest">
+            <summary>
+            DTO class.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Models.UpdateWidgetRequest">
+            <summary>
+            DTO class.
+            </summary>
+        </member>
+        <member name="T:UCommerce.SystemHttp.Pipelines.Initialize.ReinitializeWebApiControllerCache">
+            <summary>
+            Poke the WebAPI internal cache to get it to re-read the controllers.
+            </summary>
+            <remarks>
+            WebAPI initializes its internal cache of available controllers in a "PreApplicationStartMethod".
+            Ucommerce loads all the assemblies found in the "Apps" folder in a "PreApplicationStartMethod".
+            
+            This introduces a race condition, since the order of execution of "PreApplicationStartMethod" cannot be controlled.
+            
+            So in order for any custom WebAPI controllers found in assemblies in "Apps" to be picked up by WebAPI,
+            we need a little magic to get it to re-initialize its internal list, at a point where we know the
+            additional assemblies have been loaded.
+            </remarks>
+        </member>
+        <member name="M:UCommerce.SystemHttp.Pipelines.Initialize.ReinitializeWebApiControllerCache.Execute(UCommerce.Pipelines.Initialization.InitializeArgs)">
+            <summary>
+            Find the internal controller caches, using reflection, and "persuade" them to re-initialize.
+            </summary>
+        </member>
+    </members>
+</doc>

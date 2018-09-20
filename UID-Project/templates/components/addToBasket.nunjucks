@@ -1,0 +1,43 @@
+<div id="addToBasket_form">
+	<form id="login">
+		<div class="umbraco-forms-page">
+			<fieldset class="umbraco-forms-fieldset">
+				<div class="row-fluid">
+					<div class="umbraco-forms-container col-md-12">
+						<div class="umbraco-forms-field size dropdown mandatory">
+							<label for="Size" class="umbraco-forms-label">Size<span class="umbraco-forms-indicator">*</span></label>
+							<span class="umbraco-forms-tooltip help-block">Please enter your size</span>
+							<div class="umbraco-forms-field-wrapper">
+								<select name="Size" id="Size" class="valid" placeholder="Password *" data-val="true" data-val-required="Please enter your size" aria-required="true" aria-invalid="false" aria-describedby="Size-error">
+									<option value="First">First</option>
+									<option value="Second">Second</option>
+								</select>									
+								<span class="field-validation-valid" data-valmsg-for="Size" data-valmsg-replace="true"></span>
+							</div>
+						</div>
+
+						<div class="umbraco-forms-field quantity dropdown mandatory">
+							<label for="Quantity" class="umbraco-forms-label">Quantity<span class="umbraco-forms-indicator">*</span></label>
+							<span class="umbraco-forms-tooltip help-block">Please enter your quantity</span>
+							<div class="umbraco-forms-field-wrapper">
+								<select name="Quantity" id="Quantity" class="valid" placeholder="Quantity *" data-val="true" data-val-required="Please enter your quantity" aria-required="true" aria-invalid="false" aria-describedby="Size-error">
+									{% for i in range(1, 10) -%}
+										<option value="{{ i }}">{{ i }}</option>
+									{%- endfor %}
+								</select>									
+								<span class="field-validation-valid" data-valmsg-for="Quantity" data-valmsg-replace="true"></span>
+							</div>
+						</div>
+
+						<div class="umbraco-forms-navigation row-fluid">
+							<div class="col-md-12">
+									<input type="submit" class="btn primary" value="Add To Basket" name="addToBasket">
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+</div>

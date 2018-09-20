@@ -1,0 +1,3 @@
+<div class="login">
+	<a href="{{ data[language].login.url }}" title="{{ data[language].login.title }}" id="login">{{ data[language].login.title }}</a>
+</div>

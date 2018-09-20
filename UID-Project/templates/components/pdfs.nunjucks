@@ -1,0 +1,12 @@
+<div class="pdfs row">
+	{% for i in range(0, 10) %}
+	<a href="#">
+		<span role="text" class="pdfIcon">
+			<svg>
+				<use xlink:href="#svg-pdf"></use>
+			</svg>
+			<span>PDF file {{ i }}</span>
+		</span>
+	</a>
+	{% endfor %}
+</div>

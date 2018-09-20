@@ -1,0 +1,102 @@
+/// Size of icons without min tap size
+/// @group Components
+/// @access public
+/// @type pixel
+$iconSize: 15px;
+/// Minimum tap size of an interactive element
+/// @group Components
+/// @access public
+/// @type pixel
+$tapSize: 40px;
+/// Animation timing for standard ui interactions
+/// @group Animation
+/// @access public
+/// @type number
+$animShort : 0.2s;
+/// Animation timing for longer ui interactions
+/// @group Animation
+/// @access public
+/// @type number
+$animMed : 0.8s;
+$pageWidth: 1200px;
+/// Map of padding values
+/// @group Configuration
+/// @access public
+/// @type map
+/// @prop {pixel} padding.default - 25px, small padding for mobile
+/// @prop {pixel} padding.desktop - 64px, padding for desktop sized viewports
+$padding: (
+	default : 25px,
+	desktop : 64px
+);
+/// Returns the rem value from the padding map
+/// @param {string} $size - Padding size to get from padding map
+/// @group utils
+@function getPadding($size: default) {
+	@return pxToRem(map-get($padding, $size));
+}
+/// Sets the object fit with fallback when there's no support
+/// @param {string} $mode - Parameter value for object-fit
+/// @group utils
+@mixin objectFit($mode : cover) {
+
+	object-fit: $mode;
+
+	@if($mode == cover) {
+		@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+			height: auto;
+			top: 50%;
+			transform: translate3d(0, -50%, 0);
+			position: relative;
+			width: 110%;
+		}
+	}
+}
+
+@include setConfig(18, 0, 1200px);
+
+.hide {
+	display: none;
+}
+
+.access {
+	@include offscreenMixin();
+}
+
+img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+}
+
+.button {
+	@include resetButtonStyle();
+	padding: pxToRem((40px - $base-font-size) / 2) 0;
+	transition: $animShort ease-out background-colour;
+
+	@media(min-width: $bp-desktop) {
+		padding: pxToRem((40px - $base-font-size) / 2) getPadding();
+	}
+
+	&.icon {
+		width: pxToRem(40px);
+		height: pxToRem(40px);
+
+		svg {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+
+			use {
+				transition: $animShort ease-out fill;
+			}
+		}
+	}
+}
+
+.align-right {
+	text-align: right;
+}

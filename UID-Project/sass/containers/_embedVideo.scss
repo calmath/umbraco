@@ -1,0 +1,38 @@
+.video-wrapper {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 0 !important;
+	padding: 0 0 calc(100% * 9/16);
+	display: block;
+
+	iframe {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		border: 0;
+	}
+}
+
+//@for $i from 1 to $maxCols {
+//
+//	$ratio : 9 / 16;
+//	$videoWidth : ($i / 12) * 100vw;
+//	$maxVideoWidth : pxToRem(($i / 12) * $pageWidth);
+//
+//	.col-md-#{$i} {
+//		.video-wrapper {
+//
+//			@media (min-width: $bp-desktop) {
+//				padding: 0 0 calc(#{$videoWidth} * #{$ratio});
+//			}
+//			@media (min-width: pxToRem($pageWidth)) {
+//				padding: 0 0 calc(#{$maxVideoWidth} * #{$ratio});
+//			}
+//		}
+//	}
+//}
