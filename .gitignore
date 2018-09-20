@@ -41,11 +41,16 @@ Site/App_Data/*
 !Site/App_Data/packages
 
 Site/log.txt
+
+Site/css/style.css
+Site/Scripts/index.js
+
 Site/data/deploy*
 
 Site/App_Plugins/UmbracoForms/[Ii]nstalled
 
 /Site/media/*
+/Site/data/Revision/*
 /Site/data/Revision/documents/*
 /Site/data/Revision/media/*
 /Site/data/Revision/mediaproperties/*
