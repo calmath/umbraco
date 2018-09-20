@@ -1,0 +1,13 @@
+<h2>Accordion title</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis justo risus, ac congue erat placerat sed. Cras non lacus ultrices odio tristique facilisis. Aenean sit amet mauris tellus. Nulla facilisi. Aliquam et pharetra tellus. Proin id arcu eu nulla tincidunt scelerisque ut id est. Ut pharetra massa vel dapibus suscipit. Etiam laoreet mi at felis hendrerit, non lacinia urna accumsan. Integer eros nunc, consectetur ac placerat at, efficitur gravida turpis. Cras suscipit, massa at dictum commodo, dui urna tincidunt est, sit amet scelerisque ante nulla pellentesque enim.</p>
+<ul>
+	<li>Item A</li>
+	<li>Item B</li>
+	<li>Item C</li>
+</ul>
+<h3>Sub title</h3>
+<ol>
+	<li>Item D</li>
+	<li>Item E</li>
+	<li>Item F</li>
+</ol>

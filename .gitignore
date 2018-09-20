@@ -51,7 +51,8 @@ Site/App_Plugins/UmbracoForms/[Ii]nstalled
 /Site/data/Revision/mediaproperties/*
 /Site/data/Revision/properties/*
 
-node_modules/
+node_modules/*
+!node_modules/uid-framework/
 bower_components/
 docs/
 package-lock.json

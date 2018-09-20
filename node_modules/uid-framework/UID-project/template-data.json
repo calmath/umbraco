@@ -1,0 +1,41 @@
+{
+	"components" : [
+		{
+			"link" : "/html/accordion.html",
+			"title" : "Accordions"
+		}
+	],
+	"accordions" : [
+		[
+			{
+				"index" : 0,
+				"name" : "testA",
+				"title" : "First Accordion",
+				"content" : "content/defaultAccordion.nunjucks"
+			},{
+				"index" : 1,
+				"name" : "testA",
+				"title" : "Second Accordion",
+				"content" : "content/defaultAccordion.nunjucks"
+			}
+		],
+		[
+			{
+				"index" : 0,
+				"name" : "testB",
+				"title" : "Third Accordion",
+				"content" : "content/defaultAccordion.nunjucks"
+			},{
+				"index" : 1,
+				"name" : "testB",
+				"title" : "Forth Accordion",
+				"content" : "content/defaultAccordion.nunjucks"
+			},{
+				"index" : 2,
+				"name" : "testB",
+				"title" : "Fifth Accordion",
+				"content" : "content/defaultAccordion.nunjucks"
+			}
+		]
+	]
+}
