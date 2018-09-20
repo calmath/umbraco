@@ -14,6 +14,3 @@ Run test server whilst listening for changes : ```gulp test-server```
 Run build version of files ```gulp build```
 
 More information about gulp tasks and writing UID code in the generated js and sass documentaion. These will open when test server is run.
-
-# Contribute
-No changes directly to master branch. Before commit, Sass, javascript and html are linted to check they are valid. If they fail the linting tests any changes can't be commited.
