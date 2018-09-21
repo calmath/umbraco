@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Joggers.Models
+namespace Generic.Models
 {
     public class LoginModel
     {

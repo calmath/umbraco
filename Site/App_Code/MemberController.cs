@@ -1,9 +1,9 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using Umbraco.Web.Mvc;
-using Joggers.Models;
+using Generic.Models;
 
-namespace Joggers.Controllers
+namespace Generic.Controllers
 {
     public class MemberController : SurfaceController
     {
