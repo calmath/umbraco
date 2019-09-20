@@ -61,6 +61,6 @@ Site/App_Plugins/UmbracoForms/[Ii]nstalled
 
 node_modules/*
 bower_components/
-docs/
+/docs/
 package-lock.json
 static/
