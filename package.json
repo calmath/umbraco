@@ -1,5 +1,5 @@
 {
-	"name": "Umbraco",
+	"name": "umbraco",
 	"version": "0.0.0",
 	"description": "Front end templates for umbraco",
 	"scripts": {
