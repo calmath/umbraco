@@ -1,0 +1,23 @@
+{##
+ # Single accordion item, must be a child of a HTML element with an
+ # 'accordions' class, if working with accordion.js
+ # @param accordion {object} - Attribute details and accordion content
+ # @param accordion.index {int} - Accordion index
+ # @param accordion.name {string} - Input name, unique to this group of accordions
+ # @param accordion.title {string} - Title that will always appear to distinguish the accordion
+ # @param accordion.content {string} - Path to nunjucks file with content for the accordion
+ # @param accordionIcon {string} - Html string for icon, can be empty if no icon is needed
+#}
+{% set accordionId = accordion.title | replace(" ", "-") | lower %}
+<input type="radio" name="{{ accordion.name }}" id="{{ accordion.name }}-{{ accordion.index }}" class="accordionControl" />
+<div role="heading" class="accordionHeader {{ accordion.class }}">
+	<label for="{{ accordion.name }}-{{ accordion.index }}" type="button" class="accordionButton" tabindex="0" id="{{ accordionId }}" >
+		<span class="accordionTitle">{{ accordion.title }}</span>
+		<span class="accordionIcon">{{ accordionIcon | safe }}</span>
+	</label>
+</div>
+<div role="region" class="accordionWrapper">
+	<div class="accordionContent">
+		{% include accordion.content %}
+	</div>
+</div>

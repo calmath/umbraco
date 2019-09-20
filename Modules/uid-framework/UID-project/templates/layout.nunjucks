@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{ pageTitle }}</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="{{ pageKeywords }}" />
+		<meta name="description" content="{{ pageDescription }}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		{% block head %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+		{% endblock %}
+		{% block content %}
+		{% endblock %}
+		{% block footer %}
+		{% endblock %}
+	</body>
+</html>

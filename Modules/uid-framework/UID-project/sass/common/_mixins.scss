@@ -1,0 +1,160 @@
+/// Clear fix
+/// @group utils
+@mixin clearfix() {
+	&::after {
+		content: "";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+/// Hide text that is only used by screen readers and not needed
+/// for the visible web
+/// @group utils
+@mixin offscreenMixin() {
+	margin: -1px;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+}
+/// Styles anchor tags without underlining until it has an interaction
+/// @group utils
+@mixin bareLink() {
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+/// Removes default list styles from elements
+/// @group utils
+@mixin listNoStyle() {
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	padding: 0;
+
+	>li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+/// Removes bottom padding and margins from the last child
+/// element, apply this include to the parent.
+/// @group utils
+@mixin lastElement() {
+	>*:last-child {
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+/// Clear default button styles
+/// @group utils
+@mixin resetButtonStyle() {
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+	border-radius: none;
+	text-align: left;
+}
+/// Clears unit from a numeric value
+/// @param {pixel|em|rem} $num - Value to remove unit from
+/// @group utils
+@function stripUnit($num) {
+	@return $num / ($num * 0 + 1);
+}
+/// Converts a pixel value to a rem.
+/// @param {pixel} $px - Pixel value to convert to a rem
+/// @see $base-font-size
+/// @see {mixin} stripUnit
+/// @group utils
+@function pxToRem($px) {
+	$value: stripUnit($px);
+	$remValue: 0;
+
+	@if $value != 0 {
+		$remValue: #{$value/$base-font-size}rem;
+	}
+
+	@return $remValue;
+}
+/// Converts a rem value to a pixel.
+/// @param {rem} $rem - Rem value to convert to a pixel
+/// @see $base-font-size
+/// @see {mixin} stripUnit
+/// @group utils
+@function remToPx($rem) {
+	$value: stripUnit($rem);
+	$pxValue: 0;
+
+	@if $value != 0 {
+		$pxValue: #{$value*$base-font-size}px;
+	}
+
+	@return $pxValue;
+}
+/// Values for property in REM and PX with 16px = 1rem adapted from mixin by Karl Merkli
+/// @group utils
+/// @param {property} $property - Property to populate values to
+/// @param {...mixed} $values - Spread values to populate
+/// @example
+/// pxRem(STRING PROPERTY, PXVAL1, PXVAL2, PXVAL3, PXVAL4)
+/// pxRem(margin, 20) or
+/// pxRem(margin, 20px) or
+/// pxRem(margin, 16, 16, 32, 24) or
+/// pxRem(margin, 16px, 16px, 32px, 24px)
+/// outputs:
+/// margin: 16px 16px 32px 24px;
+/// margin: 1rem 1rem 2rem 1.5rem;
+@mixin pxRem($property, $values...) {
+	$max: length($values);
+	$pxValues: "";
+	$remValues: "";
+
+	@for $i from 1 through $max {
+		$value: nth($values, $i);
+		@if type_of($value) != number {
+			$pxValues: #{$pxValues + $value};
+		} @else {
+			$value: stripUnit($value);
+
+			@if $value != 0 {
+				$pxValues: #{$pxValues + $value}px;
+			} @else {
+				$pxValues: #{$pxValues + $value};
+			}
+		}
+
+		@if $i < $max {
+			$pxValues: #{$pxValues + " "};
+		}
+	}
+
+	$remValues: "";
+
+	@for $i from 1 through $max {
+		$value: nth($values, $i);
+
+		@if type_of($value) != number {
+			$remValues: #{$remValues + $value};
+		} @else {
+			$value: stripUnit($value);
+			$remValues: #{$remValues + pxToRem($value)};
+		}
+
+		@if $i < $max {
+			$remValues: #{$remValues + " "};
+		}
+	}
+
+	#{$property}: $pxValues;
+	#{$property}: $remValues;
+}

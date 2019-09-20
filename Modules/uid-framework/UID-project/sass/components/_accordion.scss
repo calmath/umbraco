@@ -1,0 +1,72 @@
+/// 
+/// accordion
+/// Control css for accordion
+/// Works with :  
+/// - /html/components/accordion.nunjucks  
+/// - /html/components/accordionItem.nunjucks  
+/// - /js/components/accordion.js
+/// 
+/// Solution will work without javascript but can be
+/// extended with javascript for use with ui transitions.
+/// 
+/// Including the mixin will add basic accordion functionality
+/// to html elements using '/html/components/accordion.nunjucks'.
+/// 
+/// The following classes can be used to style the accordion
+/// html:  
+/// **.accordionHeader** - Wrapper for accordion header title and icon.  
+/// **.accordionButton** - Click/tap area for toggling the accordion.  
+/// **.accordionTitle** - Text title for accordion item.  
+/// **.accordionIcon** - Icon for accordion item.  
+/// **.accordionWrapper** - The accordion content mask.  
+/// **.accordionContent** - Style the opened accordion content, add
+/// padding/margins/colours etc here so as not to make the
+/// innercotent appear to be moving on toggle.
+/// 
+/// @group components
+/// @param {value} $iconTransform [rotate(180deg)] - When opened, 
+/// apply a style to the icon
+/// 
+/// 
+@mixin accordion($iconTransform: rotate(180deg)) {
+	.accordions {
+		height: auto;
+	}
+
+	input {
+
+		&.accordionControl {
+			display: none;
+		}
+
+		&:checked + .accordionHeader {
+
+			.accordionIcon {
+				transform: $iconTransform;
+			}
+
+			& + .accordionWrapper {
+				height: auto;
+			}
+		}
+	}
+
+	.accordionButton {
+		pointer-events: all;
+		cursor: pointer;
+		display: block;
+	}
+
+	.accordionTitle {
+		pointer-events: none;
+	}
+
+	.accordionIcon {
+		pointer-events: none;
+	}
+
+	.accordionWrapper {
+		height: 0;
+		overflow: hidden;
+	}
+}

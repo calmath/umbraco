@@ -1,0 +1,8 @@
+<nav class="breadcrumbs">
+	<p class="offscreen" id="breadcrumblabel">You are here:</p>
+	<ol class="breadcrumbs-list" aria-labelledby="breadcrumblabel">
+		<li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#">Home</a></li>
+		<li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#">Parent page</a></li>
+		<li class="breadcrumbs-item"><strong class="breadcrumbs-current">Current page</strong></li>
+	</ol>
+</nav>
