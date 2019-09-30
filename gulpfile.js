@@ -64,7 +64,34 @@ gulp.task('test', function() {
 
 gulp.task('copy', function () {
     gulp.src('./static/js/index.js')
-		.pipe(gulp.dest('./Site/Scripts/'));
+		.pipe(gulp.dest('./Scripts/'));
 	gulp.src('./static/css/style.css')
-        .pipe(gulp.dest('./Site/css/'));
+        .pipe(gulp.dest('./css/'));
+});
+
+gulp.task('publish', function () {
+    gulp.src('./App_Data/packages/*')
+		.pipe(gulp.dest('./publish//App_Data/packages/'));
+	gulp.src('./App_Plugins/**/*')
+		.pipe(gulp.dest('./publish//App_Plugins/'));
+	gulp.src('./bin/**/*')
+		.pipe(gulp.dest('./publish//bin/'));
+	gulp.src('./Config/**/*')
+		.pipe(gulp.dest('./publish//Config/'));
+	gulp.src('./css/**/*')
+		.pipe(gulp.dest('./publish//css/'));
+	gulp.src('./media/**/*')
+		.pipe(gulp.dest('./publish//media/'));
+	gulp.src('./scripts/**/*')
+		.pipe(gulp.dest('./publish//scripts/'));
+	gulp.src('./Umbraco/**/*')
+		.pipe(gulp.dest('./publish//Umbraco/'));
+	gulp.src('./uSync/**/*')
+		.pipe(gulp.dest('./publish//uSync/'));
+	gulp.src('./Views/**/*')
+		.pipe(gulp.dest('./publish//Views/'));
+	gulp.src('./Global.asax')
+		.pipe(gulp.dest('./publish/'));
+	gulp.src('./Web.config')
+        .pipe(gulp.dest('./publish/'));
 });
