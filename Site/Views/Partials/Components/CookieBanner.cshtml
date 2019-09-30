@@ -1,0 +1,20 @@
+﻿@using Umbraco.Web.Models;
+@using Umbraco.Web.PublishedModels;
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var cookieBanner = Model.Root() as ICookieBanner;
+}
+
+<div class="cookieBanner" id="cookieBanner">
+    <div class="cookieWrapper theme-default">
+        @Html.Raw(cookieBanner.Content)
+        <button class="button prime">@cookieBanner.ButtonText</button>
+    </div>
+    <button class="button icon">
+        <svg class="icon">
+            <use xlink:href="#svg-cross"></use>
+        </svg>
+    </button>
+</div>

@@ -1,6 +1,7 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.LoginPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
 @{
-    Layout = "Master.cshtml";
+    Layout = "master.cshtml";
 }
 
 @{ Html.RenderAction("RenderLogin", "Member"); }

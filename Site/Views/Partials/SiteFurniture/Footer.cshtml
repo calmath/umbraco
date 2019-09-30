@@ -1,30 +1,43 @@
 ﻿@using Umbraco.Web.Models;
-@using Umbraco.Web.PublishedContentModels;
+@using Umbraco.Web.PublishedModels;
 
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
 
 @{
-    var footer = Model.Content.Site() as IFooter;
+    var footer = Model.Root() as IFooter;
+    var fbLink = footer.Value<Link>("Facebook");
+    var instaLink = footer.Value<Link>("Instagram");
 }
 
 
 <footer>
     <div class="theme-default">
-        <div class="social">
-			<a href="https://www.facebook.com/" title="Facebook" target="_blank"><svg><use xlink:href="#svg-facebook"></use></svg></a>
-            <a href="https://www.instagram.com/" title="Instagram" target="_blank"><svg><use xlink:href="#svg-instagram"></use></svg></a>
-            <a href="mailto:email@company.com" title="Email" target="_blank"><svg><use xlink:href="#svg-email"></use></svg></a>
-		</div>
+        @if (fbLink != null || instaLink != null || !string.IsNullOrWhiteSpace(footer.Email))
+        {
+            <div class="social">
+                @if (fbLink != null)
+                {
+                  <a href="@fbLink.Url" title="@fbLink.Name" target="@fbLink.Target"><svg><use xlink:href="#svg-facebook"></use></svg></a>
+                }
+                @if (instaLink != null)
+                {
+                  <a href="@instaLink.Url" title="@instaLink.Name" target="@instaLink.Target"><svg><use xlink:href="#svg-instagram"></use></svg></a>
+                }
+    			@if (!string.IsNullOrWhiteSpace(footer.Email))
+                {
+                  <a href="mailto:@footer.Email" title="Email" target="_blank"><svg><use xlink:href="#svg-email"></use></svg></a>
+                }
+    		</div>
+    	}
         <nav>
             @{
-                var links = footer.GetPropertyValue<RelatedLinks>("links");
-                if (links != null && links.Any())
+                var links = footer.Value<IEnumerable<Link>>("Links");
+                if (links.Any())
                 {
                     <ul>
                         @foreach (var item in links)
                         {
-                            var linkTarget = (item.NewWindow) ? "_blank" : null;
-                            <li><a href="@item.Link" target="@linkTarget">@item.Caption</a></li>
+                            <li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
                         }
                     </ul>
                 }

@@ -14,7 +14,7 @@
     //@Model.DynamicFields.aliasFormField
     //@foreach(var color in Model.DynamicFields.checkboxField
 
-    //Images need to be asbolute - so fetching domain to prefix with images
+    //Images need to be absolute - so fetching domain to prefix with images
     var siteDomain = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
     var assetUrl = siteDomain + "/App_plugins/UmbracoForms/Assets/Email-Example";
 
@@ -159,7 +159,11 @@
                                         break;
 
                                     case "FieldType.DatePicker.cshtml":
-                                        <p style="margin-top: 0;">@(Convert.ToDateTime(field.GetValue()).ToString("f"))</p>
+                                        DateTime dt;
+                                        var fieldValue = field.GetValue();
+                                        var dateValid = DateTime.TryParse(fieldValue != null ? fieldValue.ToString() : string.Empty, out dt);
+                                        var dateStr = dateValid ? dt.ToString("f") : "";
+                                        <p style="margin-top: 0;">@dateStr</p>
                                         break;
 
                                     case "FieldType.CheckboxList.cshtml":

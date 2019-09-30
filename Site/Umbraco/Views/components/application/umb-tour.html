@@ -1,6 +1,7 @@
 <div class="umb-tour">
 
-    <div class="umb-loader umb-tour__loader" ng-if="loadingStep"></div>
+    <umb-loader class="umb-tour__loader" ng-if="loadingStep"></umb-loader>
+
     <div class="umb-tour__pulse"></div>
 
     <div class="umb-tour__popover shadow-depth-2" ng-class="{'umb-tour__popover--l': model.currentStep.type === 'intro' || model.currentStepIndex === model.steps.length}">
@@ -31,11 +32,11 @@
                         </div>
                         
                         <div ng-if="model.currentStep.type !== 'intro'">
-                            <umb-button size="xs" ng-if="!model.currentStep.event" button-style="success" type="button" action="model.nextStep()" label="Next"></umb-button>
+                            <umb-button size="xs" ng-if="!model.currentStep.event" button-style="action" type="button" action="model.nextStep()" label="Next"></umb-button>
                         </div>
 
                         <div ng-if="model.currentStep.type === 'intro'">
-                            <umb-button size="m" button-style="success" type="button" action="model.nextStep()" label="Start tour"></umb-button>
+                            <umb-button size="m" button-style="action" type="button" action="model.nextStep()" label="Start tour"></umb-button>
                         </div>
                     </div>
 
@@ -55,7 +56,7 @@
                 </umb-tour-step-content>
 
                 <umb-tour-step-footer>
-                    <umb-button type="button" button-style="success" size="m" action="model.completeTour()" label="Complete"></umb-button>
+                    <umb-button type="button" button-style="action" size="m" action="model.completeTour()" label="Complete"></umb-button>
                 </umb-tour-step-footer>
 
             </umb-tour-step>
@@ -76,7 +77,7 @@
                     <p>Please go back and start the tour again.</p>
                 </umb-tour-step-content>
                 <umb-tour-step-footer>
-                    <umb-button size="s" button-style="success" type="button" action="model.endTour()" label="End tour"></umb-button>
+                    <umb-button size="s" button-style="action" type="button" action="model.endTour()" label="End tour"></umb-button>
                 </umb-tour-step-footer>
             </umb-tour-step>
         </div>

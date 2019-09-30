@@ -1,7 +1,7 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.NotFoundPage>
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.NotFoundPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
 @{
-	Layout = "Master.cshtml";
+	Layout = "master.cshtml";
 }
 
 <div class="umb-grid">
@@ -11,7 +11,7 @@
                 <div class="col-md-12 column">
                     <div class="wysiwyg">
                         <div>
-                            <h1>@Model.Content.Name</h1>
+                            <h1>@Model.Name</h1>
                         </div>
                     </div>
                 </div>
@@ -19,4 +19,4 @@
         </div>
     </div>
 </div>
-@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
+@Html.GetGridHtml(Model, "mainContent", "bootstrap3-fluid")

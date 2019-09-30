@@ -1,5 +1,5 @@
-@inherits WebViewPage<FormViewModel>
-@using Umbraco.Forms.Core
+@inherits WebViewPage<Umbraco.Forms.Web.Models.FormViewModel>
+@using Umbraco.Forms.Core.Enums
 @using Umbraco.Forms.Mvc
 @using Umbraco.Forms.Mvc.Models
 @using Umbraco.Forms.Mvc.BusinessLogic
@@ -54,9 +54,9 @@
                                 {
                                     <label for="@f.Id" class="umbraco-forms-label">
                                         @f.Caption @if (f.ShowIndicator)
-                                        {
-                                            <span class="umbraco-forms-indicator">@Model.Indicator</span>
-                                        }
+                                                   {
+                                                       <span class="umbraco-forms-indicator">@Model.Indicator</span>
+                                                   }
                                     </label>
                                 }
 
@@ -77,10 +77,10 @@
                                 </div>
 
                             </div>
-                         }
+                        }
 
                     </div>
-                 }
+                }
             </div>
 
         </fieldset>
@@ -99,10 +99,10 @@
                 if (!Model.IsFirstPage)
                 {
                     <input 
-                          class="btn prev cancel" 
-                          type="submit" 
-                          value="@Model.PreviousCaption" 
-                          name="__prev" />
+                        class="btn prev cancel" 
+                        type="submit" 
+                        value="@Model.PreviousCaption" 
+                        name="__prev" />
                 }
 
                 if (!Model.IsLastPage)
@@ -131,3 +131,5 @@
         </div>
     </div>
 </div>
+
+@Html.Partial("Forms/Themes/default/ScrollToFormScript")

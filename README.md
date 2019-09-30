@@ -13,4 +13,4 @@ Run test server : ```gulp browserSync```
 Run test server whilst listening for changes : ```gulp test-server```
 Run build version of files ```gulp build```
 
-More information about gulp tasks and writing UID code in the generated js and sass documentaion. These will open when test server is run.
+More information about gulp tasks and writing UID code in the generated js and sass documentaion. These will open when test server is run

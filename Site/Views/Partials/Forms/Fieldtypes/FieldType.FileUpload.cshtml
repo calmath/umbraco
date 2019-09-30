@@ -1,26 +1,22 @@
-@using Umbraco.Web
 @model Umbraco.Forms.Mvc.Models.FieldViewModel
 
+@{
+    var isValid = (Model.Mandatory && Model.Values != null && Model.Values.Any()) || (!Model.Mandatory);
+}
 <input type="file" name="@Model.Name" id="@Model.Id" multiple
-@if(Model.Mandatory){<text> data-val="true" data-val-required="@Model.RequiredErrorMessage"</text>} />
+       data-val="@(isValid == false ? "true" : null)"
+       data-val-required="@(isValid == false ? Model.RequiredErrorMessage : null)" />
 
 @if (Model.Values != null && Model.Values.Any())
 {
     <p>
-        <strong>Current File/s:</strong><br/>
-        @foreach (Dictionary<string, string> dictionaryObject in Model.Values)
+        <strong>Current File/s:</strong><br />
+        @foreach (string filePath in Model.Values)
         {
-            @*
-            The model.values contains a list of dictionary objects with a single item
-            With the key being the full path to the file
-            And the value being the filename
-            *@
-            if (dictionaryObject.Count > 0)
-            {
-                var fileInfo = dictionaryObject.First();
-                <a href="@fileInfo.Key" target="_blank">@fileInfo.Value</a><br/>
-                <input type="hidden" name="@(Model.Name)_file_@(fileInfo.Value)" value="@fileInfo.Key" />
-            }
+            var fileName = filePath.Split('/').Last();
+
+            <a>@fileName</a><br />
+            <input type="hidden" name="@(Model.Name)_file_@(fileName)" value="@filePath" />
         }
     </p>
 }

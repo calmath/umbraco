@@ -1,8 +1,7 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContentPage>
-@using AutoMapper.Internal
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ContentPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
 @{
-    Layout = "Master.cshtml";
+    Layout = "master.cshtml";
 }
 
 <div class="umb-grid">
@@ -11,5 +10,4 @@
     </div>
 </div>
 
-@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
-
+@Html.GetGridHtml(Model, "mainContent", "bootstrap3-fluid")

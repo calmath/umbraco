@@ -1,36 +1,36 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.IHero>
-@using AutoMapper.Internal
-@using ContentModels = Umbraco.Web.PublishedContentModels;
-@{
-    Layout = null;
-}
+﻿@using Umbraco.Web.Models;
+@using Umbraco.Web.PublishedModels;
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
     
 @{
-    var theme = Model.Content.Theme.ToNullSafeString();
+    var hero = Model as IHero;
+
+    var theme = hero.Theme;
 
     var bgImageStyle = string.Empty;
-    if (Model.Content.BackgroundImage != null && !string.IsNullOrWhiteSpace(Model.Content.BackgroundImage.Url) )
+    if (hero.BackgroundImage != null && !string.IsNullOrWhiteSpace(hero.BackgroundImage.Url) )
     {
-        bgImageStyle = string.Format("style=background-image:url('{0}')", Model.Content.BackgroundImage.Url);
+        bgImageStyle = string.Format("style=background-image:url('{0}')", hero.BackgroundImage.Url);
     }
 
     var typeWriterClass = string.Empty;
-    if (this.Model.Content.UseTypewriterStyle)
+    if (hero.UseTypewriterStyle)
     {
         typeWriterClass = "typewriter"; 
     }
 
 }
 
-@if (Model.Content.NarrowHero)
+@if (hero.NarrowHero)
 {
-    var heading = Model.Content.Heading ;
+    var heading = hero.Heading ;
     if (string.IsNullOrWhiteSpace(heading))
     {
-        heading = Model.Content.Name; 
+        heading = hero.Name; 
     }
 
-    <div class="theme-brand1 edge">
+    <div class="theme-@theme edge">
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <div class="wysiwyg">
@@ -44,16 +44,16 @@
 }
 else
 {
-    if (!string.IsNullOrWhiteSpace(Model.Content.Heading))
+    if (!string.IsNullOrWhiteSpace(hero.Heading))
      {
-         <div class="theme-brand1 edge @typeWriterClass" @bgImageStyle >
+         <div class="theme-@theme edge @typeWriterClass" @bgImageStyle >
              <div class="row clearfix">
                  <div class="col-md-12 column">
                      <div class="heroBlock">
-                         <h1>@Model.Content.Heading</h1>
-                         @if (Model.Content.Icon != null && !string.IsNullOrWhiteSpace(Model.Content.Icon.Url))
+                         <h1>@hero.Heading</h1>
+                         @if (hero.Icon != null && !string.IsNullOrWhiteSpace(hero.Icon.Url))
                          {
-                             <img class="heroIcon" src="@Model.Content.Icon.Url">
+                             <img class="heroIcon" src="@hero.Icon.Url">
                          }
                      </div>
                  </div>

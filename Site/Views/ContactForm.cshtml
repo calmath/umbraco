@@ -1,13 +1,17 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContactForm>
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ContactForm>
+@using ContentModels = Umbraco.Web.PublishedModels;
 @{
-    Layout = "Master.cshtml";
+    Layout = "master.cshtml";
 }
 
-<h1>@Model.Content.Heading</h1>
-@Html.GetGridHtml(Model.Content, "mainContent", "bootstrap3-fluid")
+<div class="umb-grid">
+    <div class="grid-section">
+        @Html.Partial("~/Views/Partials/Components/Hero.cshtml")
+    </div>
+</div>
+@Html.GetGridHtml(Model, "mainContent", "bootstrap3-fluid")
 
-@Umbraco.RenderMacro("renderUmbracoForm", new {FormGuid=Model.Content.Form.ToString()})
+@Umbraco.RenderMacro("renderUmbracoForm", new {FormGuid=Model.Form.ToString(), FormTheme="bootstrap3-horizontal"})
 
 @section EndBodyScripts
 {

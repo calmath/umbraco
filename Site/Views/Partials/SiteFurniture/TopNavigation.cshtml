@@ -1,7 +1,7 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @using Umbraco.Web;
 @{
-    var site = Model.Content.Site();
+    var site = Model.Root();
     var level1 = site.Children.Where(x => x.IsVisible());
 }
 
@@ -9,7 +9,7 @@
     <nav class="headerNav" id="menuNav">
         <ul>
             <li>
-                <a class='@(Model.Content.Id == site.Id ? " active" : null)' href="@site.Url">Home</a>
+                <a class='@(Model.Id == site.Id ? " active" : null)' href="@site.Url">Home</a>
             </li>
 
             @foreach (var item1 in level1)
@@ -17,12 +17,12 @@
                 var level2 = item1.Children.Where(x => x.IsVisible());
 
                 <li>
-                    <a class='@(item1.IsAncestorOrSelf(Model.Content) ? " active" : null)' href="@item1.Url">@item1.Name</a>
+                    <a class='@(item1.IsAncestorOrSelf(Model) ? " active" : null)' href="@item1.Url">@item1.Name</a>
                     @if (level2.Count() > 0) 
                     {
                         <ul>
                             @foreach( var item2 in level2) {
-                                <li><a class='@(item2.IsAncestorOrSelf(Model.Content) ? " active" : null)' href="@item2.Url">@item2.Name</a></li>
+                                <li><a class='@(item2.IsAncestorOrSelf(Model) ? " active" : null)' href="@item2.Url">@item2.Name</a></li>
                             }
                         </ul>
                     }

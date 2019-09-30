@@ -1,2 +1,0 @@
-<%@ Page Language="C#" MasterPageFile="../MasterPages/UCommerceAdmin.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="UCommerce.Web.UI.Catalog.EditProduct" EnableEventValidation="false" ValidateRequest="false" %>
-<asp:Content runat="server" ContentPlaceHolderID="ContentArea"/>

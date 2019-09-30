@@ -1,8 +1,7 @@
-﻿@using AutoMapper.Internal
-@model Umbraco.Web.PublishedContentModels.Promo
+﻿@model Umbraco.Web.PublishedModels.Promo
 
 @{
-    var theme = Model.Theme.ToNullSafeString();
+    var theme = Model.Theme;
 
     var link = string.Empty;
     var linkTitle = string.Empty; 
@@ -14,7 +13,7 @@
 }
 
 <div class="col-md-4 column">
-    <div class="theme-brand1">
+    <div class="theme-@theme">
 
         <a href="@link" title="@linkTitle">
             <div class="bgImageBlock">
