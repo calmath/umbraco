@@ -4,7 +4,8 @@ const uidFrameworkDir = "./node_modules/uid-framework/",
 	  history = require('connect-history-api-fallback'),
 	  mocha = require('gulp-mocha'),
 	  babel = require('gulp-babel'),
-	  gulp = require('gulp');
+	  gulp = require('gulp'),
+	  del = require('del');
 
 //get default config
 var config = require(`${uidFrameworkDir}/configs/gulp/config.js`);
@@ -70,28 +71,29 @@ gulp.task('copy', function () {
 });
 
 gulp.task('publish', function () {
-    gulp.src('./App_Data/packages/*')
-		.pipe(gulp.dest('./publish//App_Data/packages/'));
-	gulp.src('./App_Plugins/**/*')
-		.pipe(gulp.dest('./publish//App_Plugins/'));
-	gulp.src('./bin/**/*')
-		.pipe(gulp.dest('./publish//bin/'));
-	gulp.src('./Config/**/*')
-		.pipe(gulp.dest('./publish//Config/'));
-	gulp.src('./css/**/*')
-		.pipe(gulp.dest('./publish//css/'));
-	gulp.src('./media/**/*')
-		.pipe(gulp.dest('./publish//media/'));
-	gulp.src('./scripts/**/*')
-		.pipe(gulp.dest('./publish//scripts/'));
-	gulp.src('./Umbraco/**/*')
-		.pipe(gulp.dest('./publish//Umbraco/'));
-	gulp.src('./uSync/**/*')
-		.pipe(gulp.dest('./publish//uSync/'));
-	gulp.src('./Views/**/*')
-		.pipe(gulp.dest('./publish//Views/'));
-	gulp.src('./Global.asax')
-		.pipe(gulp.dest('./publish/'));
-	gulp.src('./Web.config')
-        .pipe(gulp.dest('./publish/'));
+	(async () => {
+		await del('./publish/**', {force:true});
+		gulp.src('./App_Data/packages/*')
+			.pipe(gulp.dest('./publish//App_Data/packages/'));
+		gulp.src('./App_Plugins/**/*')
+			.pipe(gulp.dest('./publish//App_Plugins/'));
+		gulp.src('./bin/**/*')
+			.pipe(gulp.dest('./publish//bin/'));
+		gulp.src('./Config/**/*')
+			.pipe(gulp.dest('./publish//Config/'));
+		gulp.src('./css/**/*')
+			.pipe(gulp.dest('./publish//css/'));
+		gulp.src('./scripts/**/*')
+			.pipe(gulp.dest('./publish//scripts/'));
+		gulp.src('./Umbraco/**/*')
+			.pipe(gulp.dest('./publish//Umbraco/'));
+		gulp.src('./uSync/**/*')
+			.pipe(gulp.dest('./publish//uSync/'));
+		gulp.src('./Views/**/*')
+			.pipe(gulp.dest('./publish//Views/'));
+		gulp.src('./Global.asax')
+			.pipe(gulp.dest('./publish/'));
+		gulp.src('./Web.config')
+			.pipe(gulp.dest('./publish/'));
+	})();
 });
