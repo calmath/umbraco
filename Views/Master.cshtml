@@ -101,7 +101,6 @@
     @Html.Partial("~/Views/Partials/SiteFurniture/Footer.cshtml")
     @Html.Partial("~/Views/Partials/Components/CookieBanner.cshtml")
     <script src="/scripts/index.js" async></script>
-    @Umbraco.RenderMacro("RenderFormScripts")
     @RenderSection("EndBodyScripts", false)
     @{
         if (!string.IsNullOrWhiteSpace(footer.GlobalScripts))
