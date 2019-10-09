@@ -65,14 +65,14 @@ gulp.task('test', function() {
         .pipe(mocha());
 });
 
-gulp.task('copy', function () {
+gulp.task('copy', ['build'], function () {
     gulp.src('./static/js/index.js')
 		.pipe(gulp.dest('./Scripts/'));
 	gulp.src('./static/css/style.css')
         .pipe(gulp.dest('./css/'));
 });
 
-gulp.task('publish', function () {
+gulp.task('publish', ['copy'], function () {
 	(async () => {
 		await del('./publish/**', {force:true});
 		gulp.src('./App_Data/packages/*')
@@ -98,12 +98,12 @@ gulp.task('publish', function () {
 	})();
 });
 
-const host = 'waws-prod-ln1-025.ftp.azurewebsites.windows.net',
-	user = 'WatfordExServices\\$WatfordExServices'
-	pwd = '8LC1bcH8i1PYnedv1LyWfuRhgB8BYhtZm14tqcJw1x8sl58Lykulby3yiHRh'
+const host = '',
+	user = ''
+	pwd = ''
 	remoteLocation = 'site/wwwroot/';
 
-gulp.task('deploy', function () {
+gulp.task('deploy', ['publish'], function () {
 	var conn = ftp.create( {
         host:     host,
         user:     user,
@@ -117,5 +117,5 @@ gulp.task('deploy', function () {
     return gulp.src(ftpFiles, {base: './publish', buffer: false})
         .pipe(conn.newer(remoteLocation))
 		.pipe(conn.dest(remoteLocation))
-		.pipe(conn.clean(['site/wwwroot/**', '!site/wwwroot/web.config', '!site/wwwroot/media/**/*', '!site/wwwroot/App_Data/**/*'], './publish/'))
+		.pipe(conn.clean(['site/wwwroot/**', '!site/wwwroot/web.config', '!site/wwwroot/robots.txt', '!site/wwwroot/media/**/*', '!site/wwwroot/App_Data/**/*'], './publish/'))
 });
