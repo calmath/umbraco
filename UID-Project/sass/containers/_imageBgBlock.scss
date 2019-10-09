@@ -50,6 +50,14 @@
 		padding: 0 0 pxToRem(map-get($padding, default) / 2);
 	}
 
+	.bottomRight_text {
+		float: right;
+	}
+
+	.clearMargin {
+		margin: 0 0 0 0;
+	}
+	
 	h3 {
 		position: relative;
 		display: block;

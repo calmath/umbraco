@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.EventLandingPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("ad06c86a-7b05-4ab3-a7f6-3d8a9d15ab9b"))
+    .ChildrenOfType("eventPage")
+    //.Where(x => x.IsVisible())
+    .OrderBy(x => x.Value<DateTime>("EventDate"));
+}
+<div class="umb-grid">
+    <div class="grid-section">
+		<div class="noGap edge">
+			<div class="row clearfix">
+				@foreach (var item in selection)
+				{
+					@Html.Partial("~/Views/Partials/Components/Event.cshtml", item);
+				}
+			</div>
+		</div>
+	</div>
+</div>

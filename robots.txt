@@ -1,0 +1,4 @@
+Sitemap: https://watfordexservices.azurewebsites.net/xmlsitemap
+User-agent: *
+Disallow: /
+Crawl-delay: 10

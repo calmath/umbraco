@@ -58,6 +58,7 @@
 		"gulp-strip-debug": "^3.0.0",
 		"gulp-svgstore": "^6.1.1",
 		"gulp-uglify": "^3.0.0",
+		"gulp-util": "^3.0.8",
 		"htmllint": "^0.7.2",
 		"htmllint-cli": "0.0.7",
 		"husky": "^0.14.3",
@@ -73,6 +74,7 @@
 		"sass-lint": "^1.12.1",
 		"sassdoc": "^2.5.0",
 		"uid-framework": "./Modules/uid-framework",
+		"vinyl-ftp": "^0.6.1",
 		"vinyl-source-stream": "^2.0.0"
 	},
 	"sasslintConfig": "./node_modules/uid-framework/.sasslintrc"

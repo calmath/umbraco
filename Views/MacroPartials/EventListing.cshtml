@@ -1,0 +1,63 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    IPublishedContent startNode = null;
+    var numberOfItems = 3;
+    var sortOrder = "";
+    var descending = false;
+
+    if(Model.MacroParameters.ContainsKey("startNode"))
+    {
+        startNode = Umbraco.Content(Model.MacroParameters["startNode"]);
+        //Must have a start node, if not select the root of the site
+        if (startNode == null)
+        {
+            startNode = Model.Content.AncestorOrSelf( 1 );
+        }
+    }
+
+    if(Model.MacroParameters.ContainsKey("numberOfItems"))
+    {
+        numberOfItems = Int32.Parse(Model.MacroParameters["numberOfItems"].ToString());
+    }
+
+    if(Model.MacroParameters.ContainsKey("sortOrder"))
+    {
+        sortOrder = Model.MacroParameters["sortOrder"].ToString();
+        if(Model.MacroParameters.ContainsKey("descending"))
+        {
+            descending = Model.MacroParameters["descending"].ToString() != "0";
+            if (descending)
+            {
+                sortOrder += " desc";
+            }
+        }
+    }
+
+    var selection = startNode.Descendants()
+        .OfTypes("eventPage")
+        .OrderBy(x => x.Value<string>(sortOrder))
+        .Take(numberOfItems);
+    if (sortOrder.Contains("Date"))
+    {
+        selection = startNode.Descendants()
+            .OfTypes("eventPage")
+            .OrderBy(x => x.Value<DateTime>(sortOrder))
+            .Take(numberOfItems);
+    }
+}
+
+@if (selection.Any())
+{
+    var columns = 12 / selection.Count();
+    <div class="noGap edge">
+        <div class="row clearfix">
+            @foreach (var item in selection)
+            {
+                <div class="col-md-@columns column">
+                    @Html.Partial("~/Views/Partials/Components/Event.cshtml", item)
+                </div>
+            }
+        </div>
+    </div>
+}

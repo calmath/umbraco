@@ -1,0 +1,64 @@
+﻿@using Umbraco.Web.Models;
+@using Umbraco.Web.PublishedModels;
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+    
+@{
+    var hero = Model as IHero;
+    var eventPage = Model as IEvent;
+    var theme = hero.Theme;
+
+    var bgImageStyle = string.Empty;
+    if (hero.BackgroundImage != null && !string.IsNullOrWhiteSpace(hero.BackgroundImage.Url) )
+    {
+        bgImageStyle = string.Format("style=background-image:url('{0}')", hero.BackgroundImage.Url);
+    }
+
+    var typeWriterClass = string.Empty;
+    if (hero.UseTypewriterStyle)
+    {
+        typeWriterClass = "typewriter"; 
+    }
+
+}
+
+@if (hero.NarrowHero)
+{
+    var heading = hero.Heading ;
+    if (string.IsNullOrWhiteSpace(heading))
+    {
+        heading = hero.Name; 
+    }
+
+    <div class="theme-@theme edge">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="wysiwyg">
+                    <div>
+                        <h1>@heading</h1>
+                        <h2>@eventPage.EventDate - @eventPage.Location</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (!string.IsNullOrWhiteSpace(hero.Heading))
+     {
+         <div class="theme-@theme edge @typeWriterClass" @bgImageStyle >
+             <div class="row clearfix">
+                 <div class="col-md-12 column">
+                     <div class="heroBlock">
+                         <h1>@hero.Heading</h1>
+                         @if (hero.Icon != null && !string.IsNullOrWhiteSpace(hero.Icon.Url))
+                         {
+                             <img class="heroIcon" src="@hero.Icon.Url">
+                         }
+                     </div>
+                 </div>
+             </div>
+         </div>
+     }
+}

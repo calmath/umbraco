@@ -1,0 +1,62 @@
+﻿@using Umbraco.Web.Models;
+@using Umbraco.Web.PublishedModels;
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var siteSettings = Model.Root() as ISiteSettings;
+
+    //Umbraco.Core.Models.Membership.IMembershipUser user = null;
+    var user = "";
+    if (Umbraco.MemberIsLoggedOn())
+    {
+        var myUser = System.Web.Security.Membership.GetUser();   
+        if (myUser != null)
+        {
+            //var applicationContext = Umbraco.Core.Composing.Current.Services;
+            //user = applicationContext.MemberService.GetByUsername(myUser.UserName).Name;
+        }
+    }
+}
+
+<header class="theme-default">
+    <div class="bgLight no-wrap row ">
+    <div class="siteLabel">
+        <a href="/">
+            <img src="@siteSettings.SiteLogo.Url" alt="@siteSettings.SiteLogo.Name" />
+        </a>
+    </div>
+    @Html.Partial("~/Views/Partials/SiteFurniture/TopNavigation.cshtml")
+    <div class="siteNav">
+        <div class="">
+            @if (!user.IsNullOrWhiteSpace())
+            {
+                <span>@user</span>
+            }
+        </div>
+        @if (siteSettings.Login)
+        {
+            <div class="login">
+                @if(user.IsNullOrWhiteSpace())
+                {
+                    <a href="/login/" title="Login" id="login">Login</a>
+                }
+                else
+                {
+                    using (Html.BeginUmbracoForm("SubmitLogout", "Member", System.Web.Mvc.FormMethod.Post, new { id = "logout" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button name="login" type="submit"><span>Logout</span></button>
+                    }
+                }
+            </div>
+        }
+        <button title="menu" class="menuIcon" id="menuIcon" disabled>
+            <span class="menuLine first"></span>
+            <span class="menuLine second"></span>
+            <span class="menuLine third"></span>
+            <span class="access">Menu</span>
+        </button>
+    </div>
+    </div>
+</header>

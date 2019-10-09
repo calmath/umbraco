@@ -1,0 +1,66 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.XmlSiteMap>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = null;
+    Response.ContentType = "text/xml";
+    string blacklistedDocumentTypeList = Model.BlacklistedDocumentTypes;
+    string[] blackListedDocumentTypes = (!String.IsNullOrEmpty(blacklistedDocumentTypeList)) ? blacklistedDocumentTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries) : new string[] { };
+    int maxSiteMapDepth = int.MaxValue; //Model.HasValue("MaxSiteMapDepth") ? Model.MaxSiteMapDepth : int.MaxValue;
+    IPublishedContent siteHomePage = Model.Root();
+}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemalocation="http://www.google.com/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" 
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        @RenderSiteMapUrlEntry(siteHomePage)@RenderSiteMapUrlEntriesForChildren(siteHomePage, maxSiteMapDepth, blackListedDocumentTypes)
+</urlset>
+
+@helper RenderSiteMapUrlEntry(IPublishedContent node)
+{
+    // we're passing 'true' as an additional parameter to GetPropertyValue to read the value from the parent nodes, so this setting could be set 'per section
+    var changeFreq = node.Value<string>("SearchEngineChangeFrequency", fallback: Fallback.ToAncestors);
+    if (String.IsNullOrEmpty(changeFreq))
+    {
+        changeFreq = "monthly";
+    }
+    // with the relative priority, this is a per page setting, so we're not passing true
+    var priority = node.Value<string>("SearchEngineRelativePriority");
+    if (String.IsNullOrEmpty(priority))
+    {
+        priority = "0.5";
+    }
+    <url>
+        <loc>@EnsureUrlStartsWithDomain(node.Url)</loc>
+        <lastmod>@(string.Format("{0:s}+00:00", node.UpdateDate))</lastmod>
+        <changefreq>@changeFreq</changefreq>
+        <priority>@priority</priority>
+    </url>
+}
+
+@helper RenderSiteMapUrlEntriesForChildren(IPublishedContent parentPage, int maxSiteMapDepth, string[] documentTypeBlacklist)
+{
+    foreach (var page in parentPage.Children.Where(f => !documentTypeBlacklist.Contains(f.ContentType.Alias) && !f.Value<bool>("HideFromXmlSiteMap")))
+    {
+        @RenderSiteMapUrlEntry(page)
+        if (page.Level < maxSiteMapDepth && page.Children.Any(f => !documentTypeBlacklist.Contains(f.ContentType.Alias) && !f.Value<bool>("HideFromXmlSiteMap")))
+        {
+            @RenderSiteMapUrlEntriesForChildren(page, maxSiteMapDepth, documentTypeBlacklist)
+        }
+    }
+}
+
+@functions {
+    private static string EnsureUrlStartsWithDomain(string url)
+    {
+        if (url.StartsWith("http"))
+        {
+            return url;
+        }
+        else
+        {
+            // whatever makes sense for your site here...
+            var domainPrefix = string.Format("https://{0}/", HttpContext.Current.Request.ServerVariables["HTTP_HOST"]);
+            return domainPrefix + url;
+        }
+    }
+}

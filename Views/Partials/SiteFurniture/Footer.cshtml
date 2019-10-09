@@ -4,7 +4,7 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage
 
 @{
-    var footer = Model.Root() as IFooter;
+    var footer = Model as IFooter;
     var fbLink = footer.Value<Link>("Facebook");
     var instaLink = footer.Value<Link>("Instagram");
 }

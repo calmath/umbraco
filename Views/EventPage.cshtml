@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.EventPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="umb-grid">
+    <div class="grid-section">
+        @Html.Partial("~/Views/Partials/Components/EventHero.cshtml")
+    </div>
+</div>
+
+@Html.GetGridHtml(Model, "mainContent", "bootstrap3-fluid")

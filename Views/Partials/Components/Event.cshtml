@@ -1,0 +1,27 @@
+@model Umbraco.Web.PublishedModels.EventPage
+
+@{
+    var theme = Model.Theme;
+}
+
+<div class="theme-@theme">
+    <a href="@Model.Url" title="@Model.Name">
+        <div class="bgImageBlock">
+            <div class="bgImageBlock_img bgLight">
+                @if (Model.ListingImage != null && !string.IsNullOrWhiteSpace(Model.ListingImage.Url))
+                {
+                    <img src="@Model.ListingImage.Url" alt="@Model.ListingImage.Name" />
+                }
+            </div>
+            <div class="bgImageBlock_title">
+                <h3 class="clearMargin bottomBorder">@Model.Name</h3>
+                @Model.EventDate
+                <span class="bottomRight_text">@Model.Location</span>
+                <div class="borderBottomAnimate"></div>
+            </div>
+            <div class="bgImageBlock_text">
+                @Model.ListingText
+            </div>
+        </div>
+    </a>
+</div>

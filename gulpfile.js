@@ -5,7 +5,9 @@ const uidFrameworkDir = "./node_modules/uid-framework/",
 	  mocha = require('gulp-mocha'),
 	  babel = require('gulp-babel'),
 	  gulp = require('gulp'),
-	  del = require('del');
+	  gutil = require('gulp-util'),
+	  del = require('del'),
+	  ftp = require('vinyl-ftp');
 
 //get default config
 var config = require(`${uidFrameworkDir}/configs/gulp/config.js`);
@@ -93,7 +95,27 @@ gulp.task('publish', function () {
 			.pipe(gulp.dest('./publish//Views/'));
 		gulp.src('./Global.asax')
 			.pipe(gulp.dest('./publish/'));
-		gulp.src('./Web.config')
-			.pipe(gulp.dest('./publish/'));
 	})();
+});
+
+const host = 'waws-prod-ln1-025.ftp.azurewebsites.windows.net',
+	user = 'WatfordExServices\\$WatfordExServices'
+	pwd = '8LC1bcH8i1PYnedv1LyWfuRhgB8BYhtZm14tqcJw1x8sl58Lykulby3yiHRh'
+	remoteLocation = 'site/wwwroot/';
+
+gulp.task('deploy', function () {
+	var conn = ftp.create( {
+        host:     host,
+        user:     user,
+        password: pwd,
+        parallel: 3,
+        log:      gutil.log
+	} );
+	
+	var ftpFiles = ['./publish/**/*', '!./publish/bin/**', '!./publish/Umbraco/**', '!./publish/App_Plugins/**'];
+
+    return gulp.src(ftpFiles, {base: './publish', buffer: false})
+        .pipe(conn.newer(remoteLocation))
+		.pipe(conn.dest(remoteLocation))
+		.pipe(conn.clean(['site/wwwroot/**', '!site/wwwroot/web.config', '!site/wwwroot/media/**/*', '!site/wwwroot/App_Data/**/*'], './publish/'))
 });

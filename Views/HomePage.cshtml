@@ -49,7 +49,7 @@
         {
             <div>
                 <div class="row clearfix">
-                    <div class="col-md-8 column">
+                    <div class="col-md-12 column">
                         <div class="wysiwyg">
                             <div>
                                 @Model.SecondaryBody
@@ -60,51 +60,44 @@
             </div>
         }
 
-
-
-
-
-        <div class="flex-auto-width">
-            <div class="row clearfix">
-                @{
-                    if (Model.HasValue("logos"))
+        @if (Model.HasValue("logos"))
+        {
+            var logoList = Model.Logos;
+            if (logoList != null)
+            {
+                <div class="flex-auto-width">
+                    <div class="row clearfix">
+                    @foreach (var logo in logoList)
                     {
-                        var logoList = Model.Logos;
-                        if (logoList != null)
+
+                        var logoContent = logo as ContentModels.LogoWithUrl;
+                        if (logoContent != null)
                         {
-                            foreach (var logo in logoList)
+                            if (logoContent.Logo != null)
                             {
 
-                                var logoContent = logo as ContentModels.LogoWithUrl;
-                                if (logoContent != null)
+                                if (logoContent.Link != null && logoContent.Link.FirstOrDefault() != null)
                                 {
-                                    if (logoContent.Logo != null)
-                                    {
-
-                                        if (logoContent.Link != null && logoContent.Link.FirstOrDefault() != null)
-                                        {
-                                            var linkItem = logoContent.Link.FirstOrDefault();
-                                            //var linkTarget = (linkItem.NewWindow) ? "_blank" : null;
-                                            string linkTarget = null;
-                                            
-
-
-                                        }
-                                        else
-                                        {
-                                            <div class="col-md-2 column">
-                                                <img src="@logoContent.Logo.Url" alt="@logoContent.Logo.Name" />
-                                            </div>
-                                        }
-
-                                    }
+                                    var linkItem = logoContent.Link.FirstOrDefault();
+                                    <a href="@linkItem.Url" title="@linkItem.Name" target="@linkItem.Target">
+                                        <div class="col-md-2 column">
+                                            <img src="@logoContent.Logo.Url" alt="@linkItem.Name" />
+                                        </div>
+                                    </a>
                                 }
+                                else
+                                {
+                                    <div class="col-md-2 column">
+                                        <img src="@logoContent.Logo.Url" alt="@logoContent.Logo.Name" />
+                                    </div>
+                                }
+
                             }
                         }
                     }
-                }
-            </div>
-        </div>
-
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
