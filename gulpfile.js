@@ -8,6 +8,7 @@ const uidFrameworkDir = "./node_modules/uid-framework/",
 	  gutil = require('gulp-util'),
 	  del = require('del'),
 	  ftp = require('vinyl-ftp');
+	  settings = require('./settings');
 
 //get default config
 var config = require(`${uidFrameworkDir}/configs/gulp/config.js`);
@@ -98,12 +99,12 @@ gulp.task('publish', ['copy'], function () {
 	})();
 });
 
-const host = '',
-	user = ''
-	pwd = ''
-	remoteLocation = 'site/wwwroot/';
+const host = settings.ftp.host,
+	user = settings.ftp.user,
+	pwd = settings.ftp.password,
+	remoteLocation = settings.ftp.remoteLocation;
 
-gulp.task('deploy', ['publish'], function () {
+gulp.task('deploy', function () {
 	var conn = ftp.create( {
         host:     host,
         user:     user,
@@ -114,8 +115,10 @@ gulp.task('deploy', ['publish'], function () {
 	
 	var ftpFiles = ['./publish/**/*', '!./publish/bin/**', '!./publish/Umbraco/**', '!./publish/App_Plugins/**'];
 
-    return gulp.src(ftpFiles, {base: './publish', buffer: false})
-        .pipe(conn.newer(remoteLocation))
-		.pipe(conn.dest(remoteLocation))
-		.pipe(conn.clean(['site/wwwroot/**', '!site/wwwroot/web.config', '!site/wwwroot/robots.txt', '!site/wwwroot/media/**/*', '!site/wwwroot/App_Data/**/*'], './publish/'))
+	(async () => {
+		gulp.src(ftpFiles, {base: './publish', buffer: false})
+			.pipe(conn.clean(['/**', '!Web.config', '!robots.txt', '!media/**/*', '!App_Data/**/*'], './publish/', { base: './site/wwwroot/' }))
+			.pipe(conn.newer(remoteLocation))
+			.pipe(conn.dest(remoteLocation));
+	})();
 });

@@ -65,3 +65,4 @@ bower_components/
 package-lock.json
 static/
 publish/
+settings.json
